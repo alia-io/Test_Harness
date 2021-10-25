@@ -2,9 +2,7 @@
 //
 
 #include <iostream>
-#include "TestRunner.h"
 #include "BasicCalculator.h"
-using namespace TestChef;
 
 int main() {
 
