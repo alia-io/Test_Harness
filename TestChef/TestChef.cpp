@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include "BasicCalculator.h"
-
 int main() {
-
 }
 

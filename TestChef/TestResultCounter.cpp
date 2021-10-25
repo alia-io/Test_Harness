@@ -1,0 +1,1 @@
+#include "TestResultCounter.h"
