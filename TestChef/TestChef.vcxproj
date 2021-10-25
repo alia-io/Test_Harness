@@ -139,7 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BasicCalculator.cpp" />
     <ClCompile Include="TestChef.cpp" />
+    <ClCompile Include="TestHarness.cpp" />
+    <ClCompile Include="TestTimer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BasicCalculator.h" />
+    <ClInclude Include="TestHarness.h" />
+    <ClInclude Include="TestTimer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
