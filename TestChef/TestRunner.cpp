@@ -1,7 +1,8 @@
 #include "TestRunner.h"
 #include <iostream>
 
-TestRunner::TestRunner(bool (*funcPtr)()) : testFunction{funcPtr} { }
+TestRunner::TestRunner(std::string name, bool (*funcPtr)())
+	: testFunctionName{name}, testFunction {funcPtr} { }
 
 bool TestRunner::runTest() {
 	timer.startTimer();

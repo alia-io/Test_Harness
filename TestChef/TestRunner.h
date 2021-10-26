@@ -8,11 +8,12 @@ class TestRunner {
 private:
 	TestTimer timer {};
 	TestExceptionHandler exceptionHandler {};
+	std::string testFunctionName;
 	bool (*testFunction)();
 	bool testResult = false;
 	std::string exceptionMsg = "";
 public:
-	TestRunner(bool (*funcPtr)());
+	TestRunner(std::string name, bool (*funcPtr)());
 	bool runTest();
 	bool getTestResult();
 	std::string getExceptionMsg();
