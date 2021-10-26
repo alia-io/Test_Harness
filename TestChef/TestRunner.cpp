@@ -17,6 +17,8 @@ bool TestRunner::runTest() {
 	return testResult;
 }
 
+std::string TestRunner::getTestFunctionName() { return testFunctionName; }
+
 bool TestRunner::getTestResult() { return testResult; }
 
 std::string TestRunner::getExceptionMsg() { return exceptionMsg; }

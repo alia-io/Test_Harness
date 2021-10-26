@@ -15,6 +15,7 @@ private:
 public:
 	TestRunner(std::string name, bool (*funcPtr)());
 	bool runTest();
+	std::string getTestFunctionName();
 	bool getTestResult();
 	std::string getExceptionMsg();
 	double getTimeTaken();
