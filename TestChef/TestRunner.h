@@ -3,20 +3,17 @@
 #include <string>
 #include "TestTimer.h"
 #include "TestExceptionHandler.h"
+#include "TestLogger.h"
+using namespace TestChef;
+
+enum class TEST_RESULT { NONE, PASS, FAIL, EXCEPTION };
 
 class TestRunner {
 private:
-	TestTimer timer {};
-	TestExceptionHandler exceptionHandler {};
 	std::string testFunctionName;
 	bool (*testFunction)();
-	bool testResult = false;
-	std::string exceptionMsg = "";
+	TEST_RESULT testResult = TEST_RESULT::NONE;
 public:
 	TestRunner(std::string name, bool (*funcPtr)());
-	bool runTest();
-	std::string getTestFunctionName();
-	bool getTestResult();
-	std::string getExceptionMsg();
-	double getTimeTaken();
+	bool runTest(TestLogger logger);
 };
