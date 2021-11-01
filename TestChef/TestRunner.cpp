@@ -1,10 +1,9 @@
 #include "TestRunner.h"
 #include <iostream>
 #include <Windows.h>
-#include <time.h>
-#include <chrono>
-using std::chrono::time_point;
-using std::chrono::system_clock;
+#include <exception>
+#include "TestTimer.h"
+#include "TestExceptionHandler.h"
 
 //#define TEST_RUNNER_TEST
 
@@ -12,33 +11,29 @@ TestRunner::TestRunner(std::string name, bool (*funcPtr)()) : testFunctionName{n
 
 bool TestRunner::runTest(TestLogger logger) {
 	TestTimer timer {};
+	bool result = false;
 	timer.startTimer();
 	try {
-		bool result = testFunction();
-		timer.endTimer();
-		if (result) {
-			testResult = TEST_RESULT::PASS;
-			logger.writeLogInfoToFile(std::string(testFunctionName + ": tests passed."), timer);
-			return true;
-		} else {
-			testResult = TEST_RESULT::FAIL;
-			logger.writeLogInfoToFile(std::string(testFunctionName + ": tests failed."), timer);
-		}
+		result = testFunction();
 	} catch (std::exception& e) {
-		// TODO: get current time for logging
 		timer.endTimer();
 		testResult = TEST_RESULT::EXCEPTION;
 		std::string message = testFunctionName + ": exception raised.";
-		// TODO: only get exception message if log level == debug or detail
-		//switch (logger.getLogLevel()) {
-			//case LOGLEVEL::debug:
-			//case LOGLEVEL::detail:
-				//TestExceptionHandler handler{};
-				// TODO: pass e to TestExceptionHandler
-				//		 message += "Exception message: " + result of TestExceptionHandler
-		//}
+		TestExceptionHandler handler {};
+		// message += " " + handler.getCustomizedString(e, LOGLEVEL::detail, timer);
 		logger.writeLogInfoToFile(message, timer);
+		return false;
 	}
+
+	timer.endTimer();
+	if (result) {
+		testResult = TEST_RESULT::PASS;
+		logger.writeLogInfoToFile(std::string(testFunctionName + ": tests passed."), timer);
+		return true;
+	}
+
+	testResult = TEST_RESULT::FAIL;
+	logger.writeLogInfoToFile(std::string(testFunctionName + ": tests failed."), timer);
 	return false;
 }
 
