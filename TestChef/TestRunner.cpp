@@ -4,12 +4,13 @@
 #include <exception>
 #include "TestTimer.h"
 #include "TestExceptionHandler.h"
+#include "BasicCalculator.h"
 
 //#define TEST_RUNNER_TEST
 
 TestRunner::TestRunner(std::string name, bool (*funcPtr)()) : testFunctionName{name}, testFunction{funcPtr} { }
 
-bool TestRunner::runTest(TestLogger logger) {
+bool TestRunner::runTest(TestLogger logger) {	// TODO: make a way to retrieve the LOGLEVEL from TestLogger object
 	TestTimer timer {};
 	bool result = false;
 	timer.startTimer();
@@ -26,6 +27,7 @@ bool TestRunner::runTest(TestLogger logger) {
 	}
 
 	timer.endTimer();
+
 	if (result) {
 		testResult = TEST_RESULT::PASS;
 		logger.writeLogInfoToFile(std::string(testFunctionName + ": tests passed."), timer);
@@ -39,20 +41,26 @@ bool TestRunner::runTest(TestLogger logger) {
 
 #ifdef TEST_RUNNER_TEST
 
-bool testFunc1() { return false; }
-bool testFunc2() { return true; }
+bool testFunc1() {		// expect FAIL
+	BasicCalculator calculator {};
+	return calculator.add(3, 5) == 7 || calculator.multiply(10, 2) != 20;
+}
 
-bool testFunc3() {
-	int zero = 0;
-	int divByZero = 3 / zero;
-	return true;
+bool testFunc2() {		// expect PASS
+	BasicCalculator calculator {};
+	return calculator.add(3, 5) == 8 && calculator.subtract(5, 3) == 2
+		&& calculator.multiply(10, 2) == 20 && calculator.divide(10, 2) == 5;
+}
+
+bool testFunc3() {		// expect EXCEPTION
+	BasicCalculator calculator {};
+	return calculator.subtract(5, 3) > 5 || calculator.divide(4, 0) == 4;
 }
 
 int main() {
-	
-	bool (*test1)() = *testFunc1;
+
 	TestLogger logger1 {};
-	TestRunner runner1 {"testFunc1", test1};
+	TestRunner runner1 {"testFunc1", *testFunc1 };
 	bool result1 = runner1.runTest(logger1);
 	std::cout << "result1: " << result1 << std::endl;
 
@@ -67,6 +75,6 @@ int main() {
 	TestRunner runner3 {"testFunc3", *testFunc3};
 	bool result3 = runner3.runTest(logger3);
 	std::cout << "result3 = " << result3 << std::endl;*/
-
 }
+
 #endif

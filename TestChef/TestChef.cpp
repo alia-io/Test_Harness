@@ -7,24 +7,30 @@
 #include "TestRunner.h"
 using std::cout;
 using std::endl;
-bool testFunc1() { return false; }
-bool testFunc2() { return true; }
 
-bool testFunc3() {
-	int zero = 0;
-	int divByZero = 3 / zero;
-	return true;
+bool testFunc1() {		// expect FAIL
+	BasicCalculator calculator{};
+	return calculator.add(3, 5) == 7 || calculator.multiply(10, 2) != 20;
+}
+
+bool testFunc2() {		// expect PASS
+	BasicCalculator calculator{};
+	return calculator.add(3, 5) == 8 && calculator.subtract(5, 3) == 2
+		&& calculator.multiply(10, 2) == 20 && calculator.divide(10, 2) == 5;
+}
+
+bool testFunc3() {		// expect EXCEPTION
+	// TODO: throw divide by zero exception
+	BasicCalculator calculator{};
+	return calculator.subtract(5, 3) > 5 || calculator.divide(4, 0) == 4;
 }
 
 int main() {
 
-	bool (*test1)() = *testFunc1;
 	TestLogger logger1{};
-	TestRunner runner1{ "testFunc1", test1 };
+	TestRunner runner1{ "testFunc1", *testFunc1 };
 	bool result1 = runner1.runTest(logger1);
 	std::cout << "result1: " << result1 << std::endl;
-
-	std::cout << "\n";
 
 	TestLogger logger2{};
 	TestRunner runner2{ "testFunc2", *testFunc2 };
@@ -34,6 +40,5 @@ int main() {
 	/*TestLogger logger3{};
 	TestRunner runner3 {"testFunc3", *testFunc3};
 	bool result3 = runner3.runTest(logger3);
-	std::cout << "result3 = " << result3 << std::endl;*/
-
+	std::cout << "\nresult3 = " << result3 << std::endl;*/
 }
