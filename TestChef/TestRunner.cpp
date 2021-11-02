@@ -20,7 +20,7 @@ bool TestRunner::runTest(TestLogger logger) {	// TODO: make a way to retrieve th
 		timer.endTimer();
 		std::string message = testFunctionName + ": exception raised.";
 		TestExceptionHandler handler {};
-		// message += " " + handler.getCustomizedString(e, LOGLEVEL::detail, timer);
+		message += " " + handler.getCustomizedString(e, LOGLEVEL::detail, timer);
 		logger.writeLogInfoToFile(message, timer);
 		return false;
 	}
