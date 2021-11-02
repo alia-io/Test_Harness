@@ -1,16 +1,19 @@
 #include "TestExceptionHandler.h"
+using namespace TestChef;
 
-string TestExceptionHandler::getCustomizedString(string exception, int logLevel, bool (*funcPtr)()) {
+string TestExceptionHandler::getCustomizedString(exception e, LOGLEVEL logLevel, TestTimer timer) {
 	string logDetail = ""; // initialize the return string for the exception handler
-
+	string except = e.what();
+	
 	switch (logLevel) {
-	case 1:
+	case LOGLEVEL::info:
 		logDetail = "Test failed with exception\n";
 		break;
-	case 2:
-		logDetail = "Test failed with the exception: " + exception;
-	case 3:
-		logDetail = logDetail + "at time" + std::to_string(timer.timeTaken());
+	case LOGLEVEL::detail:
+		logDetail = "Test failed with the exception: " + except;
+		break;
+	case LOGLEVEL::debug:
+		logDetail = "Test failed with the exception: " + except + "at time" + to_string(timer.timeTaken());
 		break;
 	}
 
