@@ -18,7 +18,6 @@ bool TestRunner::runTest(TestLogger logger) {	// TODO: make a way to retrieve th
 		result = testFunction();
 	} catch (std::exception& e) {
 		timer.endTimer();
-		testResult = TEST_RESULT::EXCEPTION;
 		std::string message = testFunctionName + ": exception raised.";
 		TestExceptionHandler handler {};
 		// message += " " + handler.getCustomizedString(e, LOGLEVEL::detail, timer);
@@ -29,12 +28,10 @@ bool TestRunner::runTest(TestLogger logger) {	// TODO: make a way to retrieve th
 	timer.endTimer();
 
 	if (result) {
-		testResult = TEST_RESULT::PASS;
 		logger.writeLogInfoToFile(std::string(testFunctionName + ": tests passed."), timer);
 		return true;
 	}
 
-	testResult = TEST_RESULT::FAIL;
 	logger.writeLogInfoToFile(std::string(testFunctionName + ": tests failed."), timer);
 	return false;
 }
