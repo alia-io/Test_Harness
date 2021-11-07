@@ -23,15 +23,15 @@ int AdvCalculator::factorial(int operand1) {
 }
 
 int AdvCalculator::gcd(int operand1, int operand2) {
-	if (operand1 == 0){
-		return operand2;
+	if (operand1 == 0){	//return gcd of the operand that is non-zero
+		return operand2; 
 	}
 	if (operand2 == 0) {
 		return operand1;
 	}
 	
 	if (operand1 > operand2) {
-		return gcd(operand1 - operand2, operand2);
+		return gcd(operand1 - operand2, operand2); //subtract the smaller num from the larger until they are equal
 	}
 	else {
 		return gcd(operand1, operand2 - operand1);
