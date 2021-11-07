@@ -5,6 +5,7 @@
 #include "TestTimer.h"
 #include "TestExceptionHandler.h"
 #include "BasicCalculator.h"
+#include "AdvCalculator.h"
 
 //#define TEST_RUNNER_TEST
 

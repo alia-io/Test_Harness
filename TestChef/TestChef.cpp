@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "BasicCalculator.h"
+#include "AdvCalculator.h"
 #include "TestLogger.h"
 #include "TestRunner.h"
 using std::cout;
