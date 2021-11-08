@@ -26,7 +26,7 @@ bool testFunc3() {		// expect EXCEPTION
 	return calculator.subtract(5, 3) > 5 || calculator.divide(4, 0) == 4;
 }
 
-int main() {
+/*int main() {
 
 	TestLogger logger1{};
 	TestRunner runner1{ "testFunc1", *testFunc1 };
@@ -41,5 +41,5 @@ int main() {
 	/*TestLogger logger3{};
 	TestRunner runner3 {"testFunc3", *testFunc3};
 	bool result3 = runner3.runTest(logger3);
-	std::cout << "\nresult3 = " << result3 << std::endl;*/
-}
+	std::cout << "\nresult3 = " << result3 << std::endl;
+}*/
