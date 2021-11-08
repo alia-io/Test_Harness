@@ -1,30 +1,29 @@
 #include "TestExceptionHandler.h"
 using namespace TestChef;
 
-string TestExceptionHandler::getCustomizedString(exception e, LOGLEVEL logLevel, TestTimer timer) {
+string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel, TestTimer timer) {
 	string logDetail = ""; // initialize the return string for the exception handler
-	string except = e.what();
 	string except_str = "";
 	
-	if (except == "bad_alloc") {
+	if (typeid(e) == typeid(std::bad_alloc)) {
 		except_str = "Failure to allocate storage.";
 	}
-	else if (except == "bad_cast") {
+	else if (typeid(e) == typeid(std::bad_cast)) {
 		except_str = "A dynamic_cast to a reference type fails the run-time check.";
 	}
-	else if (except == "bad_exception") {
+	else if (typeid(e) == typeid(std::bad_exception)) {
 		except_str = "Failure exception thrown during runtime.";
 	}
-	else if (except == "bad_typeid") {
+	else if (typeid(e) == typeid(std::bad_typeid)) {
 		except_str = "A typeid operator is applied to a dereferenced null pointer value of a polymorphic type.";
 	}
-	else if (except == "bad_weak_ptr") {
+	else if (typeid(e) == typeid(std::bad_weak_ptr)) {
 		except_str = "A std::weak_ptr refers to an already deleted object.";
 	}
-	else if (except == "logic_error") {
+	else if (typeid(e) == typeid(std::logic_error)) {
 		except_str = "Faulty logic within the program.";
 	}
-	else if (except == "runtime_error") {
+	else if (typeid(e) == typeid(std::runtime_error)) {
 		except_str = "Error detected during runtime.";
 	}
 
