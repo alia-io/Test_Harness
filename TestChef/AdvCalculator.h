@@ -8,5 +8,6 @@ public:
 	int modulo(int operand1, int operand2);
 	int factorial(int operand1);
 	int gcd(int operand1, int operand2);
+	bool test();
 };
 
