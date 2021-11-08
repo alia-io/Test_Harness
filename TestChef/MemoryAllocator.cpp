@@ -36,22 +36,25 @@ std::list<double> MemoryAllocator::allocDoubleList(int sz) {
 bool TEST() {
 
 	MemoryAllocator allocator{};
-	int size = 10000;
+	const int size = 1000;
 
-	int arr[10000];
-	std::vector<std::string> vec(size);
-	std::list<double> lst(size);
+	//int arr[size];
+	//std::vector<std::string> vec(size);
+	//std::list<double> lst(size);
 
-	if (arr == allocator.allocIntArray(size)
+	/*if (arr == allocator.allocIntArray(size)
 			&& vec == allocator.allocStringVector(size)
 			&& lst == allocator.allocDoubleList(size)) {
 		return true;
 	}
-	else return false;
+	else return false;*/
+
+	int* arr = allocator.allocIntArray(size);
+	return true;
 }
 
 int main() {
 	TestLogger logger1{};
-	TestRunner runner1{ "testFunc1", *TEST };
+	TestRunner runner1{ "MemoryAllocator::TEST", *TEST };
 	bool result1 = runner1.runTest(logger1);
 }

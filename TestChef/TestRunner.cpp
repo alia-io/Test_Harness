@@ -7,8 +7,6 @@
 #include "BasicCalculator.h"
 #include "AdvCalculator.h"
 
-//#define TEST_RUNNER_TEST
-
 TestRunner::TestRunner(std::string name, bool (*funcPtr)()) : testFunctionName{name}, testFunction{funcPtr} { }
 
 bool TestRunner::runTest(TestLogger logger) {	// TODO: make a way to retrieve the LOGLEVEL from TestLogger object
