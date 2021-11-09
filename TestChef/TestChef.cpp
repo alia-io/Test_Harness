@@ -6,6 +6,7 @@
 #include "AdvCalculator.h"
 #include "TestLogger.h"
 #include "TestRunner.h"
+#include "TestHarness.h"
 using std::cout;
 using std::endl;
 
@@ -43,3 +44,12 @@ bool testFunc3() {		// expect EXCEPTION
 	bool result3 = runner3.runTest(logger3);
 	std::cout << "\nresult3 = " << result3 << std::endl;
 }*/
+
+int main() {
+	
+	TestHarness testHarness;
+	testHarness.addTests(*testFunc1);
+	testHarness.addTests(*testFunc2);
+	testHarness.addTests(*testFunc3);
+	testHarness.runAllTests();
+}
