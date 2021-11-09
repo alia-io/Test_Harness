@@ -26,6 +26,9 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 	else if (typeid(e) == typeid(std::runtime_error)) {
 		except_str = "Error detected during runtime.";
 	}
+	else if (typeid(e) == typeid(std::length_error)) {
+		except_str = "Attempt to exceed implementation defined length limits for some object.";
+	}
 
 	switch (logLevel) {
 	case LOGLEVEL::info:

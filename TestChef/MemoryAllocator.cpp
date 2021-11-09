@@ -1,5 +1,6 @@
 #include "MemoryAllocator.h"
 #include "TestRunner.h"
+#include <iostream>
 
 //////////////////////////////////////////////////////
 // MemoryAllocator.cpp								//
@@ -17,7 +18,12 @@
 
 // allocates an integer array of size 'sz'. NOTE: this should throw a std::bad_alloc exception
 int* MemoryAllocator::allocIntArray(int sz) {
-	return new int[sz];
+	try {
+		return new int[sz];
+	}
+	catch (std::bad_alloc) {
+		std::cout << "bad alloc error" << std::endl;
+	}
 }
 
 // allocates a vector of strings of size 'sz'.
@@ -37,6 +43,8 @@ bool TEST() {
 
 	MemoryAllocator allocator{};
 	const int size = 1000;
+
+	std::vector<int> vc(-2);
 
 	//int arr[size];
 	//std::vector<std::string> vec(size);
