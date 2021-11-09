@@ -1,5 +1,19 @@
 #include "AdvCalculator.h"
 
+//////////////////////////////////////////////////////
+// AdvCalculator.cpp								//
+// CSE 681: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/*
+* Implementation of AdvCalculator class. 
+* 
+* This class is part of the TEST functions that the TestHarness runs through
+* Each test function here is an arithmetic operation
+*
+*/
+
 int AdvCalculator::exp(int operand1, int operand2) {
 	if (operand2 != 0) { //check if the power is non-zero
 		return (operand1 * AdvCalculator::exp(operand1, operand2 - 1)); //multiply the base with itself until power is zero

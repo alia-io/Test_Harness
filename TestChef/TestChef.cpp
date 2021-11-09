@@ -6,6 +6,10 @@
 #include "AdvCalculator.h"
 #include "TestLogger.h"
 #include "TestRunner.h"
+#include "TestHarness.h"
+#include <vector>
+#include <functional>
+using namespace TestChef;
 using std::cout;
 using std::endl;
 
@@ -26,6 +30,13 @@ bool testFunc3() {		// expect EXCEPTION
 	return calculator.subtract(5, 3) > 5 || calculator.divide(4, 0) == 4;
 }
 
+bool testLengthError() {
+	std::vector<int> myvector;
+	myvector.resize(myvector.max_size() + 1);
+
+	return true;
+}
+
 /*int main() {
 
 	TestLogger logger1{};
@@ -43,3 +54,13 @@ bool testFunc3() {		// expect EXCEPTION
 	bool result3 = runner3.runTest(logger3);
 	std::cout << "\nresult3 = " << result3 << std::endl;
 }*/
+
+int main() {
+	
+	TestHarness testHarness("def",LOGLEVEL::debug);
+	testHarness.addTests(*testLengthError);
+	testHarness.addTests(*testFunc1);
+	testHarness.addTests(*testFunc2);
+	testHarness.addTests(*testFunc3);
+	testHarness.executor();
+}
