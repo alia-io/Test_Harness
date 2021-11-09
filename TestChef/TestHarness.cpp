@@ -33,15 +33,16 @@ TestHarness::TestHarness(string name, LOGLEVEL log) : suiteName(name) {
 }
 
 //Add callable objects to invoke
-void TestHarness::addTests(bool (*func) ()) {
-	testList.push_back(func);
+void TestHarness::addTests(std::string name, bool (*func) ()) {
+	TestItem test{ name, func };
+	testList.push_back(test);
 }
 
 
 void TestHarness::executor() {
 
 	for (auto const& test : testList) {
-		TestRunner runner(suiteName, test);
+		TestRunner runner(test.name, test.ptr);
 		runner.runTest(logger);
 		
 		

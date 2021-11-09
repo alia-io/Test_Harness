@@ -19,12 +19,16 @@ using std::list;
 class TestHarness
 {
 private:
+	struct TestItem {
+		string name;
+		bool (*ptr)();
+	};
 	string suiteName;
-	list< bool (*)()> testList;
+	list<TestItem> testList;
 	TestChef::TestLogger logger;
-	list<std::function<bool()>> testNewList;
+	list<TestItem> testNewList;
 public:
-	void addTests(bool (*funcPtr)());
+	void addTests(std::string funcName, bool (*funcPtr)());
 	void executor();
 	TestHarness();
 	TestHarness(string name,TestChef::LOGLEVEL log);

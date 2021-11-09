@@ -58,9 +58,9 @@ bool testLengthError() {
 int main() {
 	
 	TestHarness testHarness("def",LOGLEVEL::debug);
-	testHarness.addTests(*testLengthError);
-	testHarness.addTests(*testFunc1);
-	testHarness.addTests(*testFunc2);
-	testHarness.addTests(*testFunc3);
+	testHarness.addTests("testLengthError", * testLengthError);
+	testHarness.addTests("testFunc1", * testFunc1);
+	testHarness.addTests("testFunc2", * testFunc2);
+	testHarness.addTests("testFunc3", * testFunc3);
 	testHarness.executor();
 }
