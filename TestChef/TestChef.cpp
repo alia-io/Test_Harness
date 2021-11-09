@@ -7,7 +7,6 @@
 #include "TestLogger.h"
 #include "TestRunner.h"
 #include "TestHarness.h"
-#include "ITest.h"
 #include <vector>
 #include <functional>
 using namespace TestChef;
