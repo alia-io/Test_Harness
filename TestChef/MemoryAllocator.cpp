@@ -57,7 +57,7 @@ bool TEST() {
 }
 
 int main() {
-	TestLogger logger1{};
+	TestLogger logger1{LOGLEVEL::debug};
 	TestRunner runner1{ "MemoryAllocator::TEST", *TEST };
 	bool result1 = runner1.runTest(logger1);
 }

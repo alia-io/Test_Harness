@@ -16,6 +16,7 @@ TestLogger::TestLogger() : logLevel(LOGLEVEL::info) {
 
 void TestLogger::writeLogInfoToFile(std::string message, TestTimer timer) {
 	cout << message << endl;
-	cout << "Time elapsed" << timer.timeTaken() << endl;
+	cout << "Time elapsed: " << timer.timeTaken() << " ns.\n" << endl;
 }
 
+LOGLEVEL TestLogger::getLogLevel() { return logLevel; }
