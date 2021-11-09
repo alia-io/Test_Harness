@@ -1,6 +1,7 @@
 #pragma once
 #include <time.h>
 #include <chrono>
+#include <string>
 using std::chrono::time_point;
 using std::chrono::system_clock;
 class TestTimer
@@ -13,6 +14,6 @@ public:
 	void startTimer();
 	void endTimer();
 	double timeTaken();
-	
+	std::string currentTime();
 };
 

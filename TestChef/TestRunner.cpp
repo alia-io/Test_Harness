@@ -27,7 +27,7 @@
 
 TestRunner::TestRunner(std::string name, bool (*funcPtr)()) : testFunctionName{name}, testFunction{funcPtr} { }
 
-bool TestRunner::runTest(TestLogger logger) {	// TODO: make a way to retrieve the LOGLEVEL from TestLogger object
+bool TestRunner::runTest(TestLogger logger) {
 	TestTimer timer {};
 	bool result = false;
 	timer.startTimer();
@@ -37,7 +37,7 @@ bool TestRunner::runTest(TestLogger logger) {	// TODO: make a way to retrieve th
 		timer.endTimer();
 		std::string message = testFunctionName + ": Exception raised.";
 		TestExceptionHandler handler {};
-		message += " " + handler.getCustomizedString(e, LOGLEVEL::detail, timer);
+		message += " " + handler.getCustomizedString(e, logger.getLogLevel(), timer);
 		logger.writeLogInfoToFile(message, timer);
 		return false;
 	}
