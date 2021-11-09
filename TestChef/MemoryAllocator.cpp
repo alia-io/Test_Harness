@@ -42,22 +42,17 @@ std::list<double> MemoryAllocator::allocDoubleList(int sz) {
 bool TEST() {
 
 	MemoryAllocator allocator{};
-	const int size = 1000;
 
-	std::vector<int> vc(-2);
+	int arr[1000];
+	std::vector<std::string> vec(-2);	// length_error
+	std::list<double> lst(100);
 
-	//int arr[size];
-	//std::vector<std::string> vec(size);
-	//std::list<double> lst(size);
-
-	/*if (arr == allocator.allocIntArray(size)
-			&& vec == allocator.allocStringVector(size)
-			&& lst == allocator.allocDoubleList(size)) {
+	if (arr == allocator.allocIntArray(1000)
+			&& vec == allocator.allocStringVector(2)
+			&& lst == allocator.allocDoubleList(100)) {
 		return true;
 	}
-	else return false;*/
-
-	int* arr = allocator.allocIntArray(size);
+	else return false;
 	return true;
 }
 
