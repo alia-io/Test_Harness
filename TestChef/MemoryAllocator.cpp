@@ -24,6 +24,7 @@ int* MemoryAllocator::allocIntArray(int sz) {
 	catch (std::bad_alloc) {
 		std::cout << "bad alloc error" << std::endl;
 	}
+	return nullptr;
 }
 
 // allocates a vector of strings of size 'sz'.
