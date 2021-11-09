@@ -1,5 +1,18 @@
 #pragma once
 #include <string>
+
+//////////////////////////////////////////////////////
+// BasicCalculator.h								//
+// CSE 681: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/*
+*
+* This class is part of the TEST functions that the TestHarness runs through
+* Each test function here is an arithmetic operation
+*
+*/
 class BasicCalculator
 {
 

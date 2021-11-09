@@ -1,4 +1,20 @@
 #include "TestExceptionHandler.h"
+
+//////////////////////////////////////////////////////
+// TestExceptionHandler.cpp							//
+// CSE 681: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/*
+* Implementation of TextExceptionHandler class.
+*
+* This class is used to print out the caught excpetions and obtains the exception messages.
+* Depending on the log level a different level of detail for the excpetion messages are returned.
+* 
+*/
+
+
 using namespace TestChef;
 
 string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel, TestTimer timer) {
