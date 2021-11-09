@@ -20,5 +20,4 @@ public:
 	int* allocIntArray(int sz);
 	std::vector<std::string> allocStringVector(int sz);
 	std::list<double> allocDoubleList(int sz);
-	bool TEST();
 };

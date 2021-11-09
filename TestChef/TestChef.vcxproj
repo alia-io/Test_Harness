@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="AdvCalculator.cpp" />
     <ClCompile Include="BasicCalculator.cpp" />
+    <ClCompile Include="ContainerConversions.cpp" />
     <ClCompile Include="MemoryAllocator.cpp" />
     <ClCompile Include="TestChef.cpp" />
     <ClCompile Include="TestExceptionHandler.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="AdvCalculator.h" />
     <ClInclude Include="BasicCalculator.h" />
     <ClInclude Include="ITest.h" />
+    <ClInclude Include="ContainerConversions.h" />
     <ClInclude Include="MemoryAllocator.h" />
     <ClInclude Include="TestExceptionHandler.h" />
     <ClInclude Include="TestHarness.h" />
