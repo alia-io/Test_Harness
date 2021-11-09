@@ -75,14 +75,13 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 
 	switch (logLevel) {
 	case LOGLEVEL::info:
-		logDetail = "\nTest failed with exception.";
+		logDetail = "Test failed with exception.";
 		break;
 	case LOGLEVEL::detail:
-		logDetail = "\nTest failed with the exception: " + except_str;
+		logDetail = "Test failed with the exception: " + except_str;
 		break;
 	case LOGLEVEL::debug:
-		
-		logDetail = "\nTest failed with the exception: " + except_str + "\nException occurred on " + timer.currentTime() + ".";
+		logDetail = "Test failed with the exception: " + except_str + "\nException occurred on " + timer.currentTime() + ".";
 		break;
 	}
 
