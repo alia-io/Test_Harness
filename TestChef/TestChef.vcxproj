@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="AdvCalculator.h" />
     <ClInclude Include="BasicCalculator.h" />
+    <ClInclude Include="ITest.h" />
     <ClInclude Include="MemoryAllocator.h" />
     <ClInclude Include="TestExceptionHandler.h" />
     <ClInclude Include="TestHarness.h" />

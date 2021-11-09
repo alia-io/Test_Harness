@@ -20,3 +20,7 @@ void TestLogger::writeLogInfoToFile(std::string message, TestTimer timer) {
 }
 
 LOGLEVEL TestLogger::getLogLevel() { return logLevel; }
+
+void TestLogger::setLogLevel(LOGLEVEL log) {
+	logLevel = log;
+}

@@ -72,6 +72,9 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 	else if (typeid(e) == typeid(std::ios_base::failure)) {
 		except_str = "Exception thrown on failure by the functions in the Input/Output library.";
 	}
+	else  {
+		except_str = e.what();
+	}
 
 	switch (logLevel) {
 	case LOGLEVEL::info:

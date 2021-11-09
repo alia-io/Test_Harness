@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <list>
+#include <functional>
+#include "TestLogger.h"
 using std::string;
 using std::list;
 //////////////////////////////////////////////////////
@@ -11,6 +13,7 @@ using std::list;
 
 /*
 * This file contains TestHarness class
+* Purpose of class is to repeatedly call the testrunner class which inturn invokes the testable function
 *
 */
 class TestHarness
@@ -18,10 +21,12 @@ class TestHarness
 private:
 	string suiteName;
 	list< bool (*)()> testList;
+	TestChef::TestLogger logger;
+	list<std::function<bool()>> testNewList;
 public:
 	void addTests(bool (*funcPtr)());
-	void runAllTests();
+	void executor();
 	TestHarness();
-	TestHarness(string name);
+	TestHarness(string name,TestChef::LOGLEVEL log);
 };
 

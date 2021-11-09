@@ -14,6 +14,7 @@ namespace TestChef {
 		TestLogger();
 		void writeLogInfoToFile(std::string message, TestTimer timer);
 		LOGLEVEL getLogLevel();
+		void setLogLevel(LOGLEVEL log);
 	};
 
 };
