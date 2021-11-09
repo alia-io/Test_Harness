@@ -38,7 +38,7 @@ int AdvCalculator::gcd(int operand1, int operand2) {
 	}
 }
 
-bool AdvCalculator::test() {
+bool AdvCalculator::TEST() {
 	if (exp(2, 2) == 4 && exp(3, 3) == 27 && exp(1, 0) == 1 && exp(12, 0) == 1 && 
 		modulo(2, 2) == 0 && modulo(5, 2) == 1 && modulo(0, 5) == 0 &&
 		factorial(2) == 2 && factorial(7) == 5040 && factorial(0) == 1 && factorial(1) == 1 &&
