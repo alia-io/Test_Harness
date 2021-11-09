@@ -35,7 +35,7 @@ bool TestRunner::runTest(TestLogger logger) {	// TODO: make a way to retrieve th
 		result = testFunction();
 	} catch (std::exception& e) {
 		timer.endTimer();
-		std::string message = testFunctionName + ": exception raised.";
+		std::string message = testFunctionName + ": Exception raised.";
 		TestExceptionHandler handler {};
 		message += " " + handler.getCustomizedString(e, LOGLEVEL::detail, timer);
 		logger.writeLogInfoToFile(message, timer);

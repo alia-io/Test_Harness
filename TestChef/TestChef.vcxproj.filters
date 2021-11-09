@@ -39,9 +39,12 @@
     <ClCompile Include="TestRunner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-	<ClCompile Include="AdvCalculator.cpp">
-	  <Filter>Source Files</Filter>
-	</ClCompile>
+    <ClCompile Include="AdvCalculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryAllocator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestHarness.h">
@@ -65,8 +68,11 @@
     <ClInclude Include="TestRunner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-	<ClInclude Include="AdvCalculator.h">
-	  <Filter>Header Files</Filter>
-	</ClInclude>
+    <ClInclude Include="AdvCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryAllocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
