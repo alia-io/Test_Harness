@@ -38,7 +38,7 @@ std::list<double> MemoryAllocator::allocDoubleList(int sz) {
 	return lst;
 }
 
-// TEST function
+// TEST function: expect std::length_error thrown
 bool TEST() {
 
 	MemoryAllocator allocator{};
@@ -52,8 +52,8 @@ bool TEST() {
 			&& lst == allocator.allocDoubleList(100)) {
 		return true;
 	}
-	else return false;
-	return true;
+	
+	return false;
 }
 
 int main() {
