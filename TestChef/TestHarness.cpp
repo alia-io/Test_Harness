@@ -12,7 +12,7 @@ using std::list;
 using std::string;
 
 //////////////////////////////////////////////////////
-// TestHarness.h									//
+// TestHarness.cpp									//
 // CSE 681: Object Oriented Design					//
 // Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
 //////////////////////////////////////////////////////
@@ -51,7 +51,7 @@ void TestHarness::executor() {
 		TestRunner runner(test.name, test.ptr); // run each test on test list and increase the correct count
 		bool outcome = runner.runTest(logger);
 		if (outcome) {
-			counter.incrementTestPassed();
+			counter.incrementTestPassed();	
 		}
 		else {
 			counter.incrementTestFailed();
