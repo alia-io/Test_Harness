@@ -3,24 +3,36 @@
 #include <sstream>
 #include <regex>
 
+//////////////////////////////////////////////////////
+// TestTimer.cpp									//
+// CSE 681: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/*
+* Implementation of the TestTimer class.
+* This class is used to report current time as well as instantiated time slices.
+*
+*/
+
 using  std::chrono::system_clock;
 using  std::chrono::duration_cast;
 using  std::chrono::nanoseconds;
 
 void TestTimer::startTimer() {
-	startTime =system_clock::now();
+	startTime =system_clock::now();	// Sets a start time when called.  
 }
 
 void TestTimer::endTimer() {
-	endTime = system_clock::now();
+	endTime = system_clock::now(); // Sets an end time when called.
 }
 
 double TestTimer::timeTaken() {
-	return duration_cast<nanoseconds>(endTime - startTime).count();
+	return duration_cast<nanoseconds>(endTime - startTime).count(); // Used to determine amount of time between start and end time which is two points within code.
 }
 
 std::string TestTimer::currentTime() {
-	time_t now = system_clock::to_time_t(system_clock::now());
+	time_t now = system_clock::to_time_t(system_clock::now());	// Function that returns current time 
 	char buf[30]{ '\0' };
 	ctime_s(buf, sizeof(buf), &now);
 	std::stringstream stream;
