@@ -1,5 +1,6 @@
 #pragma once
 #include "TestTimer.h"
+#include "TestResultCounter.h"
 #include <string>
 namespace TestChef {
 	enum class LOGLEVEL {
@@ -16,6 +17,7 @@ namespace TestChef {
 		void writeLogInfoToFile(std::string message, TestTimer timer, bool outcome);
 		LOGLEVEL getLogLevel();
 		void setLogLevel(LOGLEVEL log);
+		void printTestRunSummary(TestResultCounter counter, TestTimer timer);
 	};
 
 };

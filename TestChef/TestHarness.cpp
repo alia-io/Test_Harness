@@ -1,6 +1,7 @@
 #include "TestHarness.h"
 #include "TestRunner.h"
 #include "TestLogger.h"
+#include "TestTimer.h"
 using namespace TestChef;
 #include <iostream>
 #include <string>
@@ -24,7 +25,7 @@ using std::string;
 
 std::function<bool()> func;
 
-
+TestResultCounter counter;
 //default constructor
 TestHarness::TestHarness() :suiteName("Default") {}
 
@@ -40,13 +41,24 @@ void TestHarness::addTests(std::string name, bool (*func) ()) {
 
 
 void TestHarness::executor() {
-
+	TestLogger logger;
+	TestTimer timer{};
+	counter.setTotalTests(testList.size());
+	timer.startTimer();
 	for (auto const& test : testList) {
 		TestRunner runner(test.name, test.ptr);
-		runner.runTest(logger);
-		
+		bool outcome = runner.runTest(logger);
+		if (outcome) {
+			counter.incrementTestPassed();
+		}
+		else {
+			counter.incrementTestFailed();
+		}
 		
 	}
+
+	timer.endTimer();
+	logger.printTestRunSummary(counter,timer);
 	
 }
 

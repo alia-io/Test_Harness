@@ -2,9 +2,15 @@
 #include <string>
 #include <iostream>
 #include <Windows.h>
+#include <iomanip>
 using namespace TestChef;
 using std::cout;
 using std::endl;
+using std::setfill;
+using std::setw;
+using std::left;
+using std::right;
+
 
 
 
@@ -46,4 +52,15 @@ LOGLEVEL TestLogger::getLogLevel() { return logLevel; }
 
 void TestLogger::setLogLevel(LOGLEVEL log) {
 	logLevel = log;
+}
+
+
+void TestLogger::printTestRunSummary(TestResultCounter counter,TestTimer timer) {
+	cout << "Test Result Summary" << endl;
+	cout << "-------------------" << endl;
+	cout << left << setw(10) << "Total Tests " << right << setw(10) << counter.getTestsTotal() << endl;
+	cout << left << setw(10) << "Tests Passed" << right << setw(10) << counter.getTestsPassed() << endl;
+	cout << left << setw(10) << "Tests Failed" << right << setw(10) << counter.getTestsFailed() << endl;
+	//TODO:Add timer logic,below line gives a weird format
+	//cout << left << setw(10) << "Time Taken " << right << setw(20) << timer.timeTaken() << endl;
 }
