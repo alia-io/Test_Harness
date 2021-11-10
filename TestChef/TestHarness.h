@@ -6,7 +6,7 @@
 using std::string;
 using std::list;
 //////////////////////////////////////////////////////
-// TestHarness.h								//
+// TestHarness.h									//
 // CSE 681: Object Oriented Design					//
 // Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
 //////////////////////////////////////////////////////
