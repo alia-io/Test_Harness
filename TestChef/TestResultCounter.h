@@ -1,4 +1,17 @@
 #pragma once
+//////////////////////////////////////////////////////
+// TestResultCounter.h								//
+// CSE 681: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/*
+*
+* This class is to record the count for the amount of passed, failed, and total tests.
+*
+*/
+
+
 class TestResultCounter
 {
 private:
