@@ -19,7 +19,7 @@ using namespace TestChef;
 
 string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel, TestTimer timer) {
 	string logDetail = ""; // initialize the return string for the exception handler
-	string except_str = "";
+	string except_str = ""; // string that indicates the type of exception
 
 	if (typeid(e) == typeid(std::bad_alloc)) {
 		except_str = "Failure to allocate storage.";
@@ -78,13 +78,13 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 
 	switch (logLevel) {
 	case LOGLEVEL::info:
-		logDetail = "Test failed with exception.";
+		logDetail = "Test failed with exception."; // level 1 exception
 		break;
 	case LOGLEVEL::detail:
-		logDetail = "Test failed with the exception: " + except_str;
+		logDetail = "Test failed with the exception: " + except_str; // level 2 exception
 		break;
 	case LOGLEVEL::debug:
-		logDetail = "Test failed with the exception: " + except_str + "\nException occurred on " + timer.currentTime() + ".";
+		logDetail = "Test failed with the exception: " + except_str + "\nException occurred on " + timer.currentTime() + "."; // level 3 exception
 		break;
 	}
 
