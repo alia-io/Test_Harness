@@ -48,6 +48,18 @@
     <ClCompile Include="ContainerConversions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BasicCalculatorTestDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicCalculatorTestDriverFail.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicCalculatorTestDriverException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdvCalculatorTestDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestHarness.h">
@@ -77,10 +89,10 @@
     <ClInclude Include="MemoryAllocator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ITest.h">
+    <ClInclude Include="ContainerConversions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ContainerConversions.h">
+    <ClInclude Include="ITest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -28,7 +28,7 @@ int BasicCalculator::multiply(int operand1, int operand2) {
 
 int BasicCalculator::divide(int operand1, int operand2) {
 	if (operand2 == 0) {
-		throw std::runtime_error("Math error: Attempted to divide by Zero\n");
+		throw std::runtime_error("Math error: Attempted to divide by Zero.");
 	}
 	return operand1 / operand2;
 }
@@ -41,15 +41,3 @@ bool BasicCalculator::isZero(int number) {
 	return result;
 }
 
-bool BasicCalculator::TEST() {
-	if (add(2, 2) == 4 && add(3, 3) == 9 && add(1, 0) == 1 && add(0, 12) == 12 &&
-		subtract(2, 2) == 0 && subtract(5, 2) == 3 && subtract(0, 5) == -5 && subtract(5, 0) == 5 &&
-		multiply(2, 1) == 2 && multiply(-7, 7) == -49 && multiply(0, 0) == 0 && multiply(-4,-3) == 12 &&
-		divide(12, 2) == 6 && divide(3, 3) == 1 && divide(0, 4) == 0 && divide(15, 1) == 15) {
-		return true;
-	}
-	else {
-		return false;
-	}
-
-}
