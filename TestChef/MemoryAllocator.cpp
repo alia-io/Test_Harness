@@ -16,17 +16,6 @@
 * which should be caught and logged by the test harness.
 */
 
-// allocates an integer array of size 'sz'. NOTE: this should throw a std::bad_alloc exception
-int* MemoryAllocator::allocIntArray(int sz) {
-	try {
-		return new int[sz];
-	}
-	catch (std::bad_alloc) {
-		std::cout << "bad alloc error" << std::endl;
-	}
-	return nullptr;
-}
-
 // allocates a vector of strings of size 'sz'.
 std::vector<std::string> MemoryAllocator::allocStringVector(int sz) {
 	std::vector<std::string> vec(sz);

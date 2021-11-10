@@ -43,7 +43,7 @@ void TestLogger::writeLogInfoToFile(std::string message, TestTimer timer) {
 	SetConsoleTextAttribute(hConsole, 14);	//Set format parameters
 	cout << "[Exception] ";					// print the test name
 	SetConsoleTextAttribute(hConsole, 15);
-	cout << message << endl;
+	cout << message;
 	cout << "Time elapsed: " << timer.timeTaken() << " ns.\n" << endl; // print the time taken
 }
 
@@ -59,7 +59,7 @@ void TestLogger::writeLogInfoToFile(std::string message, TestTimer timer,bool ou
 		cout << "[Fail] ";
 	}
 	SetConsoleTextAttribute(hConsole, 15);
-	cout << message ;
+	cout << message;
 	cout << " Time elapsed: " << timer.timeTaken() << " ns.\n" << endl;
 }
 

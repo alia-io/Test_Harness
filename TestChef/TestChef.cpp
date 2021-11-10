@@ -14,7 +14,8 @@
 #include "BasicCalculatorTestDriverFail.cpp"
 #include "BasicCalculatorTestDriverException.cpp"
 #include "AdvCalculatorTestDriver.cpp"
-#include "MemoryAllocatorTestDriverException.cpp"
+#include "MemoryAllocatorTestDriverException1.cpp"
+#include "MemoryAllocatorTestDriverException2.cpp"
 using namespace TestChef;
 using std::cout;
 using std::endl;
@@ -43,8 +44,13 @@ bool testAdvCalculatorTestDriverPassScenario() {
 	return calc.TEST();
 }
 
-bool testMemoryAllocatorTestDriverExceptionScenario() {
-	MemoryAllocatorTestDriverException allocator{};
+bool testMemoryAllocatorTestDriverExceptionScenario1() {
+	MemoryAllocatorTestDriverException1 allocator{};
+	return allocator.TEST();
+}
+
+bool testMemoryAllocatorTestDriverExceptionScenario2() {
+	MemoryAllocatorTestDriverException2 allocator{};
 	return allocator.TEST();
 }
 
@@ -58,12 +64,13 @@ bool testLengthError() {
 
 int main() {
 	
-	TestHarness testHarness("def",LOGLEVEL::debug);
+	TestHarness testHarness("def",LOGLEVEL::info);
 	testHarness.addTests("testLengthError", * testLengthError);
 	testHarness.addTests("BasicCalculatorPassScenario", *testBasicCalculatorPassScenario);
 	testHarness.addTests("BasicCalculatorFailScenario", *testBasicCalculatorFailScenario);
 	testHarness.addTests("BasicCalculatorTestDriverExceptionScenario", *testBasicCalculatorTestDriverExceptionScenario);
 	testHarness.addTests("AdvCalculatorTestDriverPassScenario", *testAdvCalculatorTestDriverPassScenario);
-	testHarness.addTests("MemoryAllocatorTestDriverExceptionScenario", *testMemoryAllocatorTestDriverExceptionScenario);
+	testHarness.addTests("MemoryAllocatorTestDriverExceptionScenario1", *testMemoryAllocatorTestDriverExceptionScenario1);
+	testHarness.addTests("MemoryAllocatorTestDriverExceptionScenario2", *testMemoryAllocatorTestDriverExceptionScenario2);
 	testHarness.executor();
 }

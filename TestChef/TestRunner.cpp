@@ -35,9 +35,9 @@ bool TestRunner::runTest(TestLogger logger) {
 		result = testFunction();
 	} catch (std::exception e) {
 		timer.endTimer();
-		std::string message = testFunctionName;
+		std::string message = testFunctionName + "\n";
 		TestExceptionHandler handler {};
-		message += " " + handler.getCustomizedString(e, logger.getLogLevel(), timer);
+		message += handler.getCustomizedString(e, logger.getLogLevel(), timer) + "\n";
 		logger.writeLogInfoToFile(message, timer);
 		return false;
 	}
@@ -45,11 +45,11 @@ bool TestRunner::runTest(TestLogger logger) {
 	timer.endTimer();
 
 	if (result) {
-		logger.writeLogInfoToFile(std::string(testFunctionName), timer,result);
+		logger.writeLogInfoToFile(std::string(testFunctionName + "\n"), timer, result);
 		return true;
 	}
 
-	logger.writeLogInfoToFile(std::string(testFunctionName), timer,result);
+	logger.writeLogInfoToFile(std::string(testFunctionName + "\n"), timer, result);
 	return false;
 }
 
