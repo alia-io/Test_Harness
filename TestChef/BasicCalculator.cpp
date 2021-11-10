@@ -28,7 +28,7 @@ int BasicCalculator::multiply(int operand1, int operand2) {
 
 int BasicCalculator::divide(int operand1, int operand2) {
 	if (operand2 == 0) {
-		throw std::runtime_error("Math error: Attempted to divide by Zero\n");
+		throw std::runtime_error("Math error: Attempted to divide by Zero.");
 	}
 	return operand1 / operand2;
 }

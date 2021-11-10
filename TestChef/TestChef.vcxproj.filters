@@ -77,9 +77,6 @@
     <ClInclude Include="MemoryAllocator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ITest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ContainerConversions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
