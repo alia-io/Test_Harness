@@ -43,7 +43,6 @@ void TestHarness::addTests(std::string name, bool (*func) ()) {
 
 
 void TestHarness::executor() {
-	TestLogger logger;	// object creation for log level and timer info
 	TestTimer timer{};
 	counter.setTotalTests(testList.size());	//counter struct for # of pass, fail, and total tests
 	timer.startTimer();					// Initiate start time

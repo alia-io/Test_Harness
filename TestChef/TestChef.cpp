@@ -14,6 +14,7 @@
 #include "BasicCalculatorTestDriverFail.cpp"
 #include "BasicCalculatorTestDriverException.cpp"
 #include "AdvCalculatorTestDriver.cpp"
+#include "MemoryAllocatorTestDriverException.cpp"
 using namespace TestChef;
 using std::cout;
 using std::endl;
@@ -42,6 +43,11 @@ bool testAdvCalculatorTestDriverPassScenario() {
 	return calc.TEST();
 }
 
+bool testMemoryAllocatorTestDriverExceptionScenario() {
+	MemoryAllocatorTestDriverException allocator{};
+	return allocator.TEST();
+}
+
 bool testLengthError() {
 	std::vector<int> myvector;
 	myvector.resize(myvector.max_size() + 1);
@@ -58,5 +64,6 @@ int main() {
 	testHarness.addTests("BasicCalculatorFailScenario", *testBasicCalculatorFailScenario);
 	testHarness.addTests("BasicCalculatorTestDriverExceptionScenario", *testBasicCalculatorTestDriverExceptionScenario);
 	testHarness.addTests("AdvCalculatorTestDriverPassScenario", *testAdvCalculatorTestDriverPassScenario);
+	testHarness.addTests("MemoryAllocatorTestDriverExceptionScenario", *testMemoryAllocatorTestDriverExceptionScenario);
 	testHarness.executor();
 }
