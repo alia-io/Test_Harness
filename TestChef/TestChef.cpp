@@ -7,27 +7,39 @@
 #include "TestLogger.h"
 #include "TestRunner.h"
 #include "TestHarness.h"
+#include "BasicCalculator.h"
 #include <vector>
 #include <functional>
+#include "BasicCalculatorTestDriver.cpp"
+#include "BasicCalculatorTestDriverFail.cpp"
+#include "BasicCalculatorTestDriverException.cpp"
+#include "AdvCalculatorTestDriver.cpp"
 using namespace TestChef;
 using std::cout;
 using std::endl;
 
-bool testFunc1() {		// expect FAIL
-	BasicCalculator calculator{};
-	return calculator.add(3, 5) == 7 || calculator.multiply(10, 2) != 20;
+bool testBasicCalculatorPassScenario() {
+	// expect PASS
+	BasicCalculatorTestDriver calc{};
+	return calc.TEST();
 }
 
-bool testFunc2() {		// expect PASS
-	BasicCalculator calculator{};
-	return calculator.add(3, 5) == 8 && calculator.subtract(5, 3) == 2
-		&& calculator.multiply(10, 2) == 20 && calculator.divide(10, 2) == 5;
+bool testBasicCalculatorFailScenario() {
+	// expect FAIL
+	BasicCalculatorTestDriverFail calc{};
+	return calc.TEST();
 }
 
-bool testFunc3() {		// expect EXCEPTION
-	// TODO: throw divide by zero exception
-	BasicCalculator calculator{};
-	return calculator.subtract(5, 3) > 5 || calculator.divide(4, 0) == 4;
+bool testBasicCalculatorTestDriverExceptionScenario() {
+	// expect EXCEPTION
+	BasicCalculatorTestDriverException calc{};
+	return calc.TEST();
+}
+
+bool testAdvCalculatorTestDriverPassScenario() {
+	// expect PASS
+	AdvCalculatorTestDriver calc{};
+	return calc.TEST();
 }
 
 bool testLengthError() {
@@ -37,30 +49,14 @@ bool testLengthError() {
 	return true;
 }
 
-/*int main() {
-
-	TestLogger logger1{};
-	TestRunner runner1{ "testFunc1", *testFunc1 };
-	bool result1 = runner1.runTest(logger1);
-	std::cout << "result1: " << result1 << std::endl;
-
-	TestLogger logger2{};
-	TestRunner runner2{ "testFunc2", *testFunc2 };
-	bool result2 = runner2.runTest(logger2);
-	std::cout << "result2: " << result2 << std::endl;
-
-	/*TestLogger logger3{};
-	TestRunner runner3 {"testFunc3", *testFunc3};
-	bool result3 = runner3.runTest(logger3);
-	std::cout << "\nresult3 = " << result3 << std::endl;
-}*/
 
 int main() {
 	
 	TestHarness testHarness("def",LOGLEVEL::debug);
 	testHarness.addTests("testLengthError", * testLengthError);
-	testHarness.addTests("testFunc1", * testFunc1);
-	testHarness.addTests("testFunc2", * testFunc2);
-	testHarness.addTests("testFunc3", * testFunc3);
+	testHarness.addTests("BasicCalculatorPassScenario", *testBasicCalculatorPassScenario);
+	testHarness.addTests("BasicCalculatorFailScenario", *testBasicCalculatorFailScenario);
+	testHarness.addTests("BasicCalculatorTestDriverExceptionScenario", *testBasicCalculatorTestDriverExceptionScenario);
+	testHarness.addTests("AdvCalculatorTestDriverPassScenario", *testAdvCalculatorTestDriverPassScenario);
 	testHarness.executor();
 }
