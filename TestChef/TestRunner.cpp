@@ -33,7 +33,7 @@ bool TestRunner::runTest(TestLogger logger) {
 	timer.startTimer();
 	try {
 		result = testFunction();
-	} catch (std::exception e) {
+	} catch (std::exception& e) {
 		timer.endTimer();
 		std::string message = testFunctionName + "\n";
 		TestExceptionHandler handler {};

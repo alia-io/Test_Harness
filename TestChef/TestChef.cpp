@@ -16,6 +16,7 @@
 #include "AdvCalculatorTestDriver.cpp"
 #include "MemoryAllocatorTestDriverException1.cpp"
 #include "MemoryAllocatorTestDriverException2.cpp"
+#include "ContainerConversionsTestDriverException.cpp"
 using namespace TestChef;
 using std::cout;
 using std::endl;
@@ -45,26 +46,34 @@ bool testAdvCalculatorTestDriverPassScenario() {
 }
 
 bool testMemoryAllocatorTestDriverExceptionScenario1() {
+	// expect EXCEPTION
 	MemoryAllocatorTestDriverException1 allocator{};
 	return allocator.TEST();
 }
 
 bool testMemoryAllocatorTestDriverExceptionScenario2() {
+	// expect EXCEPTION
 	MemoryAllocatorTestDriverException2 allocator{};
 	return allocator.TEST();
 }
 
+bool testContainerConversionsTestDriverExceptionScenario() {
+	// expect EXCEPTION
+	ContainerConversionsTestDriverException converter{};
+	return converter.TEST();
+}
+
 bool testLengthError() {
+	// expect EXCEPTION
 	std::vector<int> myvector;
 	myvector.resize(myvector.max_size() + 1);
-
 	return true;
 }
 
 
 int main() {
 	
-	TestHarness testHarness("def",LOGLEVEL::info);
+	TestHarness testHarness("def",LOGLEVEL::debug);
 	testHarness.addTests("testLengthError", * testLengthError);
 	testHarness.addTests("BasicCalculatorPassScenario", *testBasicCalculatorPassScenario);
 	testHarness.addTests("BasicCalculatorFailScenario", *testBasicCalculatorFailScenario);
@@ -72,5 +81,6 @@ int main() {
 	testHarness.addTests("AdvCalculatorTestDriverPassScenario", *testAdvCalculatorTestDriverPassScenario);
 	testHarness.addTests("MemoryAllocatorTestDriverExceptionScenario1", *testMemoryAllocatorTestDriverExceptionScenario1);
 	testHarness.addTests("MemoryAllocatorTestDriverExceptionScenario2", *testMemoryAllocatorTestDriverExceptionScenario2);
+	testHarness.addTests("ContainerConversionsTestDriverExceptionScenario", *testContainerConversionsTestDriverExceptionScenario);
 	testHarness.executor();
 }
