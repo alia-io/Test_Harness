@@ -147,6 +147,7 @@
     <ClCompile Include="BasicCalculatorTestDriverFail.cpp" />
     <ClCompile Include="ContainerConversions.cpp" />
     <ClCompile Include="ContainerConversionsTestDriverException.cpp" />
+    <ClCompile Include="ContainerConversionsTestDriverFail.cpp" />
     <ClCompile Include="MemoryAllocator.cpp" />
     <ClCompile Include="MemoryAllocatorTestDriverException1.cpp" />
     <ClCompile Include="MemoryAllocatorTestDriverException2.cpp" />

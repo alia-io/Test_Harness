@@ -69,6 +69,9 @@
     <ClCompile Include="ContainerConversionsTestDriverException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ContainerConversionsTestDriverFail.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestHarness.h">
