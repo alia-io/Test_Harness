@@ -52,11 +52,11 @@ void TestLogger::writeLogInfoToFile(std::string message, TestTimer timer,bool ou
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (outcome) {
 		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);	//Uses outcome boolean to display pass/fail
-		cout << "[Pass]";
+		cout << "[Pass] ";
 	}
 	else {
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-		cout << "[Fail]";
+		cout << "[Fail] ";
 	}
 	SetConsoleTextAttribute(hConsole, 15);
 	cout << message ;

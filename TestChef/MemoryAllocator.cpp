@@ -38,27 +38,3 @@ std::list<double> MemoryAllocator::allocDoubleList(int sz) {
 	std::list<double> lst(sz);
 	return lst;
 }
-
-// TEST function: expect std::length_error thrown
-bool TEST() {
-
-	MemoryAllocator allocator{};
-
-	int arr[1000];
-	std::vector<std::string> vec(-2);	// length_error
-	std::list<double> lst(100);
-
-	if (arr == allocator.allocIntArray(1000)
-			&& vec == allocator.allocStringVector(2)
-			&& lst == allocator.allocDoubleList(100)) {
-		return true;
-	}
-	
-	return false;
-}
-
-/*int main() {
-	TestLogger logger1{LOGLEVEL::debug};
-	TestRunner runner1{ "MemoryAllocator::TEST", *TEST };
-	bool result1 = runner1.runTest(logger1);
-}*/
