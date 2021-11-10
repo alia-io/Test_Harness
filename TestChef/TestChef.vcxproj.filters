@@ -60,7 +60,16 @@
     <ClCompile Include="AdvCalculatorTestDriver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MemoryAllocatorTestDriverException.cpp">
+    <ClCompile Include="MemoryAllocatorTestDriverException1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryAllocatorTestDriverException2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContainerConversionsTestDriverException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContainerConversionsTestDriverFail.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

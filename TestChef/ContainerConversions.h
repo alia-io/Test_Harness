@@ -4,7 +4,6 @@
 
 class ContainerConversions {
 public:
-	template <typename T> std::list<T> vectorToList(std::vector<T>);
-	template <typename T> std::vector<T> listToVector(std::list<T>);
-	bool TEST();
+	std::list<int> vectorToList(std::vector<int>);
+	std::vector<int> listToVector(std::list<int>);
 };

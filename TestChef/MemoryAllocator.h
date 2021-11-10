@@ -11,13 +11,12 @@
 
 /*
 * This class is used to Test the application by allocating memory for containers
-* correctly or incorrectly. The main purpose of this class is to throw an exception,
-* which should be caught and logged by the test harness.
+* correctly or incorrectly. The main purpose of this class is to provide sample code
+* to test throwing exceptions with, which should be caught and logged by the test harness.
 */
 
 class MemoryAllocator {
 public:
-	int* allocIntArray(int sz);
 	std::vector<std::string> allocStringVector(int sz);
 	std::list<double> allocDoubleList(int sz);
 };

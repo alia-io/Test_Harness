@@ -58,7 +58,7 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 		except_str = "Out of range.";
 	}
 	else if (typeid(e) == typeid(std::range_error)) {
-		except_str = "Range error, esult of computation cannot be represeneted by destination type.";
+		except_str = "Range error, result of computation cannot be represeneted by destination type.";
 	}
 	else if (typeid(e) == typeid(std::overflow_error)) {
 		except_str = "Overflow error, result is either infinite or too large to represent in the numeric type being returned by the function.";
