@@ -19,4 +19,4 @@ void TestResultCounter::incrementTestFailed() { testsFailed++; };		// increment 
 
 int TestResultCounter::getTestsPassed() { return testsPassed; };	// return counter variables
 int TestResultCounter::getTestsFailed() { return testsFailed; };
-int TestResultCounter::getTestsTotal() { return totalTests; };
+int TestResultCounter::getTestsTotal() { return totalTests; }

@@ -37,7 +37,7 @@ TestLogger::TestLogger() : logLevel(LOGLEVEL::info) {
 
 }
 
-void TestLogger::writeLogInfoToFile(std::string message, TestTimer timer) {
+void TestLogger::writeLogInfoToOutput(std::string message, TestTimer timer) {
 	HANDLE  hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //retrieve handle for std ouput device
 	SetConsoleTextAttribute(hConsole, 14);	//Set format parameters
@@ -47,7 +47,7 @@ void TestLogger::writeLogInfoToFile(std::string message, TestTimer timer) {
 	cout << "Time elapsed: " << timer.timeTaken() << " ns.\n" << endl; // print the time taken
 }
 
-void TestLogger::writeLogInfoToFile(std::string message, TestTimer timer,bool outcome) {
+void TestLogger::writeLogInfoToOutput(std::string message, TestTimer timer,bool outcome) {
 	HANDLE  hConsole;											// Additional logging in this function
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (outcome) {
@@ -70,7 +70,7 @@ void TestLogger::setLogLevel(LOGLEVEL log) {
 }
 
 
-void TestLogger::printTestRunSummary(TestResultCounter counter,TestTimer timer) {
+void TestLogger::writeTestRunSummary(TestResultCounter counter,TestTimer timer) {
 	cout << "Test Result Summary" << endl;	//print the summary of results for total, passed, and failed
 	cout << "-------------------" << endl;
 	cout << left << setw(10) << "Total Tests " << right << setw(10) << counter.getTestsTotal() << endl;

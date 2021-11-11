@@ -27,11 +27,11 @@ namespace TestChef {
 	public:
 		TestLogger(LOGLEVEL);
 		TestLogger();
-		void writeLogInfoToFile(std::string message, TestTimer timer);
-		void writeLogInfoToFile(std::string message, TestTimer timer, bool outcome);
+		void writeLogInfoToOutput(std::string message, TestTimer timer);
+		void writeLogInfoToOutput(std::string message, TestTimer timer, bool outcome);
 		LOGLEVEL getLogLevel();
 		void setLogLevel(LOGLEVEL log);
-		void printTestRunSummary(TestResultCounter counter, TestTimer timer);
+		void writeTestRunSummary(TestResultCounter counter, TestTimer timer);
 	};
 
 };

@@ -38,18 +38,18 @@ bool TestRunner::runTest(TestLogger logger) {
 		std::string message = testFunctionName + "\n";
 		TestExceptionHandler handler {};
 		message += handler.getCustomizedString(e, logger.getLogLevel(), timer) + "\n";
-		logger.writeLogInfoToFile(message, timer);
+		logger.writeLogInfoToOutput(message, timer);
 		return false;
 	}
 
 	timer.endTimer();
 
 	if (result) {
-		logger.writeLogInfoToFile(std::string(testFunctionName + "\n"), timer, result);
+		logger.writeLogInfoToOutput(std::string(testFunctionName + "\n"), timer, result);
 		return true;
 	}
 
-	logger.writeLogInfoToFile(std::string(testFunctionName + "\n"), timer, result);
+	logger.writeLogInfoToOutput(std::string(testFunctionName + "\n"), timer, result);
 	return false;
 }
 

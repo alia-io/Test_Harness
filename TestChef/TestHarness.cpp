@@ -56,7 +56,7 @@ void TestHarness::executor() {
 	}
 
 	timer.endTimer();	// Submit end time to determine how much time the test list took to run
-	logger.printTestRunSummary(counter,timer);
+	logger.writeTestRunSummary(counter,timer);
 	
 }
 
