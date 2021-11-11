@@ -25,7 +25,8 @@ private:
 	};
 	string suiteName;
 	list<TestItem> testList;
-	TestChef::TestLogger logger;
+	TestChef::TestLogger logger{};
+	TestResultCounter counter{};
 public:
 	void addTests(std::string funcName, bool (*funcPtr)());
 	void executor();

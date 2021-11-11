@@ -24,7 +24,6 @@ using std::string;
 *
 */
 
-TestResultCounter counter;
 //default constructor
 TestHarness::TestHarness() :suiteName("Default") {}
 
