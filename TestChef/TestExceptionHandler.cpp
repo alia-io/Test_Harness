@@ -28,16 +28,19 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 		except_str = "Invalid array lengths.";
 	}
 	else if (typeid(e) == typeid(std::bad_cast)) {
-		except_str = "A dynamic_cast to a reference type fails the run-time check.";
+		except_str = "A dynamic_cast to a reference type fails the";
+		except_str += "\nrun - time check.";
 	}
 	else if (typeid(e) == typeid(std::bad_exception)) {
 		except_str = "Failure exception thrown during runtime.";
 	}
 	else if (typeid(e) == typeid(std::bad_typeid)) {
-		except_str = "A typeid operator is applied to a dereferenced null pointer value of a polymorphic type.";
+		except_str = "A typeid operator is applied to a dereferenced";
+		except_str += "\nnull pointer value of a polymorphic type.";
 	}
 	else if (typeid(e) == typeid(std::bad_weak_ptr)) {
-		except_str = "A std::weak_ptr refers to an already deleted object.";
+		except_str = "A std::weak_ptr refers to an already deleted";
+		except_str += "\nobject.";
 	}
 	else if (typeid(e) == typeid(std::logic_error)) {
 		except_str = "Faulty logic within the program.";
@@ -49,7 +52,8 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 		except_str = "Invalid argument.";
 	}
 	else if (typeid(e) == typeid(std::domain_error)) {
-		except_str = "Domain error, outside of the subset of values domain is defined for.";
+		except_str = "Domain error, outside of the subset of values";
+		except_str += "\ndomain is defined for.";
 	}
 	else if (typeid(e) == typeid(std::length_error)) {
 		except_str = "Length error.";
@@ -58,19 +62,25 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 		except_str = "Out of range.";
 	}
 	else if (typeid(e) == typeid(std::range_error)) {
-		except_str = "Range error, result of computation cannot be represeneted by destination type.";
+		except_str = "Range error, result of computation cannot";
+		except_str += "\nbe represeneted by destination type.";
 	}
 	else if (typeid(e) == typeid(std::overflow_error)) {
-		except_str = "Overflow error, result is either infinite or too large to represent in the numeric type being returned by the function.";
+		except_str = "Overflow error, result is either infinite";
+		except_str += "\nor too large to represent in the numeric type being returned by the function.";
 	}
 	else if (typeid(e) == typeid(std::underflow_error)) {
-		except_str = "Underflow error, result is not zero, but is too small to be represented by any other value in the type being returned by the function.";
+		except_str = "Underflow error, result is not zero, but is";
+		except_str += "\ntoo small to be represented by any other value in the type being returned by";
+		except_str += "\nthe function.";
 	}
 	else if (typeid(e) == typeid(std::system_error)) {
-		except_str = "System error, exception thrown by various library functions.";
+		except_str = "System error, exception thrown by various";
+		except_str += "\nlibrary functions.";
 	}
 	else if (typeid(e) == typeid(std::ios_base::failure)) {
-		except_str = "Exception thrown on failure by the functions in the Input/Output library.";
+		except_str = "Exception thrown on failure by the functions";
+		except_str += "\nin the Input / Output library.";
 	}
 	else  {
 		except_str = e.what();

@@ -22,9 +22,6 @@ using namespace std;
 
 class TestExceptionHandler
 {
-private:
-	TestTimer timer;
-
 public:
 	string getCustomizedString(exception& e, LOGLEVEL logLevel, TestTimer timer);
 

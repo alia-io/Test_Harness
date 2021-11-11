@@ -26,7 +26,6 @@ private:
 	string suiteName;
 	list<TestItem> testList;
 	TestChef::TestLogger logger;
-	list<TestItem> testNewList;
 public:
 	void addTests(std::string funcName, bool (*funcPtr)());
 	void executor();
