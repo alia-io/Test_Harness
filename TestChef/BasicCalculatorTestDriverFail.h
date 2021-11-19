@@ -1,8 +1,23 @@
+#pragma once
 #include "ITest.h"
 #include "BasicCalculator.h"
+
+//////////////////////////////////////////////////////
+// BasicCalculatorTestDriverFail.h					//
+// CSE 681: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/*
+*
+* This class is part of the TEST functions that the TestHarness runs through
+* Each function used in TEST is an arithmetic operation.
+*
+*/
+
 class BasicCalculatorTestDriverFail : public ITest {
 public:
-	bool ITest::TEST() {
+	bool TEST() {
 		BasicCalculator calc;
 		bool outcome = false;
 		if (calc.add(2, 2) != 4 && calc.add(3, 3) != 9 && calc.add(1, 0) != 1 && calc.add(0, 12) != 12 &&
