@@ -44,7 +44,7 @@ void TestLogger::writeLogInfoToOutput(std::string message, TestTimer timer) {
 	cout << "[Exception] ";					// print the test name
 	SetConsoleTextAttribute(hConsole, 15);
 	cout << message;
-	cout << "Time elapsed: " << timer.timeTaken() << " ns.\n" << endl; // print the time taken
+	cout << " Time elapsed: " << timer.timeTaken() << " ns.\n" << endl; // print the time taken
 }
 
 void TestLogger::writeLogInfoToOutput(std::string message, TestTimer timer,bool outcome) {

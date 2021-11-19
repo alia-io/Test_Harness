@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 //////////////////////////////////////////////////////
 // AdvCalculator.h									//
@@ -9,19 +8,16 @@
 
 /*
 *
-* This class is part of the TEST functions that the TestHarness runs through 
-* Each test function here is an arithmetic operation
+* This class is used by some of the Test Driver classes to run the tests.
+* Each function here is an arithmetic operation.
 *
 */
 
 class AdvCalculator
 {
-
 public:
 	int exp(int operand1, int operand2);
 	int modulo(int operand1, int operand2);
 	int factorial(int operand1);
 	int gcd(int operand1, int operand2);
-	bool TEST();
 };
-

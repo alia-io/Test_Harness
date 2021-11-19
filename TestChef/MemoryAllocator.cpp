@@ -12,8 +12,8 @@
 * Implementation of MemoryAllocator class.
 * 
 * This class is used to Test the application by allocating memory for containers
-* correctly or incorrectly. The main purpose of this class is to throw an exception,
-* which should be caught and logged by the test harness.
+* correctly or incorrectly. The main purpose of this class is to be used to 
+* throw exceptions.
 */
 
 // allocates a vector of strings of size 'sz'.

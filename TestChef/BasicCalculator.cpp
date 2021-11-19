@@ -1,5 +1,5 @@
 #include "BasicCalculator.h"
-#include <stdexcept>
+
 //////////////////////////////////////////////////////
 // BasicCalculator.cpp								//
 // CSE 681: Object Oriented Design					//
@@ -9,9 +9,9 @@
 /*
 * Implementation of BasicCalculator class.
 *
-* This class is part of the TEST functions that the TestHarness runs through
-* Each test function here is an arithmetic operation
-*
+* This class is used by some of the Test Driver classes to run the tests.
+* Each function here is an arithmetic operation.
+* 
 */
 
 int BasicCalculator::add(int operand1, int operand2) {

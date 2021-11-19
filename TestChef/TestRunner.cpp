@@ -4,8 +4,6 @@
 #include <exception>
 #include "TestTimer.h"
 #include "TestExceptionHandler.h"
-#include "BasicCalculator.h"
-#include "AdvCalculator.h"
 
 //////////////////////////////////////////////////////
 // TestRunner.cpp									//

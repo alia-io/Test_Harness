@@ -1,5 +1,21 @@
 #include "ContainerConversions.h"
 
+//////////////////////////////////////////////////////
+// ContainerConversions.cpp							//
+// CSE 681: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/*
+*
+* Implementation of ContainerConversions.h
+* 
+* This class is used by some of the Test Driver classes to run the tests.
+* The functions here pass the elements of one type of container into a
+* different type of container.
+*
+*/
+
 std::list<int> ContainerConversions::vectorToList(std::vector<int> vec) {
 	std::list<int> lst(vec.size());
 	auto it = lst.begin();

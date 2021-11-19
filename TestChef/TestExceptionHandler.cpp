@@ -29,18 +29,18 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 	}
 	else if (typeid(e) == typeid(std::bad_cast)) {
 		except_str = "A dynamic_cast to a reference type fails the";
-		except_str += "\nrun - time check.";
+		except_str += "\n run - time check.";
 	}
 	else if (typeid(e) == typeid(std::bad_exception)) {
 		except_str = "Failure exception thrown during runtime.";
 	}
 	else if (typeid(e) == typeid(std::bad_typeid)) {
 		except_str = "A typeid operator is applied to a dereferenced";
-		except_str += "\nnull pointer value of a polymorphic type.";
+		except_str += "\n null pointer value of a polymorphic type.";
 	}
 	else if (typeid(e) == typeid(std::bad_weak_ptr)) {
 		except_str = "A std::weak_ptr refers to an already deleted";
-		except_str += "\nobject.";
+		except_str += "\n object.";
 	}
 	else if (typeid(e) == typeid(std::logic_error)) {
 		except_str = "Faulty logic within the program.";
@@ -53,7 +53,7 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 	}
 	else if (typeid(e) == typeid(std::domain_error)) {
 		except_str = "Domain error, outside of the subset of values";
-		except_str += "\ndomain is defined for.";
+		except_str += "\n domain is defined for.";
 	}
 	else if (typeid(e) == typeid(std::length_error)) {
 		except_str = "Length error.";
@@ -63,24 +63,24 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 	}
 	else if (typeid(e) == typeid(std::range_error)) {
 		except_str = "Range error, result of computation cannot";
-		except_str += "\nbe represeneted by destination type.";
+		except_str += "\n be represeneted by destination type.";
 	}
 	else if (typeid(e) == typeid(std::overflow_error)) {
 		except_str = "Overflow error, result is either infinite";
-		except_str += "\nor too large to represent in the numeric type being returned by the function.";
+		except_str += "\n or too large to represent in the numeric type being returned by the function.";
 	}
 	else if (typeid(e) == typeid(std::underflow_error)) {
 		except_str = "Underflow error, result is not zero, but is";
-		except_str += "\ntoo small to be represented by any other value in the type being returned by";
-		except_str += "\nthe function.";
+		except_str += "\n too small to be represented by any other value in the type being returned by";
+		except_str += "\n the function.";
 	}
 	else if (typeid(e) == typeid(std::system_error)) {
 		except_str = "System error, exception thrown by various";
-		except_str += "\nlibrary functions.";
+		except_str += "\n library functions.";
 	}
 	else if (typeid(e) == typeid(std::ios_base::failure)) {
 		except_str = "Exception thrown on failure by the functions";
-		except_str += "\nin the Input / Output library.";
+		except_str += "\n in the Input / Output library.";
 	}
 	else  {
 		except_str = e.what();
@@ -88,14 +88,14 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 
 	switch (logLevel) {
 	case LOGLEVEL::info:
-		logDetail = "Test failed with exception."; // level 1 exception
+		logDetail = " Test failed with exception."; // level 1 exception
 		break;
 	case LOGLEVEL::detail:
-		logDetail = "Test failed with the exception: " + except_str; // level 2 exception
+		logDetail = " Test failed with the exception: " + except_str; // level 2 exception
 		break;
 	case LOGLEVEL::debug:
-		logDetail = "Test failed with the exception: " + except_str;
-		logDetail += "\nException occurred on " + timer.currentTime() + "."; // level 3 exception
+		logDetail = " Test failed with the exception: " + except_str;
+		logDetail += "\n Exception occurred on " + timer.currentTime() + "."; // level 3 exception
 		break;
 	}
 
