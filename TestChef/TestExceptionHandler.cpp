@@ -17,7 +17,7 @@
 
 using namespace TestChef;
 
-string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel, TestTimer timer) {
+string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel) {
 	string logDetail = ""; // initialize the return string for the exception handler
 	string except_str = ""; // string that indicates the type of exception
 
@@ -95,7 +95,7 @@ string TestExceptionHandler::getCustomizedString(exception& e, LOGLEVEL logLevel
 		break;
 	case LOGLEVEL::debug:
 		logDetail = " Test failed with the exception: " + except_str;
-		logDetail += "\n Exception occurred on " + timer.currentTime() + "."; // level 3 exception
+		logDetail += "\n Exception occurred on " + TestTimer::currentTime() + "."; // level 3 exception
 		break;
 	}
 

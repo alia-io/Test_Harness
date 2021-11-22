@@ -6,7 +6,7 @@ using namespace TestChef;
 #include <iostream>
 #include <string>
 #include <list>
-#include <functional>
+#include <thread>
 
 using std::list;
 using std::string;
@@ -39,8 +39,10 @@ void TestHarness::addTests(std::string name, bool (*func) ()) {
 
 
 void TestHarness::executor() {
+	
 	TestTimer timer{};
 	counter.setTotalTests(testList.size());	//counter struct for # of pass, fail, and total tests
+
 	timer.startTimer();						// Initiate start time
 	for (auto const& test : testList) {
 		TestRunner runner(test.name, test.ptr); // run each test on test list and increase the correct count
@@ -57,5 +59,9 @@ void TestHarness::executor() {
 	timer.endTimer();	// Submit end time to determine how much time the test list took to run
 	logger.writeTestRunSummary(counter,timer);
 	
+}
+
+void TestHarness::childExecutor() {
+
 }
 

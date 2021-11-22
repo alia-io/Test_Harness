@@ -16,13 +16,14 @@ using std::list;
 * Purpose of class is to repeatedly call the testrunner class which inturn invokes the testable function
 *
 */
+struct TestItem {
+	string name;
+	bool (*ptr)();
+};
+
 class TestHarness
 {
 private:
-	struct TestItem {
-		string name;
-		bool (*ptr)();
-	};
 	string suiteName;
 	list<TestItem> testList;
 	TestChef::TestLogger logger{};
@@ -30,6 +31,7 @@ private:
 public:
 	void addTests(std::string funcName, bool (*funcPtr)());
 	void executor();
+	void childExecutor();
 	TestHarness();
 	TestHarness(string name,TestChef::LOGLEVEL log);
 };

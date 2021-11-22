@@ -26,6 +26,6 @@ public:
 	void startTimer();
 	void endTimer();
 	double timeTaken();
-	std::string currentTime();
+	static std::string currentTime();
 };
 
