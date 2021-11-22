@@ -148,6 +148,7 @@
     <ClCompile Include="TestExceptionHandler.cpp" />
     <ClCompile Include="TestHarness.cpp" />
     <ClCompile Include="TestLogger.cpp" />
+    <ClCompile Include="TestMessage.cpp" />
     <ClCompile Include="TestMessageHandler.cpp" />
     <ClCompile Include="TestResultCounter.cpp" />
     <ClCompile Include="TestRunner.cpp" />

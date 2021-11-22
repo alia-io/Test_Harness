@@ -31,8 +31,8 @@ double TestTimer::timeTaken() {
 	return duration_cast<nanoseconds>(endTime - startTime).count(); // Used to determine amount of time between start and end time which is two points within code.
 }
 
-std::string TestTimer::currentTime() {
-	time_t now = system_clock::to_time_t(system_clock::now());	// Function that returns current time 
+std::string TestTimer::currentTime() {		// Function that returns formatted current time
+	time_t now = system_clock::to_time_t(system_clock::now());
 	char buf[30]{ '\0' };
 	ctime_s(buf, sizeof(buf), &now);
 	std::stringstream stream;

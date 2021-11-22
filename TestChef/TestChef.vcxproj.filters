@@ -84,6 +84,9 @@
     <ClCompile Include="TestMessageHandler.cpp">
       <Filter>Source Files\TestMessenger</Filter>
     </ClCompile>
+    <ClCompile Include="TestMessage.cpp">
+      <Filter>Source Files\TestMessenger</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">

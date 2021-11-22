@@ -35,7 +35,7 @@ bool TestRunner::runTest(TestLogger logger) {
 		timer.endTimer();
 		std::string message = testFunctionName + "\n";
 		TestExceptionHandler handler {};
-		message += handler.getCustomizedString(e, logger.getLogLevel(), timer) + "\n";
+		message += handler.getCustomizedString(e, logger.getLogLevel()) + "\n";
 		logger.writeLogInfoToOutput(message, timer);
 		return false;
 	}
