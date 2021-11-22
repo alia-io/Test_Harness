@@ -28,35 +28,48 @@ using std::chrono::system_clock;
 *		destination: client IP address & port
 */
 
-enum THREAD_TYPE { parent, child };
-enum IP_VERSION { IPV4 = 4, IPV6 = 6 };
-enum class MESSAGE_TYPE { request, response, request_list, response_list };
-struct Address {};
+// TODO: destructors
+namespace TestChef {
+	
+	enum class THREAD_TYPE { parent, child };
+	enum class IP_VERSION { IPV4 = 4, IPV6 = 6 };
+	enum class MESSAGE_TYPE { request, response, request_list, response_list };
+	struct Address { };
 
-struct ThreadAddress : Address {
-	const THREAD_TYPE type;
-	const std::thread::id id;
-};
+	class ThreadAddress : public Address {
+	private:
+		const THREAD_TYPE type;
+		const std::thread::id id;
+	public:
+		ThreadAddress(THREAD_TYPE threadType, std::thread::id threadId);
+	};
 
-struct ServerAddress : Address {
-	const IP_VERSION version;
-	const std::string ip;
-	const size_t port;
-};
+	class ServerAddress : public Address {
+		const IP_VERSION version;
+		const std::string ip;
+		const size_t port;
+	public:
+		ServerAddress(IP_VERSION serverIpVersion, std::string serverIpAddress, size_t serverPort);
+	};
 
-class TestMessage {
-private:
-	const Address source;
-	const Address destination;
-	const MESSAGE_TYPE type;
-	const std::string author;		// this could be a client user name or "TestHarness" server
-	const time_point<system_clock> timestamp;
-	const std::string body;
-public:
-	//TestMessage(Address sourceAddress, Address destinationAddress, MESSAGE_TYPE messageType,
-	//	std::string messageAuthor, std::string messageBody);
-	Address getSourceAddress();
-	Address getDestinationAddress();
-	MESSAGE_TYPE getMessageType();
-	std::string getMessage();
-};
+	class TestMessage {
+	private:
+		const Address* source;
+		const Address* destination;
+		const MESSAGE_TYPE type;
+		const std::string author;		// this could be a client user name or "TestHarness" server
+		time_point<system_clock> timestamp;
+		const std::string body;
+	public:
+		TestMessage(THREAD_TYPE sourceThreadType, std::thread::id sourceThreadId,	// constructor for thread-to-thread communication
+			THREAD_TYPE destinationThreadType, std::thread::id destinationThreadId,
+			MESSAGE_TYPE messageType, std::string messageAuthor, std::string messageBody);
+		TestMessage(IP_VERSION sourceIpVersion, std::string sourceIpAddress, size_t sourcePort,	// constructor for server-to-server communication
+			IP_VERSION destinationIpVersion, std::string destinationIpAddress, size_t destinationPort,
+			MESSAGE_TYPE messageType, std::string messageAuthor, std::string messageBody);
+		Address getSourceAddress();
+		Address getDestinationAddress();
+		MESSAGE_TYPE getMessageType();
+		std::string getMessage();
+	};
+}
