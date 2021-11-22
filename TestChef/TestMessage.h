@@ -28,12 +28,12 @@ using std::chrono::system_clock;
 *		destination: client IP address & port
 */
 
-// TODO: destructors
 namespace TestChef {
 	
 	enum class THREAD_TYPE { parent, child };
 	enum class IP_VERSION { IPV4 = 4, IPV6 = 6 };
 	enum class MESSAGE_TYPE { request, response, request_list, response_list };
+
 	struct Address { };
 
 	class ThreadAddress : public Address {
