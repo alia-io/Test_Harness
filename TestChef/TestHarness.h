@@ -25,7 +25,7 @@ class TestHarness
 {
 private:
 	string suiteName;
-	list<TestItem> testList;
+	list<TestItem> testList{};
 	TestChef::TestLogger logger{};
 	TestResultCounter counter{};
 public:
