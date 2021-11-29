@@ -25,7 +25,7 @@
 
 TestRunner::TestRunner(std::string name, bool (*funcPtr)()) : testFunctionName{name}, testFunction{funcPtr} { }
 
-bool TestRunner::runTest(TestLogger logger) {
+TestMessage TestRunner::runTest(LOGLEVEL logLevel) {
 	TestTimer timer {};
 	bool result = false;
 	timer.startTimer();
@@ -33,20 +33,22 @@ bool TestRunner::runTest(TestLogger logger) {
 		result = testFunction();
 	} catch (std::exception& e) {
 		timer.endTimer();
-		std::string message = testFunctionName + "\n";
+		std::string body = testFunctionName + "\n";
 		TestExceptionHandler handler {};
-		message += handler.getCustomizedString(e, logger.getLogLevel()) + "\n";
-		logger.writeLogInfoToOutput(message, timer);
-		return false;
+		body += handler.getCustomizedString(e, logLevel) + "\n";
+
+
+		//logger.writeLogInfoToOutput(message, timer);
+		//return false;
 	}
 
 	timer.endTimer();
 
 	if (result) {
-		logger.writeLogInfoToOutput(std::string(testFunctionName + "\n"), timer, result);
-		return true;
+		//logger.writeLogInfoToOutput(std::string(testFunctionName + "\n"), timer, result);
+		//return true;
 	}
 
-	logger.writeLogInfoToOutput(std::string(testFunctionName + "\n"), timer, result);
-	return false;
+	//logger.writeLogInfoToOutput(std::string(testFunctionName + "\n"), timer, result);
+	//return false;
 }

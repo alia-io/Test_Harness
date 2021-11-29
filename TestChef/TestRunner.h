@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "TestLogger.h"
+#include "TestMessage.h"
 using namespace TestChef;
 
 //////////////////////////////////////////////////////
@@ -25,5 +26,5 @@ private:
 	bool (*testFunction)();
 public:
 	TestRunner(std::string name, bool (*funcPtr)());
-	bool runTest(TestLogger logger);
+	TestMessage runTest(LOGLEVEL logLevel);
 };

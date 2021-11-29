@@ -1,17 +1,4 @@
 #include "TestHarness.h"
-#include "TestRunner.h"
-#include "TestLogger.h"
-#include "TestTimer.h"
-using namespace TestChef;
-#include <iostream>
-#include <string>
-#include <list>
-#include <thread>
-#include <vector>
-#include <future>
-
-using std::list;
-using std::string;
 
 //////////////////////////////////////////////////////
 // TestHarness.cpp									//
@@ -21,7 +8,7 @@ using std::string;
 
 /*
 * Implementation of Test Harness Class
-* 
+*
 * Purpose of class is to repeatedly call the testrunner class which inturn invokes the testable function
 *
 */
@@ -34,25 +21,17 @@ TestHarness::TestHarness(string name, LOGLEVEL log) : suiteName(name) {
 }
 
 //Add callable objects to invoke
-void TestHarness::addTests(std::string name, bool (*func) ()) {
-	TestItem test{ name, func };
-	testList.push_back(test);		//Adds items to the test list
-}
+// TODO: this should be sent through the messenger from the client
+void TestHarness::sendTestList(list<TestItem> tests) { testList = tests; }
 
+void TestHarness::execute() {
 
-void TestHarness::executor() {
-	
 	TestTimer timer{};
 	counter.setTotalTests(testList.size());	//counter struct for # of pass, fail, and total tests
 
-	const int numThreads = 1;	// TODO: increase this
-	std::vector<std::thread> threads {numThreads};
-
 	timer.startTimer();						// Initiate start time
 
-	for (int i = 0; i != numThreads; ++i) {
-		threads.push_back(std::thread{});
-	}
+
 
 	for (auto const& test : testList) {
 		TestRunner runner(test.name, test.ptr); // run each test on test list and increase the correct count
@@ -67,11 +46,16 @@ void TestHarness::executor() {
 	}
 
 	timer.endTimer();	// Submit end time to determine how much time the test list took to run
-	logger.writeTestRunSummary(counter,timer);
-	
+	logger.writeTestRunSummary(counter, timer);
+
 }
 
-void TestHarness::childExecutor() {
-	
+void TestHarness::executeChild() {
+
+	while (true) {
+		TestItem item = testQueue.deQ();
+		TestRunner runner(item.name, item.ptr);	// run each test on test list
+		//bool outcome = runner.runTest(logger.getLogLevel());
+	}
 }
 

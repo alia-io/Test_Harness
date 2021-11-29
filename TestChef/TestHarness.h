@@ -1,10 +1,19 @@
 #pragma once
+#include "TestLogger.h"
+#include "TestBlockingQueue.h"
+#include "TestRunner.h"
+#include "TestLogger.h"
+#include "TestTimer.h"
+#include <functional>
+#include <iostream>
 #include <string>
 #include <list>
-#include <functional>
-#include "TestLogger.h"
+#include <thread>
+
+using namespace TestChef;
 using std::string;
 using std::list;
+
 //////////////////////////////////////////////////////
 // TestHarness.h									//
 // CSE 681: Object Oriented Design					//
@@ -25,14 +34,15 @@ class TestHarness
 {
 private:
 	string suiteName;
-	list<TestItem> testList{};
+	list<TestItem> testList{};		// TODO: change to be received as a TestMessages
+	TestBlockingQueue<TestItem> testQueue{};	// TODO: change to live in TestMessageHandler
 	TestChef::TestLogger logger{};
 	TestResultCounter counter{};
 public:
-	void addTests(std::string funcName, bool (*funcPtr)());
-	void executor();
-	void childExecutor();
 	TestHarness();
-	TestHarness(string name,TestChef::LOGLEVEL log);
+	TestHarness(string name, TestChef::LOGLEVEL log);
+	void sendTestList(std::list<TestItem> tests);
+	void execute();
+	void executeChild();
 };
 
