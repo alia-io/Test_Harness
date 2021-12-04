@@ -19,6 +19,8 @@ using namespace TestChef;
 * runTest		pass TestLogger object to run the test function
 */
 
+enum class TEST_RESULT { pass, fail, exception, invalid };
+
 class TestRunner {
 private:
 	std::string testFunctionName;
