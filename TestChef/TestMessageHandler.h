@@ -21,7 +21,8 @@ private:
 public:
 
 	void enqueueTestRequest(TestItem item);
-	void enqueueTestResult(std::thread::id parentThreadId, TEST_RESULT result, std::string body);
+	void enqueueTestResult(std::thread::id parentThreadId, std::thread::id childThreadId,
+		TEST_RESULT result, std::string author, std::string body);
 	TestItem dequeueTestRequest();
 	TestMessage dequeueTestResult();
 };
