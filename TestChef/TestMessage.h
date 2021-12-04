@@ -32,7 +32,7 @@ namespace TestChef {
 	
 	enum class THREAD_TYPE { parent, child };
 	enum class IP_VERSION { IPV4 = 4, IPV6 = 6 };
-	enum class MESSAGE_TYPE { request, response, request_list, response_list };
+	enum class MESSAGE_TYPE { request, result, request_list, result_list };
 
 	struct Address { };
 

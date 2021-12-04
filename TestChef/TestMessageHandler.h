@@ -6,7 +6,7 @@
 //														     //
 ///////////////////////////////////////////////////////////////
 
-#include "TestRunner.h"
+#include "TestMessageParser.h"
 #include "TestMessage.h"
 #include "TestBlockingQueue.h"
 #include "TestItem.h"

@@ -23,6 +23,6 @@ using namespace std;
 class TestExceptionHandler
 {
 public:
-	string getCustomizedString(exception& e, LOGLEVEL logLevel);
+	static string getCustomizedString(exception& e, LOGLEVEL logLevel);
 
 };

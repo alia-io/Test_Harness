@@ -1,6 +1,7 @@
 #pragma once
 #include "TestTimer.h"
 #include "TestResultCounter.h"
+#include "TestMessageParser.h"
 #include <string>
 
 //////////////////////////////////////////////////////
@@ -27,8 +28,7 @@ namespace TestChef {
 	public:
 		TestLogger(LOGLEVEL);
 		TestLogger();
-		void writeLogInfoToOutput(std::string message, TestTimer timer);
-		void writeLogInfoToOutput(std::string message, TestTimer timer, bool outcome);
+		void writeLogInfoToOutput(TEST_RESULT result, std::string message, TestTimer timer);
 		LOGLEVEL getLogLevel();
 		void setLogLevel(LOGLEVEL log);
 		void writeTestRunSummary(TestResultCounter counter, TestTimer timer);

@@ -3,6 +3,7 @@
 #include <list>
 #include <functional>
 #include "TestLogger.h"
+#include "TestItem.h"
 using std::string;
 using std::list;
 //////////////////////////////////////////////////////
@@ -16,23 +17,18 @@ using std::list;
 * Purpose of class is to repeatedly call the testrunner class which inturn invokes the testable function
 *
 */
-struct TestItem {
-	string name;
-	bool (*ptr)();
-};
 
 class TestHarness
 {
 private:
-	string suiteName;
-	list<TestItem> testList;
+	std::string suiteName;
+	std::thread::id testHarnessThreadId;
 	TestChef::TestLogger logger{};
 	TestResultCounter counter{};
+	TestMessageHandler handler{};
+	void executeChild();
 public:
-	void addTests(std::string funcName, bool (*funcPtr)());
-	void executor();
-	void childExecutor();
 	TestHarness();
-	TestHarness(string name,TestChef::LOGLEVEL log);
+	TestHarness(std::string name, TestChef::LOGLEVEL log);
+	void execute(std::list<TestItem> tests);
 };
-
