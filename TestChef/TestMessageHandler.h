@@ -22,4 +22,6 @@ public:
 
 	void enqueueTestRequest(TestItem item);
 	void enqueueTestResult(std::thread::id parentThreadId, TEST_RESULT result, std::string body);
+	TestItem dequeueTestRequest();
+	TestMessage dequeueTestResult();
 };
