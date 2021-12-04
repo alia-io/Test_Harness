@@ -1,9 +1,4 @@
 #include "TestRunner.h"
-#include <iostream>
-#include <Windows.h>
-#include <exception>
-#include "TestTimer.h"
-#include "TestExceptionHandler.h"
 
 //////////////////////////////////////////////////////
 // TestRunner.cpp									//
@@ -25,28 +20,28 @@
 
 TestRunner::TestRunner(std::string name, bool (*funcPtr)()) : testFunctionName{name}, testFunction{funcPtr} { }
 
-bool TestRunner::runTest(TestLogger logger) {
-	TestTimer timer {};
+void TestRunner::runTest(TestMessageHandler* messageHandler, std::thread::id parentId, LOGLEVEL logLevel) {
+	TestTimer timer{};
 	bool result = false;
 	timer.startTimer();
 	try {
 		result = testFunction();
-	} catch (std::exception& e) {
+	}
+	catch (std::exception& e) {
 		timer.endTimer();
-		std::string message = testFunctionName + "\n";
-		TestExceptionHandler handler {};
-		message += handler.getCustomizedString(e, logger.getLogLevel()) + "\n";
-		logger.writeLogInfoToOutput(message, timer);
-		return false;
+		messageHandler->enqueueTestResult(parentId, TEST_RESULT::exception,
+			testFunctionName + "\n" + TestExceptionHandler::getCustomizedString(e, logLevel));
+		return;
 	}
 
 	timer.endTimer();
 
 	if (result) {
-		logger.writeLogInfoToOutput(std::string(testFunctionName + "\n"), timer, result);
-		return true;
+		messageHandler->enqueueTestResult(parentId, TEST_RESULT::pass,
+			testFunctionName + "\n Time elapsed: " + std::to_string(timer.timeTaken()) + "ns.");
+		return;
 	}
 
-	logger.writeLogInfoToOutput(std::string(testFunctionName + "\n"), timer, result);
-	return false;
+	messageHandler->enqueueTestResult(parentId, TEST_RESULT::fail,
+		testFunctionName + "\n Time elapsed: " + std::to_string(timer.timeTaken()) + "ns.");
 }

@@ -7,6 +7,7 @@ using namespace TestChef;
 #include <string>
 #include <list>
 #include <thread>
+#include "TestMessageParser.h"
 
 using std::list;
 using std::string;
@@ -31,37 +32,56 @@ TestHarness::TestHarness(string name, LOGLEVEL log) : suiteName(name) {
 	logger.setLogLevel(log);	//calls the function for setting the log level
 }
 
-//Add callable objects to invoke
-void TestHarness::addTests(std::string name, bool (*func) ()) {
-	TestItem test{ name, func };
-	testList.push_back(test);		//Adds items to the test list
-}
+void TestHarness::execute(std::list<TestItem> tests) {
 
-
-void TestHarness::executor() {
-	
 	TestTimer timer{};
-	counter.setTotalTests(testList.size());	//counter struct for # of pass, fail, and total tests
+	TestMessageHandler h{};
+	const int NUM_TESTS = tests.size();
+	const int NUM_THREADS = 3;
+
+	testHarnessThreadId = std::this_thread::get_id();	// save the parent thread id
+	counter.setTotalTests(NUM_TESTS);	//counter struct for # of pass, fail, and total tests
 
 	timer.startTimer();						// Initiate start time
-	for (auto const& test : testList) {
-		TestRunner runner(test.name, test.ptr); // run each test on test list and increase the correct count
-		bool outcome = runner.runTest(logger);
-		if (outcome) {
-			counter.incrementTestPassed();	
-		}
-		else {
-			counter.incrementTestFailed();
-		}
-		
+
+	std::vector<std::thread> threads{};
+	for (int i = 0; i < NUM_THREADS; ++i) {
+		threads.push_back(std::thread([=] { executeChild(); }));
+	}
+
+	// enqueue test requests
+	for (auto const& test : tests) {
+		handler.enqueueTestRequest(test);
 	}
 
 	timer.endTimer();	// Submit end time to determine how much time the test list took to run
-	logger.writeTestRunSummary(counter,timer);
-	
+
+	// receive & send out test results
+	int numTestsComplete = 0;
+	while (true) {
+		TestMessage message = handler.dequeueTestResult();
+		std::string messageStr = message.getMessage();
+		TEST_RESULT result = TestMessageParser::testResult(message);
+		std::string resultMsg = TestMessageParser::testResultMessage(message);
+		if (result == TEST_RESULT::pass) counter.incrementTestPassed();
+		else counter.incrementTestFailed();
+		logger.writeLogInfoToOutput(result, resultMsg, timer);	// write result to console
+		numTestsComplete++;
+		if (numTestsComplete == NUM_TESTS) break;
+	}
+
+	// write test result summary
+	logger.writeTestRunSummary(counter, timer);
+
+	for (auto& thr : threads) {
+		if (thr.joinable()) thr.join();
+	}
 }
 
-void TestHarness::childExecutor() {
-
+void TestHarness::executeChild() {
+	while (true) {
+		TestItem test = handler.dequeueTestRequest();
+		TestRunner runner{ test.getName(), test.getPointer() };
+		runner.runTest(&handler, testHarnessThreadId, logger.getLogLevel());
+	}
 }
-

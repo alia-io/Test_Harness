@@ -37,30 +37,23 @@ TestLogger::TestLogger() : logLevel(LOGLEVEL::info) {
 
 }
 
-void TestLogger::writeLogInfoToOutput(std::string message, TestTimer timer) {
+void TestLogger::writeLogInfoToOutput(TEST_RESULT result, std::string message, TestTimer timer) {
 	HANDLE  hConsole;
-	hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //retrieve handle for std ouput device
-	SetConsoleTextAttribute(hConsole, 14);	//Set format parameters
-	cout << "[Exception] ";					// print the test name
-	SetConsoleTextAttribute(hConsole, 15);
-	cout << message;
-	cout << " Time elapsed: " << timer.timeTaken() << " ns.\n" << endl; // print the time taken
-}
-
-void TestLogger::writeLogInfoToOutput(std::string message, TestTimer timer,bool outcome) {
-	HANDLE  hConsole;											// Additional logging in this function
-	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	if (outcome) {
-		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);	//Uses outcome boolean to display pass/fail
-		cout << "[Pass] ";
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);		//retrieve handle for std ouput device
+	if (result == TEST_RESULT::pass) {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+		cout << " [PASS] ";
 	}
-	else {
+	else if (result == TEST_RESULT::fail) {
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-		cout << "[Fail] ";
+		cout << " [FAIL] ";
+	}
+	else if (result == TEST_RESULT::exception) {
+		SetConsoleTextAttribute(hConsole, 14);
+		cout << " [EXCEPTION] ";
 	}
 	SetConsoleTextAttribute(hConsole, 15);
-	cout << message;
-	cout << " Time elapsed: " << timer.timeTaken() << " ns.\n" << endl;
+	cout << message << "\n\n";
 }
 
 LOGLEVEL TestLogger::getLogLevel() { return logLevel; }
@@ -71,11 +64,11 @@ void TestLogger::setLogLevel(LOGLEVEL log) {
 
 
 void TestLogger::writeTestRunSummary(TestResultCounter counter,TestTimer timer) {
-	cout << "Test Result Summary" << endl;	//print the summary of results for total, passed, and failed
-	cout << "-------------------" << endl;
-	cout << left << setw(10) << "Total Tests " << right << setw(10) << counter.getTestsTotal() << endl;
-	cout << left << setw(10) << "Tests Passed" << right << setw(10) << counter.getTestsPassed() << endl;
-	cout << left << setw(10) << "Tests Failed" << right << setw(10) << counter.getTestsFailed() << endl;
+	cout << " Test Result Summary" << endl;	//print the summary of results for total, passed, and failed
+	cout << " -------------------" << endl;
+	cout << left << setw(10) << " Total Tests " << right << setw(10) << counter.getTestsTotal() << endl;
+	cout << left << setw(10) << " Tests Passed" << right << setw(10) << counter.getTestsPassed() << endl;
+	cout << left << setw(10) << " Tests Failed" << right << setw(10) << counter.getTestsFailed() << endl;
 	//TODO:Add timer logic,below line gives a weird format
 	//cout << left << setw(10) << "Time Taken " << right << setw(20) << timer.timeTaken() << endl;
 }

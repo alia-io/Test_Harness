@@ -1,6 +1,16 @@
 #pragma once
-#include <string>
 #include "TestLogger.h"
+#include "TestExceptionHandler.h"
+#include "TestMessageHandler.h"
+#include "TestRunner.h"
+#include "TestLogger.h"
+#include "TestTimer.h"
+#include <functional>
+#include <iostream>
+#include <string>
+#include <list>
+#include <thread>
+#include "TestItem.h"
 using namespace TestChef;
 
 //////////////////////////////////////////////////////
@@ -19,13 +29,11 @@ using namespace TestChef;
 * runTest		pass TestLogger object to run the test function
 */
 
-enum class TEST_RESULT { pass, fail, exception, invalid };
-
 class TestRunner {
 private:
 	std::string testFunctionName;
 	bool (*testFunction)();
 public:
 	TestRunner(std::string name, bool (*funcPtr)());
-	bool runTest(TestLogger logger);
+	void runTest(TestMessageHandler* messageHandler, std::thread::id parentId, LOGLEVEL logLevel);
 };
