@@ -9,14 +9,21 @@
 #include <iostream>
 #include <stdlib.h>
 #include <queue>
+#include "TestMessage.h"
 
+using namespace TestChef;
 using namespace std;
-class TestMessageHandler {
-public:
-	void addMessageForParent();
-	void initiateQueues();
-	void startQueue(std::queue<int> q);
 
+class TestMessageHandler:TestMessage {
 private:
+	queue<string> readyMessageQueue;
+	queue<string> testRequestMessageQueue;
+	queue<string> testRequestListMessageQueue;
 
+public:
+	void addMessagetoQueue();					//Add a msg to queue based on type
+	void releaseMessageFromQueue();				//Release a msg from queue based on type
+	int queueSize(queue<string> qu);			//Obtain size of queue
+	string getFrontQueue(queue<string> qu);	//Obtain from front of message queue
+	string getBackQueue(queue<string> qu);
 };
