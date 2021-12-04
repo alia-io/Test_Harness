@@ -11,7 +11,8 @@ void TestMessageHandler::enqueueTestRequest(TestItem item)
 
 void TestMessageHandler::enqueueTestResult(std::thread::id parentThreadId, std::thread::id childThreadId,
 	TEST_RESULT result, std::string author, std::string body)
-{	
+{
+    body = R"( { "result": "pass/fail/exception", "message": "[body]" })";
 	TestMessage msgObj(TestChef::THREAD_TYPE::parent, parentThreadId, TestChef::THREAD_TYPE::child, 
 		childThreadId, TestChef::MESSAGE_TYPE::request, author, body);
 	testResults.enQ(msgObj);
