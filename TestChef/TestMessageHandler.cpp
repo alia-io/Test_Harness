@@ -9,12 +9,14 @@ void TestMessageHandler::enqueueTestRequest(TestItem item)
 	testRequests.enQ(item);
 }
 
-void TestMessageHandler::enqueueTestResult(std::thread::id parentThreadId, std::thread::id childThreadId,
-	TEST_RESULT result, std::string author, std::string body)
+void TestMessageHandler::enqueueTestResult(std::thread::id parentThreadId,
+	TEST_RESULT result, std::string body)
 {
     body = R"( { "result": "pass/fail/exception", "message": "[body]" })";
+	std::string r = "";
+	//r = TestChef::TestMessage::author
 	TestMessage msgObj(TestChef::THREAD_TYPE::parent, parentThreadId, TestChef::THREAD_TYPE::child, 
-		childThreadId, TestChef::MESSAGE_TYPE::request, author, body);
+		this_thread::get_id(), TestChef::MESSAGE_TYPE::request, r, body);
 	testResults.enQ(msgObj);
 }
 
