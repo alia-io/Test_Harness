@@ -4,6 +4,7 @@
 #include <functional>
 #include "TestLogger.h"
 #include "TestItem.h"
+#include "TestMessageHandler.h"
 using std::string;
 using std::list;
 //////////////////////////////////////////////////////
