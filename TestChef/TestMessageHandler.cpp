@@ -12,7 +12,7 @@ void TestMessageHandler::enqueueTestRequest(TestItem item)
 void TestMessageHandler::enqueueTestResult(std::thread::id parentThreadId,
 	TEST_RESULT result, std::string body)
 {
-    body = R"( { "result": ")",result, R"(", "message": "[)", body ,R"(})";
+    body = R"( { "result": ")",result, R"(", "message": ")", body ,R"(" })";
 	TestMessage msgObj(TestChef::THREAD_TYPE::parent, parentThreadId, TestChef::THREAD_TYPE::child, 
 		this_thread::get_id(), TestChef::MESSAGE_TYPE::request, "TestHarness", body);
 	testResults.enQ(msgObj);

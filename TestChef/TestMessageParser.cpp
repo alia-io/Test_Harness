@@ -1,7 +1,5 @@
 #include "TestMessageParser.h"
 
-#include <iostream>
-
 using namespace TestChef;
 
 TEST_RESULT TestMessageParser::testResult(TestMessage message) {

@@ -87,6 +87,9 @@
     <ClCompile Include="TestMessage.cpp">
       <Filter>Source Files\TestMessenger</Filter>
     </ClCompile>
+    <ClCompile Include="TestMessageParser.cpp">
+      <Filter>Source Files\TestMessenger</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
@@ -159,6 +162,9 @@
       <Filter>Header Files\TestMessenger</Filter>
     </ClInclude>
     <ClInclude Include="TestMessageHandler.h">
+      <Filter>Header Files\TestMessenger</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMessageParser.h">
       <Filter>Header Files\TestMessenger</Filter>
     </ClInclude>
   </ItemGroup>
