@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Sockets.h" />
     <ClInclude Include="TestClientMessenger.h" />
     <ClInclude Include="TestLogger.h" />
     <ClInclude Include="TestMessage.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sockets.cpp" />
     <ClCompile Include="TestClientMessenger.cpp" />
     <ClCompile Include="TestLogger.cpp" />
     <ClCompile Include="TestMessage.cpp" />
