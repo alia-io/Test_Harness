@@ -1,12 +1,19 @@
 #pragma once
+#include "TestLogger.h"
+#include "TestMessageHandler.h"
+#include "TestMessageParser.h"
+#include "TestRunner.h"
+#include "TestLogger.h"
+#include "TestTimer.h"
+#include <functional>
+#include <iostream>
 #include <string>
 #include <list>
-#include <functional>
-#include "TestLogger.h"
+#include <thread>
 #include "TestItem.h"
-#include "TestMessageHandler.h"
-using std::string;
-using std::list;
+
+using namespace TestSuite;
+
 //////////////////////////////////////////////////////
 // TestHarness.h									//
 // CSE 681: Object Oriented Design					//
@@ -30,6 +37,6 @@ private:
 	void executeChild();
 public:
 	TestHarness();
-	TestHarness(std::string name, TestSuite::LOGLEVEL log);
+	TestHarness(std::string name, TestSuite::LOG_LEVEL log);
 	void execute(std::list<TestItem> tests);
 };

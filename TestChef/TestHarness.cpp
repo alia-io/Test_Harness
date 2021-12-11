@@ -1,16 +1,4 @@
 #include "TestHarness.h"
-#include "TestRunner.h"
-#include "TestLogger.h"
-#include "TestTimer.h"
-using namespace TestChef;
-#include <iostream>
-#include <string>
-#include <list>
-#include <thread>
-#include "TestMessageParser.h"
-
-using std::list;
-using std::string;
 
 //////////////////////////////////////////////////////
 // TestHarness.cpp									//
@@ -20,7 +8,7 @@ using std::string;
 
 /*
 * Implementation of Test Harness Class
-* 
+*
 * Purpose of class is to repeatedly call the testrunner class which inturn invokes the testable function
 *
 */
@@ -28,9 +16,7 @@ using std::string;
 //default constructor
 TestHarness::TestHarness() :suiteName("Default") {}
 
-TestHarness::TestHarness(string name, LOGLEVEL log) : suiteName(name) {
-	logger.setLogLevel(log);	//calls the function for setting the log level
-}
+TestHarness::TestHarness(std::string name, LOG_LEVEL log) : suiteName(name) { logger.setLogLevel(log); }
 
 void TestHarness::execute(std::list<TestItem> tests) {
 
@@ -60,7 +46,7 @@ void TestHarness::execute(std::list<TestItem> tests) {
 	int numTestsComplete = 0;
 	while (true) {
 		TestMessage message = handler.dequeueTestResult();
-		std::string messageStr = message.getMessage();
+		std::string messageStr = message.getMessageBody();
 		TEST_RESULT result = TestMessageParser::testResult(message);
 		std::string resultMsg = TestMessageParser::testResultMessage(message);
 		if (result == TEST_RESULT::pass) counter.incrementTestPassed();

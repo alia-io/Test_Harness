@@ -1,16 +1,12 @@
 #pragma once
-#include "TestLogger.h"
-#include "TestExceptionHandler.h"
-#include "TestMessageHandler.h"
-#include "TestRunner.h"
-#include "TestLogger.h"
-#include "TestTimer.h"
-#include <functional>
 #include <iostream>
+#include <Windows.h>
+#include <exception>
+#include "TestMessageHandler.h"
+#include "TestTimer.h"
+#include "TestResultFormatter.h"
 #include <string>
-#include <list>
 #include <thread>
-#include "TestItem.h"
 using namespace TestSuite;
 
 //////////////////////////////////////////////////////
@@ -22,7 +18,7 @@ using namespace TestSuite;
 /*
 * This class is used to run each individual test, obtain the result, and pass logging information
 * to the logger.
-* 
+*
 * Public Interface:
 * -----------------
 * TestRunner	initialize TestRunner object with the name of the test function and a pointer to the test function
@@ -35,5 +31,5 @@ private:
 	bool (*testFunction)();
 public:
 	TestRunner(std::string name, bool (*funcPtr)());
-	void runTest(TestMessageHandler* messageHandler, std::thread::id parentId, LOGLEVEL logLevel);
+	void runTest(TestMessageHandler* messageHandler, std::thread::id parentId, LOG_LEVEL logLevel);
 };

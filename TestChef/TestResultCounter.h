@@ -18,7 +18,7 @@ private:
 	int testsPassed;
 	int testsFailed;
 	int totalTests;
-public :
+public:
 	void setTotalTests(int count);
 	void incrementTestPassed();
 	void incrementTestFailed();

@@ -20,7 +20,7 @@ using  std::chrono::duration_cast;
 using  std::chrono::nanoseconds;
 
 void TestTimer::startTimer() {
-	startTime =system_clock::now();	// Sets a start time when called.  
+	startTime = system_clock::now();	// Sets a start time when called.  
 }
 
 void TestTimer::endTimer() {
@@ -39,4 +39,8 @@ std::string TestTimer::currentTime() {		// Function that returns formatted curre
 	stream << buf;
 	std::string time = std::regex_replace(stream.str(), std::regex("\\s+$"), std::string(""));
 	return time;
+}
+
+std::string TestTimer::epochTime(time_point<system_clock> timestamp) {
+	return std::to_string(duration_cast<std::chrono::milliseconds>(timestamp.time_since_epoch()).count());
 }

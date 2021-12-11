@@ -1,12 +1,14 @@
 #include "TestMessageParser.h"
 
-using namespace TestChef;
+#include <iostream>
+
+using namespace TestSuite;
 
 TEST_RESULT TestMessageParser::testResult(TestMessage message) {
 
 	bool result = false;
 	std::string str = "";
-	std::string body = message.getMessage();
+	std::string body = message.getMessageBody();
 
 	for (char ch : body) {
 		if (result) {
@@ -37,7 +39,7 @@ std::string TestMessageParser::testResultMessage(TestMessage message) {
 	bool startMsg = false;
 	bool resultMsg = false;
 	std::string str = "";
-	std::string body = message.getMessage();
+	std::string body = message.getMessageBody();
 
 	for (char ch : body) {
 		if (resultMsg) {

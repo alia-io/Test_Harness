@@ -58,8 +58,6 @@ void ConnectionHandler::operator()(Socket& socket_) {
 
 }
 
-//----< test stub >--------------------------------------------------
-
 int main() {
     Show::attach(&std::cout);
     Show::start();

@@ -22,12 +22,6 @@
     <Filter Include="Source Files\TestController">
       <UniqueIdentifier>{f5c73876-0c33-4a30-aad6-c7855a828541}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\TestLibrary">
-      <UniqueIdentifier>{e7d5cf1e-bee2-444e-a1e2-be3bd9b5ba13}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\TestLibrary">
-      <UniqueIdentifier>{8e25d11b-57bb-4289-b607-470940b2d694}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\TestUtilities">
       <UniqueIdentifier>{372f349c-b261-44e0-a85d-6519f499bcd2}</UniqueIdentifier>
     </Filter>
@@ -72,12 +66,6 @@
     <ClCompile Include="TestResultCounter.cpp">
       <Filter>Source Files\TestController</Filter>
     </ClCompile>
-    <ClCompile Include="TestExceptionHandler.cpp">
-      <Filter>Source Files\TestLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="TestRunner.cpp">
-      <Filter>Source Files\TestLibrary</Filter>
-    </ClCompile>
     <ClCompile Include="TestLogger.cpp">
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
@@ -108,22 +96,19 @@
     <ClCompile Include="MainServer.cpp">
       <Filter>Source Files\TestClientInterface</Filter>
     </ClCompile>
+    <ClCompile Include="TestRunner.cpp">
+      <Filter>Source Files\TestController</Filter>
+    </ClCompile>
+    <ClCompile Include="TestResultFormatter.cpp">
+      <Filter>Source Files\TestUtilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ITest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TestHarness.h">
       <Filter>Header Files\TestController</Filter>
     </ClInclude>
     <ClInclude Include="TestResultCounter.h">
       <Filter>Header Files\TestController</Filter>
-    </ClInclude>
-    <ClInclude Include="TestExceptionHandler.h">
-      <Filter>Header Files\TestLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="TestRunner.h">
-      <Filter>Header Files\TestLibrary</Filter>
     </ClInclude>
     <ClInclude Include="TestLogger.h">
       <Filter>Header Files\TestUtilities</Filter>
@@ -193,6 +178,21 @@
     </ClInclude>
     <ClInclude Include="Utilities.h">
       <Filter>Header Files\TestClientInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="TestRunner.h">
+      <Filter>Header Files\TestController</Filter>
+    </ClInclude>
+    <ClInclude Include="ITest.h">
+      <Filter>Header Files\TestDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="TestItem.h">
+      <Filter>Header Files\TestUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMessageParser.h">
+      <Filter>Header Files\TestUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="TestResultFormatter.h">
+      <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

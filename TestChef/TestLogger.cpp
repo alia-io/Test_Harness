@@ -1,8 +1,4 @@
 #include "TestLogger.h"
-#include <string>
-#include <iostream>
-#include <Windows.h>
-#include <iomanip>
 
 //////////////////////////////////////////////////////
 // TestLogger.cpp									//
@@ -12,13 +8,13 @@
 
 /*
 * This is the implementation of the TestLogger class
-* 
+*
 * This class is retrieve the logLevel and print the exception messages to a file.
 * This class also includes a function for summarizing the test results into a pass/failed section
 *
 */
 
-using namespace TestChef;
+using namespace TestSuite;
 using std::cout;	// Identifiers neccesary to properly format output
 using std::endl;
 using std::setfill;
@@ -29,11 +25,11 @@ using std::right;
 
 
 
-TestLogger::TestLogger(LOGLEVEL log) :logLevel(log) {
+TestLogger::TestLogger(LOG_LEVEL log) :logLevel(log) {
 
 }
 
-TestLogger::TestLogger() : logLevel(LOGLEVEL::info) {
+TestLogger::TestLogger() : logLevel(LOG_LEVEL::info) {
 
 }
 
@@ -56,19 +52,17 @@ void TestLogger::writeLogInfoToOutput(TEST_RESULT result, std::string message, T
 	cout << message << "\n\n";
 }
 
-LOGLEVEL TestLogger::getLogLevel() { return logLevel; }
+LOG_LEVEL TestLogger::getLogLevel() { return logLevel; }
 
-void TestLogger::setLogLevel(LOGLEVEL log) {
-	logLevel = log;
-}
+void TestLogger::setLogLevel(LOG_LEVEL log) { logLevel = log; }
 
 
-void TestLogger::writeTestRunSummary(TestResultCounter counter,TestTimer timer) {
-	cout << " Test Result Summary" << endl;	//print the summary of results for total, passed, and failed
-	cout << " -------------------" << endl;
-	cout << left << setw(10) << " Total Tests " << right << setw(10) << counter.getTestsTotal() << endl;
-	cout << left << setw(10) << " Tests Passed" << right << setw(10) << counter.getTestsPassed() << endl;
-	cout << left << setw(10) << " Tests Failed" << right << setw(10) << counter.getTestsFailed() << endl;
+void TestLogger::writeTestRunSummary(TestResultCounter counter, TestTimer timer) {
+	cout << "Test Result Summary" << endl;	//print the summary of results for total, passed, and failed
+	cout << "-------------------" << endl;
+	cout << left << setw(10) << "Total Tests " << right << setw(10) << counter.getTestsTotal() << endl;
+	cout << left << setw(10) << "Tests Passed" << right << setw(10) << counter.getTestsPassed() << endl;
+	cout << left << setw(10) << "Tests Failed" << right << setw(10) << counter.getTestsFailed() << endl;
 	//TODO:Add timer logic,below line gives a weird format
-	//cout << left << setw(10) << "Time Taken " << right << setw(20) << timer.timeTaken() << endl;
+	//cout << left << setw(10) << "Total Time Taken " << right << setw(20) << timer.timeTaken() << endl;
 }

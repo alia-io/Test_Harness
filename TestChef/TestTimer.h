@@ -16,8 +16,8 @@
 
 using std::chrono::time_point;
 using std::chrono::system_clock;
-class TestTimer
-{
+
+class TestTimer {
 private:
 	time_point<system_clock> startTime;
 	time_point<system_clock> endTime;
@@ -27,5 +27,6 @@ public:
 	void endTimer();
 	double timeTaken();
 	static std::string currentTime();
+	static std::string epochTime(time_point<system_clock> timestamp);
 };
 
