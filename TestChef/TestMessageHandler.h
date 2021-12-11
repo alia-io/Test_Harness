@@ -11,7 +11,7 @@
 #include "TestBlockingQueue.h"
 #include "TestItem.h"
 
-using namespace TestChef;
+using namespace TestSuite;
 using namespace std;
 
 class TestMessageHandler {

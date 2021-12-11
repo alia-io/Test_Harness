@@ -17,7 +17,7 @@
 * 
 */
 
-namespace TestChef {
+namespace TestSuite {
 	enum class LOGLEVEL {
 		info, debug, detail
 	};

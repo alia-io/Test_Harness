@@ -1,7 +1,7 @@
 #pragma once
 #include "TestMessage.h"
 
-namespace TestChef {
+namespace TestSuite {
 
 	enum class TEST_RESULT { pass, fail, exception, invalid };
 

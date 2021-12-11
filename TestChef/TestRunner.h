@@ -11,7 +11,7 @@
 #include <list>
 #include <thread>
 #include "TestItem.h"
-using namespace TestChef;
+using namespace TestSuite;
 
 //////////////////////////////////////////////////////
 // TestRunner.h										//

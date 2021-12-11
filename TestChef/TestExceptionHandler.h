@@ -17,7 +17,7 @@
 *
 */
 
-using namespace TestChef;
+using namespace TestSuite;
 using namespace std;
 
 class TestExceptionHandler

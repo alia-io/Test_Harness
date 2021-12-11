@@ -15,7 +15,7 @@
 #include "ContainerConversionsTestDriverException.h"
 #include "LengthErrorTestDriverException.h"
 #include "OverflowErrorTestDriverException.h"
-using namespace TestChef;
+using namespace TestSuite;
 using std::cout;
 using std::endl;
 

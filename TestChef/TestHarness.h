@@ -24,12 +24,12 @@ class TestHarness
 private:
 	std::string suiteName;
 	std::thread::id testHarnessThreadId;
-	TestChef::TestLogger logger{};
+	TestSuite::TestLogger logger{};
 	TestResultCounter counter{};
 	TestMessageHandler handler{};
 	void executeChild();
 public:
 	TestHarness();
-	TestHarness(std::string name, TestChef::LOGLEVEL log);
+	TestHarness(std::string name, TestSuite::LOGLEVEL log);
 	void execute(std::list<TestItem> tests);
 };

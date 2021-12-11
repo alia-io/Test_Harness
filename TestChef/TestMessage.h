@@ -28,7 +28,7 @@ using std::chrono::system_clock;
 *		destination: client IP address & port
 */
 
-namespace TestChef {
+namespace TestSuite {
 	
 	enum class THREAD_TYPE { parent, child };
 	enum class IP_VERSION { IPV4 = 4, IPV6 = 6 };
