@@ -185,7 +185,6 @@
     <ClInclude Include="TestLogger.h" />
     <ClInclude Include="TestMessage.h" />
     <ClInclude Include="TestMessageHandler.h" />
-    <ClInclude Include="TestMessageParser.h" />
     <ClInclude Include="TestResultCounter.h" />
     <ClInclude Include="TestResultFormatter.h" />
     <ClInclude Include="TestRunner.h" />
