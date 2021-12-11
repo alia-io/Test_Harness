@@ -43,6 +43,12 @@
     <Filter Include="Header Files\TestDriver">
       <UniqueIdentifier>{c1e5e67e-5259-4139-843c-ece2399b8dc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TestClientInterface">
+      <UniqueIdentifier>{b50eb37c-03bd-41f7-af75-a70ea064f02e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TestClientInterface">
+      <UniqueIdentifier>{fcd6a3fb-8a0f-40b5-b3d9-7d6fa5468726}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BasicCalculator.cpp">
@@ -89,6 +95,18 @@
     </ClCompile>
     <ClCompile Include="TestMessageParser.cpp">
       <Filter>Source Files\TestMessenger</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files\TestClientInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticLogger.cpp">
+      <Filter>Source Files\TestClientInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="Sockets.cpp">
+      <Filter>Source Files\TestClientInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="MainServer.cpp">
+      <Filter>Source Files\TestClientInterface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +184,15 @@
     </ClInclude>
     <ClInclude Include="OverflowErrorTestDriverException.h">
       <Filter>Header Files\TestDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="Sockets.h">
+      <Filter>Header Files\TestClientInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticLogger.h">
+      <Filter>Header Files\TestClientInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files\TestClientInterface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -142,8 +142,11 @@
     <ClCompile Include="AdvCalculator.cpp" />
     <ClCompile Include="BasicCalculator.cpp" />
     <ClCompile Include="ContainerConversions.cpp" />
+    <ClCompile Include="MainServer.cpp" />
     <ClCompile Include="MemoryAllocator.cpp" />
     <ClCompile Include="Executor.cpp" />
+    <ClCompile Include="Sockets.cpp" />
+    <ClCompile Include="StaticLogger.cpp" />
     <ClCompile Include="TestBlockingQueue.cpp" />
     <ClCompile Include="TestExceptionHandler.cpp" />
     <ClCompile Include="TestHarness.cpp" />
@@ -154,6 +157,7 @@
     <ClCompile Include="TestResultCounter.cpp" />
     <ClCompile Include="TestRunner.cpp" />
     <ClCompile Include="TestTimer.cpp" />
+    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdvCalculator.h" />
@@ -171,6 +175,8 @@
     <ClInclude Include="MemoryAllocatorTestDriverException1.h" />
     <ClInclude Include="MemoryAllocatorTestDriverException2.h" />
     <ClInclude Include="OverflowErrorTestDriverException.h" />
+    <ClInclude Include="Sockets.h" />
+    <ClInclude Include="StaticLogger.h" />
     <ClInclude Include="TestBlockingQueue.h" />
     <ClInclude Include="TestExceptionHandler.h" />
     <ClInclude Include="TestHarness.h" />
@@ -181,6 +187,7 @@
     <ClInclude Include="TestResultCounter.h" />
     <ClInclude Include="TestRunner.h" />
     <ClInclude Include="TestTimer.h" />
+    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
