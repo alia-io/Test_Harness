@@ -54,9 +54,12 @@ void ConnectionHandler::operator()(Socket& socket_) {
     }
 
     si.sendString("quit");
+    Show::write("\n  server sent msg: quit");
     Show::write("\n\n  Connection terminated.");
 
 }
+
+//----< test stub >--------------------------------------------------
 
 int main() {
     Show::attach(&std::cout);

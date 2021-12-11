@@ -142,20 +142,22 @@
     <ClInclude Include="CSockets.h" />
     <ClInclude Include="CStaticLogger.h" />
     <ClInclude Include="CTestBlockingQueue.h" />
+    <ClInclude Include="CTestMessage.h" />
+    <ClInclude Include="CTestTimer.h" />
     <ClInclude Include="CUtilities.h" />
     <ClInclude Include="TestClientMessenger.h" />
     <ClInclude Include="TestLogger.h" />
-    <ClInclude Include="TestMessage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSockets.cpp" />
     <ClCompile Include="CStaticLogger.cpp" />
     <ClCompile Include="CTestBlockingQueue.cpp" />
+    <ClCompile Include="CTestMessage.cpp" />
+    <ClCompile Include="CTestTimer.cpp" />
     <ClCompile Include="CUtilities.cpp" />
     <ClCompile Include="MainClient.cpp" />
     <ClCompile Include="TestClientMessenger.cpp" />
     <ClCompile Include="TestLogger.cpp" />
-    <ClCompile Include="TestMessage.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
