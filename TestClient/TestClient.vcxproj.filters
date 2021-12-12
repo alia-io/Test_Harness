@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TestClientMessenger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -36,15 +33,18 @@
     <ClInclude Include="CUtilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CTestMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CTestTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestClientMessenger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestLogger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MainClient.cpp">
@@ -60,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CUtilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CTestMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CTestTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

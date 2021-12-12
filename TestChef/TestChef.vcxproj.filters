@@ -125,9 +125,6 @@
     <ClInclude Include="TestMessageHandler.h">
       <Filter>Header Files\TestMessenger</Filter>
     </ClInclude>
-    <ClInclude Include="TestMessageParser.h">
-      <Filter>Header Files\TestMessenger</Filter>
-    </ClInclude>
     <ClInclude Include="AdvCalculator.h">
       <Filter>Header Files\TestDriver</Filter>
     </ClInclude>
@@ -193,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="TestResultFormatter.h">
       <Filter>Header Files\TestUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMessageParser.h">
+      <Filter>Header Files\TestMessenger</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #pragma once
 #include <stack>
-#include "TestMessage.h"
+#include "CTestMessage.h"
 
 namespace TestSuite {
 
