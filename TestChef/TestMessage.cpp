@@ -2,11 +2,14 @@
 
 using namespace TestSuite;
 
-ThreadAddress::ThreadAddress(THREAD_TYPE threadType, std::thread::id threadId)
-	: type{ threadType }, id{ threadId } { }
+ThreadAddress::ThreadAddress(THREAD_TYPE threadType, std::thread::id threadId) : type{ threadType } {
+	id = std::hash<std::thread::id>{}(std::this_thread::get_id());
+}
+
+ThreadAddress::ThreadAddress(THREAD_TYPE threadType, size_t threadId) : type{ threadType }, id{ threadId } { }
 
 THREAD_TYPE ThreadAddress::getType() { return type; }
-std::thread::id ThreadAddress::getId() { return id; }
+size_t ThreadAddress::getId() { return id; }
 
 ServerAddress::ServerAddress(IP_VERSION serverIpVersion, std::string serverIpAddress, size_t serverPort)
 	: version{ serverIpVersion }, ip{ serverIpAddress }, port{ serverPort } { }
@@ -38,6 +41,10 @@ TestMessage::TestMessage(IP_VERSION sourceIpVersion, std::string sourceIpAddress
 	destination = &destinationAddress;
 	timestamp = system_clock::now();
 }
+
+TestMessage::TestMessage(Address* src, Address* dest, MESSAGE_TYPE messageType, std::string messageAuthor,
+	time_point<system_clock> time, std::string messageBody) : source{ src }, destination{ dest },
+	type{ messageType }, author{ messageAuthor }, timestamp{ time }, body{ messageBody } { }
 
 Address TestMessage::getSourceAddress() { return *source; }
 Address TestMessage::getDestinationAddress() { return *destination; }

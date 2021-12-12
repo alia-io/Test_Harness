@@ -1,7 +1,7 @@
 #include "TestMessageParser.h"
 
 #include <iostream>
-#include <stack>
+#include <thread>
 
 using namespace TestSuite;
 
@@ -66,45 +66,152 @@ TestMessage TestMessageParser::convertJSONStringToMessage(std::string messageStr
 	std::string body;
 
 	enum MESSAGE_STEP { none, source, destination, type, author, timestamp, body };
-	enum THREAD_STEP { none, address, type, id };
-	enum SERVER_STEP { none, address, version, ip, port };
-
-	std::stack<char> stk{};
-	int stackSize = stk.size();
+	enum ADDRESS_TYPE { none, thread, server };
 	MESSAGE_STEP messageStep = MESSAGE_STEP::none;
-	std::string word = "";
-	//THREAD_STEP threadStep = THREAD_STEP::none;
-	//SERVER_STEP serverStep = SERVER_STEP::none;
+	ADDRESS_TYPE addressType = ADDRESS_TYPE::none;
+	int bodyBrackets = 0;
+	std::string str = "";
 
 	for (char ch : messageString) {
-
-
-
-
-		/*if (ch == '{') {
-			stk.push(ch);
+		if (messageStep == MESSAGE_STEP::none) {
+			str.erase(std::remove_if(str.begin(), str.end(), ::isspace), str.end());
+			if (ch == ',' && str.compare("{\"source\":{\"address\":\"thread\"") == 0) {
+				messageStep = MESSAGE_STEP::source;
+				addressType = ADDRESS_TYPE::thread;
+			} else if (ch == ',' && str.compare("{\"source\":{\"address\":\"server\"") == 0) {
+				messageStep = MESSAGE_STEP::source;
+				addressType = ADDRESS_TYPE::server;
+			} else if (ch == ',' && str.compare(",\"destination\":{\"address\":\"thread\"") == 0) {
+				messageStep = MESSAGE_STEP::destination;
+				addressType = ADDRESS_TYPE::thread;
+			} else if (ch == ',' && str.compare(",\"destination\":{\"address\":\"server\"") == 0) {
+				messageStep = MESSAGE_STEP::destination;
+				addressType = ADDRESS_TYPE::server;
+			} else if (ch == '"' && str.compare(",\"type\":") == 0) messageStep = MESSAGE_STEP::type;
+			else if (ch == '"' && str.compare(",\"author\":") == 0) messageStep = MESSAGE_STEP::author;
+			else if (ch == ':' && str.compare(",\"timestamp\"") == 0) messageStep = MESSAGE_STEP::timestamp;
+			else if (ch == ':' && str.compare("\"body\"") == 0) messageStep = MESSAGE_STEP::body;
+			else {
+				str += ch;
+				continue;
+			}
+		} else if (messageStep == MESSAGE_STEP::source && ch == '}') {
+			if (addressType == ADDRESS_TYPE::thread) source = convertJSONStringToThreadAddress(str);
+			else if (addressType == ADDRESS_TYPE::server) source = convertJSONStringToServerAddress(str);
+			messageStep = MESSAGE_STEP::none;
+			addressType = ADDRESS_TYPE::none;
+		} else if (messageStep == MESSAGE_STEP::destination && ch == '}') {
+			if (addressType == ADDRESS_TYPE::thread) destination = convertJSONStringToThreadAddress(str);
+			else if (addressType == ADDRESS_TYPE::server) destination = convertJSONStringToServerAddress(str);
+			messageStep = MESSAGE_STEP::none;
+			addressType = ADDRESS_TYPE::none;
+		} else if (messageStep == MESSAGE_STEP::type && ch == '"') {
+			if (str.compare("request") == 0) messageType = MESSAGE_TYPE::request;
+			else if (str.compare("result") == 0) messageType = MESSAGE_TYPE::result;
+			else if (str.compare("request_list") == 0) messageType = MESSAGE_TYPE::request_list;
+			else if (str.compare("result_list") == 0) messageType = MESSAGE_TYPE::result_list;
+			messageStep = MESSAGE_STEP::none;
+		} else if (messageStep == MESSAGE_STEP::author && ch == '"') {
+			author = str;
+			messageStep = MESSAGE_STEP::none;
+		} else if (messageStep == MESSAGE_STEP::timestamp && ch == ',') {
+			str.erase(std::remove_if(str.begin(), str.end(), ::isspace), str.end());
+			timestamp = TestTimer::timePointFromEpochTime(str);
+			messageStep = MESSAGE_STEP::none;
+		} else if (messageStep == MESSAGE_STEP::body) {
+			if (ch == '{') bodyBrackets++;
+			if (bodyBrackets > 0) str += ch;
+			if (ch == '}') bodyBrackets--;
+			continue;
+		} else {
+			str += ch;
 			continue;
 		}
-
-		if (ch == '}') {
-			if (stk.top() == '{') {
-				stk.pop();
-				continue;
-			}
-		}
-
-		if (ch == '"') {
-			if (stk.top() == '"') {
-
-				continue;
-			} else {
-				stk.push(ch);
-				word = "";
-				continue;
-			}
-		}*/
-
+		str = "";
 	}
+
+	TestMessage msg{ source, destination, messageType, author, timestamp, body };
+	return msg;
+}
+
+ThreadAddress* TestMessageParser::convertJSONStringToThreadAddress(std::string addr) {
+	
+	THREAD_TYPE threadType;
+	size_t threadId;
+	
+	enum THREAD_STEP { none, type, id };
+	THREAD_STEP currentStep = THREAD_STEP::none;
+	std::string str = "";
+
+	for (char ch : addr) {
+		str.erase(std::remove_if(str.begin(), str.end(), ::isspace), str.end());
+		if (currentStep == THREAD_STEP::none) {
+			if (ch == '"' && str.compare("\"type\":") == 0) {
+				currentStep = THREAD_STEP::type;
+				str = "";
+			} else if (ch == ':' && str.compare(",\"id\"") == 0) {
+				currentStep = THREAD_STEP::id;
+				str = "";
+			} else str += ch;
+		} else if (currentStep == THREAD_STEP::type && ch == '"') {
+			if (str.compare("parent") == 0) threadType = THREAD_TYPE::parent;
+			else if (str.compare("child") == 0) threadType = THREAD_TYPE::child;
+			currentStep = THREAD_STEP::none;
+			str = "";
+		} else str += ch;
+	}
+
+	if (currentStep == THREAD_STEP::id) {
+		std::stringstream ss(str);
+		ss >> threadId;
+	}
+
+	ThreadAddress ta{ threadType, threadId };
+	return &ta;
+}
+
+ServerAddress* TestMessageParser::convertJSONStringToServerAddress(std::string addr) {
+	
+	IP_VERSION ipVersion;
+	std::string ipAddress;
+	size_t serverPort;
+
+	enum SERVER_STEP { none, version, ip, port };
+	SERVER_STEP currentStep = SERVER_STEP::none;
+	std::string str = "";
+
+	for (char ch : addr) {
+		str.erase(std::remove_if(str.begin(), str.end(), ::isspace), str.end());
+		if (currentStep == SERVER_STEP::none) {
+			if (ch == '"' && str.compare("\"version\":") == 0) {
+				currentStep = SERVER_STEP::version;
+				str = "";
+			} else if (ch == '"' && str.compare(",\"ip\":") == 0) {
+				currentStep = SERVER_STEP::ip;
+				str = "";
+			} else if (ch == ':' && str.compare(",\"port\"")) {
+				currentStep = SERVER_STEP::port;
+				str = "";
+			} else str += ch;
+		} else if (currentStep == SERVER_STEP::version && ch == '"') {
+			if (str.compare("IPV4") == 0) ipVersion = IP_VERSION::IPV4;
+			else if (str.compare("IPV6") == 0) ipVersion = IP_VERSION::IPV6;
+			currentStep = SERVER_STEP::none;
+			str = "";
+		} else if (currentStep == SERVER_STEP::ip && ch == '"') {
+			ipAddress = str;
+			currentStep = SERVER_STEP::none;
+			str = "";
+		} else str += ch;
+	}
+
+	if (currentStep == SERVER_STEP::port) {
+		std::stringstream ss(str);
+		ss >> serverPort;
+	}
+	
+	ServerAddress sa{ ipVersion, ipAddress, serverPort };
+	return &sa;
 }
 
 std::string TestMessageParser::convertTestResultToJSONBody(TEST_RESULT result, std::string messageText) {

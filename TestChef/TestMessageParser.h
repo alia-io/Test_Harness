@@ -13,5 +13,8 @@ namespace TestSuite {
 		static std::string convertTestResultToJSONBody(TEST_RESULT result, std::string messageText);
 		static TEST_RESULT getTestResultFromBody(TestMessage message);
 		static std::string getTestResultMessageFromBody(TestMessage message);
+	private:
+		static ThreadAddress* convertJSONStringToThreadAddress(std::string addr);
+		static ServerAddress* convertJSONStringToServerAddress(std::string addr);
 	};
 }
