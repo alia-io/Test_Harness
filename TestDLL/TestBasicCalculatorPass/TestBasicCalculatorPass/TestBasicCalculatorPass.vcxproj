@@ -21,33 +21,32 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{60d5004d-b792-449b-b872-b143a181a68f}</ProjectGuid>
-    <RootNamespace>TestChef</RootNamespace>
+    <ProjectGuid>{ecf7077c-c815-46d7-ad14-09be706d2bfb}</ProjectGuid>
+    <RootNamespace>TestBasicCalculatorPass</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>TestServer</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -73,33 +72,34 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>TestBasicCalculatorPass</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>TestBasicCalculatorPass</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>TestBasicCalculatorPass</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>TestBasicCalculatorPass</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;TESTBASICCALCULATORPASS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\TestDLL\TestBasicCalculatorPass\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "..\TestDLL\TestBasicCalculatorPass\$(IntDir)TestBasicCalculatorPass.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -107,39 +107,33 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;TESTBASICCALCULATORPASS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\TestDLL\TestBasicCalculatorPass\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "..\TestDLL\TestBasicCalculatorPass\$(IntDir)TestBasicCalculatorPass.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;TESTBASICCALCULATORPASS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\TestDLL\TestBasicCalculatorPass\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "..\TestDLL\TestBasicCalculatorPass\$(IntDir)TestBasicCalculatorPass.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -147,75 +141,36 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;TESTBASICCALCULATORPASS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\TestDLL\TestBasicCalculatorPass\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "..\TestDLL\TestBasicCalculatorPass\$(IntDir)TestBasicCalculatorPass.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AdvCalculator.cpp" />
-    <ClCompile Include="BasicCalculator.cpp" />
-    <ClCompile Include="ContainerConversions.cpp" />
-    <ClCompile Include="MainServer.cpp" />
-    <ClCompile Include="MemoryAllocator.cpp" />
-    <ClCompile Include="Executor.cpp" />
-    <ClCompile Include="Sockets.cpp" />
-    <ClCompile Include="StaticLogger.cpp" />
-    <ClCompile Include="TestBlockingQueue.cpp" />
-    <ClCompile Include="TestDLLLoader.cpp" />
-    <ClCompile Include="TestHarness.cpp" />
-    <ClCompile Include="TestLogger.cpp" />
-    <ClCompile Include="TestMessage.cpp" />
-    <ClCompile Include="TestMessageHandler.cpp" />
-    <ClCompile Include="TestMessageParser.cpp" />
-    <ClCompile Include="TestResultCounter.cpp" />
-    <ClCompile Include="TestResultFormatter.cpp" />
-    <ClCompile Include="TestRunner.cpp" />
-    <ClCompile Include="TestTimer.cpp" />
-    <ClCompile Include="Utilities.cpp" />
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AdvCalculator.h" />
-    <ClInclude Include="AdvCalculatorTestDriverPass.h" />
-    <ClInclude Include="BasicCalculator.h" />
-    <ClInclude Include="BasicCalculatorTestDriverException.h" />
-    <ClInclude Include="BasicCalculatorTestDriverFail.h" />
-    <ClInclude Include="BasicCalculatorTestDriverPass.h" />
-    <ClInclude Include="ContainerConversions.h" />
-    <ClInclude Include="ContainerConversionsTestDriverException.h" />
-    <ClInclude Include="ContainerConversionsTestDriverFail.h" />
-    <ClInclude Include="ITest.h" />
-    <ClInclude Include="LengthErrorTestDriverException.h" />
-    <ClInclude Include="MemoryAllocator.h" />
-    <ClInclude Include="MemoryAllocatorTestDriverException1.h" />
-    <ClInclude Include="MemoryAllocatorTestDriverException2.h" />
-    <ClInclude Include="TestDLLLoader.h" />
-    <ClInclude Include="TestMessageParser.h" />
-    <ClInclude Include="OverflowErrorTestDriverException.h" />
-    <ClInclude Include="Sockets.h" />
-    <ClInclude Include="StaticLogger.h" />
-    <ClInclude Include="TestBlockingQueue.h" />
-    <ClInclude Include="TestHarness.h" />
-    <ClInclude Include="TestItem.h" />
-    <ClInclude Include="TestLogger.h" />
-    <ClInclude Include="TestMessage.h" />
-    <ClInclude Include="TestMessageHandler.h" />
-    <ClInclude Include="TestResultCounter.h" />
-    <ClInclude Include="TestResultFormatter.h" />
-    <ClInclude Include="TestRunner.h" />
-    <ClInclude Include="TestTimer.h" />
-    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="TestBasicCalculatorPass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="TestBasicCalculatorPass.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
