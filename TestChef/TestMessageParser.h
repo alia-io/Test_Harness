@@ -8,7 +8,10 @@ namespace TestSuite {
 
 	static class TestMessageParser {
 	public:
-		static TEST_RESULT testResult(TestMessage message);
-		static std::string testResultMessage(TestMessage message);
+		static std::string convertMessageToJSONString(TestMessage message);
+		static TestMessage convertJSONStringToMessage(std::string messageString);
+		static std::string convertTestResultToJSONBody(TEST_RESULT result, std::string messageText);
+		static TEST_RESULT getTestResultFromBody(TestMessage message);
+		static std::string getTestResultMessageFromBody(TestMessage message);
 	};
 }

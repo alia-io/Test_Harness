@@ -82,6 +82,6 @@ namespace TestSuite {
 		Address getDestinationAddress();
 		MESSAGE_TYPE getMessageType();
 		std::string getMessageBody();
-		std::string getStringMessage();
+		friend class TestMessageParser;
 	};
 }

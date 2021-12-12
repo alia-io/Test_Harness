@@ -41,6 +41,6 @@ std::string TestTimer::currentTime() {		// Function that returns formatted curre
 	return time;
 }
 
-std::string TestTimer::epochTime(time_point<system_clock> timestamp) {
+std::string TestTimer::epochTimeFromTimePoint(time_point<system_clock> timestamp) {
 	return std::to_string(duration_cast<std::chrono::milliseconds>(timestamp.time_since_epoch()).count());
 }

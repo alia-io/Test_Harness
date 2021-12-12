@@ -87,7 +87,7 @@ std::string TestMessage::getStringMessage() {
 	else if (type == MESSAGE_TYPE::request_list) str += "\"request_list\"";
 	else if (type == MESSAGE_TYPE::result_list) str += "\"result_list\"";
 
-	str += ", \"author\": \"" + author + "\", \"timestamp\": " + TestTimer::epochTime(timestamp) + ", \"body\": " + body + " }";
+	str += ", \"author\": \"" + author + "\", \"timestamp\": " + TestTimer::epochTimeFromTimePoint(timestamp) + ", \"body\": " + body + " }";
 
 	return str;
 }

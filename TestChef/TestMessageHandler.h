@@ -17,7 +17,7 @@ public:
 	//void enqueueClientRequest(std::string body);
 	//void enqueueClientResult(std::string body);
 	void enqueueTestRequest(TestItem item);
-	void enqueueTestResult(std::thread::id parentThreadId, TEST_RESULT result, std::string body);
+	void enqueueTestResult(std::thread::id parentThreadId, TEST_RESULT result, std::string messageText);
 	//TestMessage dequeueClientRequest();
 	//TestMessage dequeueClientResult();
 	TestItem dequeueTestRequest();
