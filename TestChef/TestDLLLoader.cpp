@@ -4,18 +4,15 @@
 using std::cout;
 
 void TestDLLLoader::dllLoader(std::string dllName) {
-	//pointer to the function obtained from .dll
 	testFunc importedFunctionPointer;
-	std::string funcName = "TEST";
+	std::string funcName = "TEST"; //default function expected in all dlls
 
-	//load .dll into memory;
+	//loads dll
 	HINSTANCE hinstLib = LoadLibraryA(dllName.c_str());
-	//add the memory location of the library to the all_DLL_MemoryLocations vector
-	//this->all_DLL_MemoryLocations.push_back(current_DLL_MemoryLocation);
 
 	if (hinstLib)
 	{
-		// function pointer pointing to memory location of the function in the .dll
+		//assigning function pointer
 		importedFunctionPointer = (testFunc)(GetProcAddress(hinstLib, funcName.c_str()));
 
 		if (importedFunctionPointer)
