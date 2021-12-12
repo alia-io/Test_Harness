@@ -1,6 +1,5 @@
 #include "TestMessageHandler.h"
 
-void TestMessageHandler::enqueueTestRequest(TestItem item) { testRequests.enQ(item); }
 void TestMessageHandler::enqueueClientRequest(std::string body)
 {
 	/*TestMessage message{THREAD_TYPE::child, std::this_thread::get_id(), THREAD_TYPE::parent, parentThreadId,
