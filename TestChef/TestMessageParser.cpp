@@ -58,17 +58,17 @@ std::string TestMessageParser::convertMessageToJSONString(TestMessage message) {
 
 TestMessage TestMessageParser::convertJSONStringToMessage(std::string messageString) {
 
-	Address* source;
-	Address* destination;
-	MESSAGE_TYPE messageType;
-	std::string author;
-	time_point<system_clock> timestamp;
-	std::string body;
+	Address* src = nullptr;
+	Address* dest = nullptr;
+	MESSAGE_TYPE msgType;
+	std::string msgAuthor;
+	time_point<system_clock> ts;
+	std::string msgBody;
 
 	enum MESSAGE_STEP { none, source, destination, type, author, timestamp, body };
-	enum ADDRESS_TYPE { none, thread, server };
+	enum ADDRESS_TYPE { thread, server };
 	MESSAGE_STEP messageStep = MESSAGE_STEP::none;
-	ADDRESS_TYPE addressType = ADDRESS_TYPE::none;
+	ADDRESS_TYPE addressType;
 	int bodyBrackets = 0;
 	std::string str = "";
 
@@ -96,27 +96,25 @@ TestMessage TestMessageParser::convertJSONStringToMessage(std::string messageStr
 				continue;
 			}
 		} else if (messageStep == MESSAGE_STEP::source && ch == '}') {
-			if (addressType == ADDRESS_TYPE::thread) source = convertJSONStringToThreadAddress(str);
-			else if (addressType == ADDRESS_TYPE::server) source = convertJSONStringToServerAddress(str);
+			if (addressType == ADDRESS_TYPE::thread) src = convertJSONStringToThreadAddress(str);
+			else if (addressType == ADDRESS_TYPE::server) src = convertJSONStringToServerAddress(str);
 			messageStep = MESSAGE_STEP::none;
-			addressType = ADDRESS_TYPE::none;
 		} else if (messageStep == MESSAGE_STEP::destination && ch == '}') {
-			if (addressType == ADDRESS_TYPE::thread) destination = convertJSONStringToThreadAddress(str);
-			else if (addressType == ADDRESS_TYPE::server) destination = convertJSONStringToServerAddress(str);
+			if (addressType == ADDRESS_TYPE::thread) dest = convertJSONStringToThreadAddress(str);
+			else if (addressType == ADDRESS_TYPE::server) dest = convertJSONStringToServerAddress(str);
 			messageStep = MESSAGE_STEP::none;
-			addressType = ADDRESS_TYPE::none;
 		} else if (messageStep == MESSAGE_STEP::type && ch == '"') {
-			if (str.compare("request") == 0) messageType = MESSAGE_TYPE::request;
-			else if (str.compare("result") == 0) messageType = MESSAGE_TYPE::result;
-			else if (str.compare("request_list") == 0) messageType = MESSAGE_TYPE::request_list;
-			else if (str.compare("result_list") == 0) messageType = MESSAGE_TYPE::result_list;
+			if (str.compare("request") == 0) msgType = MESSAGE_TYPE::request;
+			else if (str.compare("result") == 0) msgType = MESSAGE_TYPE::result;
+			else if (str.compare("request_list") == 0) msgType = MESSAGE_TYPE::request_list;
+			else if (str.compare("result_list") == 0) msgType = MESSAGE_TYPE::result_list;
 			messageStep = MESSAGE_STEP::none;
 		} else if (messageStep == MESSAGE_STEP::author && ch == '"') {
-			author = str;
+			msgAuthor = str;
 			messageStep = MESSAGE_STEP::none;
 		} else if (messageStep == MESSAGE_STEP::timestamp && ch == ',') {
 			str.erase(std::remove_if(str.begin(), str.end(), ::isspace), str.end());
-			timestamp = TestTimer::timePointFromEpochTime(str);
+			ts = TestTimer::timePointFromEpochTime(str);
 			messageStep = MESSAGE_STEP::none;
 		} else if (messageStep == MESSAGE_STEP::body) {
 			if (ch == '{') bodyBrackets++;
@@ -130,7 +128,7 @@ TestMessage TestMessageParser::convertJSONStringToMessage(std::string messageStr
 		str = "";
 	}
 
-	TestMessage msg{ source, destination, messageType, author, timestamp, body };
+	TestMessage msg{ src, dest, msgType, msgAuthor, ts, msgBody };
 	return msg;
 }
 
