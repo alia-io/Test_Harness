@@ -1,4 +1,5 @@
 #include "TestRunner.h"
+#include "TestDLLLoader.h"
 
 //////////////////////////////////////////////////////
 // TestRunner.cpp									//
@@ -21,12 +22,14 @@
 
 TestRunner::TestRunner(std::string name, bool (*funcPtr)()) : testFunctionName{ name }, testFunction{ funcPtr } { }
 
+
+
 void TestRunner::runTest(TestMessageHandler* messageHandler, std::thread::id parentId, LOG_LEVEL logLevel) {
 	TestTimer timer{};
 	bool result = false;
 	timer.startTimer();
 	try {
-		result = testFunction();
+		result = testFunction();///TODO:replace it with DLL load in main2
 	}
 	catch (std::exception& e) {
 		timer.endTimer();
@@ -45,4 +48,10 @@ void TestRunner::runTest(TestMessageHandler* messageHandler, std::thread::id par
 
 	messageHandler->enqueueTestResult(parentId, TEST_RESULT::fail,
 		TestResultFormatter::testFailedMessage(testFunctionName, timer));
+}
+
+int main2() {
+	TestDLLLoader loader;
+	loader.dllLoader("TestBasicCalculatorPass.dll");
+	return 0;
 }

@@ -102,6 +102,9 @@
     <ClCompile Include="TestResultFormatter.cpp">
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
+    <ClCompile Include="TestDLLLoader.cpp">
+      <Filter>Source Files\TestController</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestHarness.h">
@@ -193,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="TestMessageParser.h">
       <Filter>Header Files\TestMessenger</Filter>
+    </ClInclude>
+    <ClInclude Include="TestDLLLoader.h">
+      <Filter>Header Files\TestController</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
