@@ -2,12 +2,12 @@
 #include <iostream>
 #include <Windows.h>
 #include <exception>
-#include "TestMessageHandler.h"
-#include "TestTimer.h"
-#include "TestResultFormatter.h"
+#include "MessageHandler.h"
+#include "Timer.h"
+#include "ResultFormatter.h"
+#include "MessageHandler.h"
 #include <string>
 #include <thread>
-using namespace TestSuite;
 
 //////////////////////////////////////////////////////
 // TestRunner.h										//
@@ -31,5 +31,5 @@ private:
 	bool (*testFunction)();
 public:
 	TestRunner(std::string name, bool (*funcPtr)());
-	void runTest(TestMessageHandler* messageHandler, std::thread::id parentId, LOG_LEVEL logLevel);
+	void runTest(MessageHandler* messageHandler, Message msg, LOG_LEVEL logLevel);
 };

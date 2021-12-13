@@ -20,12 +20,12 @@
 *
 */
 
+using namespace TestMessenger;
+
 TestRunner::TestRunner(std::string name, bool (*funcPtr)()) : testFunctionName{ name }, testFunction{ funcPtr } { }
 
-
-
-void TestRunner::runTest(TestMessageHandler* messageHandler, std::thread::id parentId, LOG_LEVEL logLevel) {
-	TestTimer timer{};
+void TestRunner::runTest(MessageHandler* messageHandler, Message msg, LOG_LEVEL logLevel) {
+	Timer timer{};
 	bool result = false;
 	timer.startTimer();
 	try {
@@ -33,25 +33,25 @@ void TestRunner::runTest(TestMessageHandler* messageHandler, std::thread::id par
 	}
 	catch (std::exception& e) {
 		timer.endTimer();
-		messageHandler->enqueueTestResult(parentId, TEST_RESULT::exception,
-			TestResultFormatter::testExceptionMessage(testFunctionName, e, logLevel));
+		messageHandler->enqueueTestResult(msg, TEST_RESULT::exception,
+			ResultFormatter::testExceptionMessage(testFunctionName, e, logLevel));
 		return;
 	}
 
 	timer.endTimer();
 
 	if (result) {
-		messageHandler->enqueueTestResult(parentId, TEST_RESULT::pass,
-			TestResultFormatter::testPassedMessage(testFunctionName, timer));
+		messageHandler->enqueueTestResult(msg, TEST_RESULT::pass,
+			ResultFormatter::testPassedMessage(testFunctionName, timer));
 		return;
 	}
 
-	messageHandler->enqueueTestResult(parentId, TEST_RESULT::fail,
-		TestResultFormatter::testFailedMessage(testFunctionName, timer));
+	messageHandler->enqueueTestResult(msg, TEST_RESULT::fail,
+		ResultFormatter::testFailedMessage(testFunctionName, timer));
 }
 
-int main2() {
+/*int main2() {
 	TestDLLLoader loader;
 	loader.dllLoader("TestBasicCalculatorPass.dll");
 	return 0;
-}
+}*/

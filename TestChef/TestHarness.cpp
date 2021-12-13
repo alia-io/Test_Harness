@@ -1,4 +1,5 @@
 #include "TestHarness.h"
+#include "Executive.h"
 
 //////////////////////////////////////////////////////
 // TestHarness.cpp									//
@@ -13,61 +14,94 @@
 *
 */
 
-//default constructor
-TestHarness::TestHarness() :suiteName("Default") {}
+TestHarness::TestHarness(std::string name, Message request) : suiteName{ name }, requestMessage{ request } {
+	StaticLogger<1>::setLogLevel(request.getRequestMessageBody().logLevel);
+}
 
-TestHarness::TestHarness(std::string name, LOG_LEVEL log) : suiteName(name) { logger.setLogLevel(log); }
+MessageHandler* TestHarness::getHandler() { return &handler; }
 
-void TestHarness::execute(std::list<TestItem> tests) {
+void TestHarness::execute() {
+	//std::thread parent([=] { parentRunner(); });
+	//if (parent.joinable()) parent.join();
+	parentRunner();
+}
 
-	TestTimer timer{};
-	TestMessageHandler h{};
-	const int NUM_TESTS = tests.size();
+void TestHarness::parentRunner() {
+
+	//Timer timer{};
 	const int NUM_THREADS = 3;
+	numberOfTests = requestMessage.getRequestMessageBody().testCount;
 
-	testHarnessThreadId = std::this_thread::get_id();	// save the parent thread id
-	counter.setTotalTests(NUM_TESTS);	//counter struct for # of pass, fail, and total tests
+	//timer.startTimer();		// Initiate start time
 
-	timer.startTimer();						// Initiate start time
-
-	std::vector<std::thread> threads{};
+	std::vector<std::thread> threads{};		// child threads
 	for (int i = 0; i < NUM_THREADS; ++i) {
-		threads.push_back(std::thread([=] { executeChild(); }));
+		threads.push_back(std::thread([=] { childRunner(); }));
 	}
 
-	// enqueue test requests
-	for (auto const& test : tests) {
-		handler.enqueueTestRequest(test);
-	}
-
-	timer.endTimer();	// Submit end time to determine how much time the test list took to run
+	handler.enqueueTestRequests(requestMessage);	// enqueue test requests
 
 	// receive & send out test results
-	int numTestsComplete = 0;
+	/*int numTestsComplete = 0;
 	while (true) {
-		TestMessage message = handler.dequeueTestResult();
-		std::string messageStr = message.getMessageBody();
-		TEST_RESULT result = TestMessageParser::getTestResultFromBody(message);
-		std::string resultMsg = TestMessageParser::getTestResultMessageFromBody(message);
-		if (result == TEST_RESULT::pass) counter.incrementTestPassed();
-		else counter.incrementTestFailed();
-		logger.writeLogInfoToOutput(result, resultMsg, timer);	// write result to console
+
+		Message message = handler.dequeueTestResult();
+		TestItem result = message.getResultMessageBody();
+
+		// increment totals & write result to console
+		if (result.testResult == TEST_RESULT::pass) {
+			//counter.incrementTestPassed();
+			StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::positive, result.testMessage });
+		}
+		else if (result.testResult == TEST_RESULT::fail) {
+			//counter.incrementTestFailed();
+			StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::negative, result.testMessage });
+		}
+		else {
+			//counter.incrementTestFailed();
+			StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::error, result.testMessage });
+		}
+
 		numTestsComplete++;
-		if (numTestsComplete == NUM_TESTS) break;
-	}
+		//if (numTestsComplete == NUM_TESTS) break;
+	}*/
+
+	//timer.endTimer();	// Submit end time to determine how much time the test list took to run
 
 	// write test result summary
-	logger.writeTestRunSummary(counter, timer);
+	//StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::summary, ResultFormatter::testResultSummary(counter, timer) });
 
 	for (auto& thr : threads) {
 		if (thr.joinable()) thr.join();
 	}
 }
 
-void TestHarness::executeChild() {
+void TestHarness::childRunner() {
 	while (true) {
-		TestItem test = handler.dequeueTestRequest();
-		TestRunner runner{ test.getName(), test.getPointer() };
-		runner.runTest(&handler, testHarnessThreadId, logger.getLogLevel());
+		if (numberOfTests <= 0) break;
+		Message message = handler.dequeueTestRequest();
+		bool (*ptr)() = TestGetter::getTest(message.getResultMessageBody().testName).pointer;
+		TestRunner runner{ message.getResultMessageBody().testName, ptr };
+		runner.runTest(&handler, message, StaticLogger<1>::getLogLevel());
+		mtx.lock();
+		numberOfTests--;
+		mtx.unlock();
 	}
 }
+
+/*int main() {
+
+	StaticLogger<1>::attach(&std::cout);
+	StaticLogger<1>::start();
+
+	std::list<std::string> tests{
+		"TestBasicCalculatorPass", "TestBasicCalculatorFail", "TestBasicCalculatorException", "TestAdvancedCalculatorPass",
+		"TestMemoryAllocatorException1", "TestMemoryAllocatorException2", "TestContainerConversionsFail",
+		"TestContainerConversionsException", "TestLengthErrorException", "TestOverflowErrorException"
+	};
+
+	TestHarness testHarness{ "default", LOG_LEVEL::debug };
+	testHarness.execute(tests);
+
+	return 0;
+}*/

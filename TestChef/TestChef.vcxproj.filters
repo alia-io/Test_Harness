@@ -37,10 +37,10 @@
     <Filter Include="Header Files\TestDriver">
       <UniqueIdentifier>{c1e5e67e-5259-4139-843c-ece2399b8dc7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\TestClientInterface">
+    <Filter Include="Header Files\TestCommunicationInterface">
       <UniqueIdentifier>{b50eb37c-03bd-41f7-af75-a70ea064f02e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\TestClientInterface">
+    <Filter Include="Source Files\TestCommunicationInterface">
       <UniqueIdentifier>{fcd6a3fb-8a0f-40b5-b3d9-7d6fa5468726}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -54,78 +54,57 @@
     <ClCompile Include="MemoryAllocator.cpp">
       <Filter>Source Files\TestDriver</Filter>
     </ClCompile>
-    <ClCompile Include="Executor.cpp">
-      <Filter>Source Files\TestDriver</Filter>
-    </ClCompile>
     <ClCompile Include="AdvCalculator.cpp">
       <Filter>Source Files\TestDriver</Filter>
     </ClCompile>
     <ClCompile Include="TestHarness.cpp">
       <Filter>Source Files\TestController</Filter>
     </ClCompile>
-    <ClCompile Include="TestResultCounter.cpp">
-      <Filter>Source Files\TestController</Filter>
-    </ClCompile>
-    <ClCompile Include="TestLogger.cpp">
+    <ClCompile Include="Timer.cpp">
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
-    <ClCompile Include="TestTimer.cpp">
-      <Filter>Source Files\TestUtilities</Filter>
-    </ClCompile>
-    <ClCompile Include="TestBlockingQueue.cpp">
+    <ClCompile Include="MessageHandler.cpp">
       <Filter>Source Files\TestMessenger</Filter>
     </ClCompile>
-    <ClCompile Include="TestMessageHandler.cpp">
+    <ClCompile Include="Message.cpp">
       <Filter>Source Files\TestMessenger</Filter>
-    </ClCompile>
-    <ClCompile Include="TestMessage.cpp">
-      <Filter>Source Files\TestMessenger</Filter>
-    </ClCompile>
-    <ClCompile Include="TestMessageParser.cpp">
-      <Filter>Source Files\TestMessenger</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities.cpp">
-      <Filter>Source Files\TestClientInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticLogger.cpp">
-      <Filter>Source Files\TestClientInterface</Filter>
     </ClCompile>
     <ClCompile Include="Sockets.cpp">
-      <Filter>Source Files\TestClientInterface</Filter>
+      <Filter>Source Files\TestCommunicationInterface</Filter>
     </ClCompile>
-    <ClCompile Include="MainServer.cpp">
-      <Filter>Source Files\TestClientInterface</Filter>
+    <ClCompile Include="Server.cpp">
+      <Filter>Source Files\TestCommunicationInterface</Filter>
     </ClCompile>
     <ClCompile Include="TestRunner.cpp">
       <Filter>Source Files\TestController</Filter>
     </ClCompile>
-    <ClCompile Include="TestResultFormatter.cpp">
+    <ClCompile Include="ResultFormatter.cpp">
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
     <ClCompile Include="TestDLLLoader.cpp">
       <Filter>Source Files\TestController</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticLogger.cpp">
+      <Filter>Source Files\TestUtilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files\TestUtilities</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockingQueue.cpp">
+      <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestHarness.h">
       <Filter>Header Files\TestController</Filter>
     </ClInclude>
-    <ClInclude Include="TestResultCounter.h">
-      <Filter>Header Files\TestController</Filter>
-    </ClInclude>
-    <ClInclude Include="TestLogger.h">
+    <ClInclude Include="Timer.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="TestTimer.h">
-      <Filter>Header Files\TestUtilities</Filter>
-    </ClInclude>
-    <ClInclude Include="TestMessage.h">
+    <ClInclude Include="Message.h">
       <Filter>Header Files\TestMessenger</Filter>
     </ClInclude>
-    <ClInclude Include="TestBlockingQueue.h">
-      <Filter>Header Files\TestMessenger</Filter>
-    </ClInclude>
-    <ClInclude Include="TestMessageHandler.h">
+    <ClInclude Include="MessageHandler.h">
       <Filter>Header Files\TestMessenger</Filter>
     </ClInclude>
     <ClInclude Include="AdvCalculator.h">
@@ -171,13 +150,7 @@
       <Filter>Header Files\TestDriver</Filter>
     </ClInclude>
     <ClInclude Include="Sockets.h">
-      <Filter>Header Files\TestClientInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticLogger.h">
-      <Filter>Header Files\TestClientInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities.h">
-      <Filter>Header Files\TestClientInterface</Filter>
+      <Filter>Header Files\TestCommunicationInterface</Filter>
     </ClInclude>
     <ClInclude Include="TestRunner.h">
       <Filter>Header Files\TestController</Filter>
@@ -185,13 +158,10 @@
     <ClInclude Include="ITest.h">
       <Filter>Header Files\TestDriver</Filter>
     </ClInclude>
-    <ClInclude Include="TestItem.h">
-      <Filter>Header Files\TestUtilities</Filter>
-    </ClInclude>
     <ClInclude Include="TestMessageParser.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="TestResultFormatter.h">
+    <ClInclude Include="ResultFormatter.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
     <ClInclude Include="TestMessageParser.h">
@@ -199,6 +169,21 @@
     </ClInclude>
     <ClInclude Include="TestDLLLoader.h">
       <Filter>Header Files\TestController</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticLogger.h">
+      <Filter>Header Files\TestUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files\TestUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
+      <Filter>Header Files\TestCommunicationInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockingQueue.h">
+      <Filter>Header Files\TestUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Executive.h">
+      <Filter>Header Files\TestDriver</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

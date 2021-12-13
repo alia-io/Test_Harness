@@ -13,60 +13,75 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\TestCommunicationInterface">
+      <UniqueIdentifier>{40c35e4b-3f5a-49e6-9f11-7c19fc8e3b5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TestUtilities">
+      <UniqueIdentifier>{3f7e2637-7678-40dd-9225-63e2c2840de1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TestCommunicationInterface">
+      <UniqueIdentifier>{59acb04e-cb2e-4681-8595-5d45e84cff8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TestDriver">
+      <UniqueIdentifier>{b3b04a58-bfd9-476a-84a0-26805fee1560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TestUtilities">
+      <UniqueIdentifier>{1b7a3e7b-a9ed-4e84-90af-3e63bdb670d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestClientMessenger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Client.h">
+      <Filter>Header Files\TestCommunicationInterface</Filter>
     </ClInclude>
-    <ClInclude Include="TestLogger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Message.h">
+      <Filter>Header Files\TestCommunicationInterface</Filter>
     </ClInclude>
-    <ClInclude Include="CSockets.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Sockets.h">
+      <Filter>Header Files\TestCommunicationInterface</Filter>
     </ClInclude>
-    <ClInclude Include="CStaticLogger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="BlockingQueue.h">
+      <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="CTestBlockingQueue.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ResultCounter.h">
+      <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="CUtilities.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="StaticLogger.h">
+      <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="CTestMessage.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="CTestTimer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TestClientMessenger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Client.cpp">
+      <Filter>Source Files\TestCommunicationInterface</Filter>
     </ClCompile>
-    <ClCompile Include="TestLogger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Message.cpp">
+      <Filter>Source Files\TestCommunicationInterface</Filter>
     </ClCompile>
-    <ClCompile Include="MainClient.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Sockets.cpp">
+      <Filter>Source Files\TestCommunicationInterface</Filter>
     </ClCompile>
-    <ClCompile Include="CSockets.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Executive.cpp">
+      <Filter>Source Files\TestDriver</Filter>
     </ClCompile>
-    <ClCompile Include="CStaticLogger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="BlockingQueue.cpp">
+      <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
-    <ClCompile Include="CTestBlockingQueue.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ResultCounter.cpp">
+      <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
-    <ClCompile Include="CUtilities.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="StaticLogger.cpp">
+      <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
-    <ClCompile Include="CTestMessage.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
-    <ClCompile Include="CTestTimer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

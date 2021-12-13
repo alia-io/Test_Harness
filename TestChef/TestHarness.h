@@ -1,18 +1,14 @@
 #pragma once
-#include "TestLogger.h"
-#include "TestMessageHandler.h"
-#include "TestMessageParser.h"
+#include "StaticLogger.h"
+#include "MessageHandler.h"
 #include "TestRunner.h"
-#include "TestLogger.h"
-#include "TestTimer.h"
+#include "Timer.h"
 #include <functional>
 #include <iostream>
 #include <string>
 #include <list>
 #include <thread>
-#include "TestItem.h"
-
-using namespace TestSuite;
+#include <mutex>
 
 //////////////////////////////////////////////////////
 // TestHarness.h									//
@@ -26,17 +22,17 @@ using namespace TestSuite;
 *
 */
 
-class TestHarness
-{
+class TestHarness {
 private:
 	std::string suiteName;
-	std::thread::id testHarnessThreadId;
-	TestSuite::TestLogger logger{};
-	TestResultCounter counter{};
-	TestMessageHandler handler{};
-	void executeChild();
+	Message requestMessage;
+	MessageHandler handler{};
+	int numberOfTests;
+	std::mutex mtx;
+	void parentRunner();
+	void childRunner();
 public:
-	TestHarness();
-	TestHarness(std::string name, TestSuite::LOG_LEVEL log);
-	void execute(std::list<TestItem> tests);
+	TestHarness(std::string name, Message request);
+	MessageHandler* getHandler();
+	void execute();
 };
