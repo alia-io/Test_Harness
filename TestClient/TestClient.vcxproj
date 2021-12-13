@@ -146,7 +146,6 @@
     <ClInclude Include="Sockets.h" />
     <ClInclude Include="StaticLogger.h" />
     <ClInclude Include="Timer.h" />
-    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlockingQueue.cpp" />
@@ -157,7 +156,6 @@
     <ClCompile Include="Sockets.cpp" />
     <ClCompile Include="StaticLogger.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

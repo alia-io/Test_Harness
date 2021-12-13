@@ -179,7 +179,6 @@
     <ClCompile Include="ResultFormatter.cpp" />
     <ClCompile Include="TestRunner.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdvCalculator.h" />
@@ -209,7 +208,6 @@
     <ClInclude Include="ResultFormatter.h" />
     <ClInclude Include="TestRunner.h" />
     <ClInclude Include="Timer.h" />
-    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

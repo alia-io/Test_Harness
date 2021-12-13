@@ -13,7 +13,6 @@
 
 #include <functional>
 #include "StaticLogger.h"
-#include "Utilities.h"
 
 Logger::Logger() : logLevel{ LOG_LEVEL::info } { }
 void Logger::setLogLevel(LOG_LEVEL log) { logLevel = log; }

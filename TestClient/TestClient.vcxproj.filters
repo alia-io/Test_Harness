@@ -51,9 +51,6 @@
     <ClInclude Include="Timer.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities.h">
-      <Filter>Header Files\TestUtilities</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -78,9 +75,6 @@
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Source Files\TestUtilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities.cpp">
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
   </ItemGroup>

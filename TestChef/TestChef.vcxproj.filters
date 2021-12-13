@@ -87,9 +87,6 @@
     <ClCompile Include="StaticLogger.cpp">
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
-    <ClCompile Include="Utilities.cpp">
-      <Filter>Source Files\TestUtilities</Filter>
-    </ClCompile>
     <ClCompile Include="BlockingQueue.cpp">
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
@@ -158,9 +155,6 @@
     <ClInclude Include="ITest.h">
       <Filter>Header Files\TestDriver</Filter>
     </ClInclude>
-    <ClInclude Include="TestMessageParser.h">
-      <Filter>Header Files\TestUtilities</Filter>
-    </ClInclude>
     <ClInclude Include="ResultFormatter.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
@@ -171,9 +165,6 @@
       <Filter>Header Files\TestController</Filter>
     </ClInclude>
     <ClInclude Include="StaticLogger.h">
-      <Filter>Header Files\TestUtilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
     <ClInclude Include="Server.h">

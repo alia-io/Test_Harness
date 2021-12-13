@@ -18,7 +18,6 @@
 #include <memory>
 #include <functional>
 #include <exception>
-#include "Utilities.h"
 
 using namespace Sockets;
 
@@ -29,8 +28,9 @@ using namespace Sockets;
 SocketSystem::SocketSystem() {
     int iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
     if (iResult != 0) {
-        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-            "WSAStartup failed with error = " + Utilities::Converter<int>::toString(iResult) });
+        std::ostringstream ss;
+        ss << iResult;
+        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "WSAStartup failed with error = " + ss.str() });
     }
 }
 //-----< destructor frees winsock lib >--------------------------------------
@@ -300,14 +300,17 @@ SocketConnecter::~SocketConnecter() {
 //----< request to connect to ip and port >----------------------------------
 bool SocketConnecter::connect(const std::string& ip, size_t port) {
     size_t uport = htons((u_short)port);
-    std::string sPort = Utilities::Converter<size_t>::toString(uport);
+    std::ostringstream ss;
+    ss << uport;
+    std::string sPort = ss.str();
 
     // Resolve the server address and port
     const char* pTemp = ip.c_str();
     iResult = getaddrinfo(pTemp, sPort.c_str(), &hints, &result);  // was DEFAULT_PORT
     if (iResult != 0) {
-        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-            "getaddrinfo failed with error: " + Utilities::Converter<int>::toString(iResult) });
+        std::ostringstream ss1;
+        ss1 << iResult;
+        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "getaddrinfo failed with error: " + ss1.str() });
         return false;
     }
 
@@ -339,8 +342,9 @@ bool SocketConnecter::connect(const std::string& ip, size_t port) {
         socket_ = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
         if (socket_ == INVALID_SOCKET) {
             int error = WSAGetLastError();
-            StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-                "Socket failed with error: " + Utilities::Converter<int>::toString(error) });
+            std::ostringstream ss2;
+            ss2 << error;
+            StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Socket failed with error: " + ss2.str() });
             return false;
         }
 
@@ -348,8 +352,9 @@ bool SocketConnecter::connect(const std::string& ip, size_t port) {
         if (iResult == SOCKET_ERROR) {
             socket_ = INVALID_SOCKET;
             int error = WSAGetLastError();
-            StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-                "WSAGetLastError returned " + Utilities::Converter<int>::toString(error) });
+            std::ostringstream ss3;
+            ss3 << error;
+            StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "WSAGetLastError returned " + ss3.str() });
             continue;
         }
         break;
@@ -359,8 +364,9 @@ bool SocketConnecter::connect(const std::string& ip, size_t port) {
 
     if (socket_ == INVALID_SOCKET) {
         int error = WSAGetLastError();
-        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-            "Unable to connect to server, error = " + Utilities::Converter<int>::toString(error) });
+        std::ostringstream ss4;
+        ss4 << error;
+        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Unable to connect to server, error = " + ss4.str() });
         return false;
     }
     return true;
@@ -418,13 +424,15 @@ bool SocketListener::bind() {
     // Resolve the server address and port
 
     size_t uport = ::htons((u_short)port_);
-    StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-        "netstat uport = " + Utilities::Converter<size_t>::toString(uport) });
-    std::string sPort = Utilities::Converter<size_t>::toString(uport);
+    std::ostringstream ss;
+    ss << uport;
+    std::string sPort = ss.str();
+    StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "netstat uport = " + sPort });
     iResult = getaddrinfo(NULL, sPort.c_str(), &hints, &result);
     if (iResult != 0) {
-        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-            "getaddrinfo failed with error: " + Utilities::Converter<int>::toString(iResult) });
+        std::ostringstream ss1;
+        ss1 << iResult;
+        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "getaddrinfo failed with error: " + ss1.str() });
         return false;
     }
 
@@ -437,8 +445,9 @@ bool SocketListener::bind() {
         socket_ = socket(pResult->ai_family, pResult->ai_socktype, pResult->ai_protocol);
         if (socket_ == INVALID_SOCKET) {
             int error = WSAGetLastError();
-            StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-                "Socket failed with error: " + Utilities::Converter<int>::toString(error) });
+            std::ostringstream ss2;
+            ss2 << error;
+            StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Socket failed with error: " + ss2.str() });
             continue;
         }
         StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Server created ListenSocket" });
@@ -448,8 +457,9 @@ bool SocketListener::bind() {
         iResult = ::bind(socket_, pResult->ai_addr, (int)pResult->ai_addrlen);
         if (iResult == SOCKET_ERROR) {
             int error = WSAGetLastError();
-            StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-                "Bind failed with error: " + Utilities::Converter<int>::toString(error) });
+            std::ostringstream ss3;
+            ss3 << error;
+            StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Bind failed with error: " + ss3.str() });
             socket_ = INVALID_SOCKET;
             continue;
         }
@@ -470,8 +480,9 @@ bool SocketListener::listen() {
     iResult = ::listen(socket_, SOMAXCONN);
     if (iResult == SOCKET_ERROR) {
         int error = WSAGetLastError();
-        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-            "Listen failed with error: " + Utilities::Converter<int>::toString(error) });
+        std::ostringstream ss;
+        ss << error;
+        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Listen failed with error: " + ss.str() });
         socket_ = INVALID_SOCKET;
         return false;
     }
@@ -486,8 +497,9 @@ Socket SocketListener::accept() {
     if (!clientSocket.validState()) {
         acceptFailed_ = true;
         int error = WSAGetLastError();
-        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
-            "Server accept failed with error: " + Utilities::Converter<int>::toString(error) });
+        std::ostringstream ss;
+        ss << error;
+        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Server accept failed with error: " + ss.str() });
         StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system,
             "This occurs when application shuts down while listener thread is blocked on Accept call" });
         return clientSocket;
@@ -701,7 +713,9 @@ void clientTestBufferHandling(Socket& si) {
 
     for (size_t i = 0; i < 5; ++i)
     {
-        std::string text = "Hello World " + std::string("#") + Utilities::Converter<size_t>::toString(i + 1);
+        std::ostringstream ss;
+        ss << (i + 1);
+        std::string text = "Hello World " + std::string("#") + ss.str();
         for (size_t i = 0; i < BufLen; ++i)
         {
             if (i < text.size())
