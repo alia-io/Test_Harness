@@ -60,15 +60,3 @@ std::string Timer::currentTime() {		// Function that returns formatted current t
 	std::string time = std::regex_replace(stream.str(), std::regex("\\s+$"), std::string(""));
 	return time;
 }
-
-int64_t Timer::epochTimeFromTimePoint(time_point<system_clock> timestamp) {
-	return std::chrono::duration_cast<std::chrono::seconds>(timestamp.time_since_epoch()).count();
-}
-
-time_point<system_clock> Timer::timePointFromEpochTime(std::string epochTime) {
-	int64_t epochTimeInt;
-	std::istringstream iss(epochTime);
-	iss >> epochTimeInt;
-	time_point<system_clock> time{ std::chrono::seconds{epochTimeInt} };
-	return time;
-}

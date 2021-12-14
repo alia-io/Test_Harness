@@ -29,7 +29,5 @@ public:
 	double timeTakenSeconds();
 	static std::string convertTimeToString(double t);
 	static std::string currentTime();
-	static int64_t epochTimeFromTimePoint(time_point<system_clock> timestamp);
-	static time_point<system_clock> timePointFromEpochTime(std::string epochTime);
 };
 
