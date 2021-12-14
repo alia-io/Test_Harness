@@ -12,6 +12,7 @@
 */
 
 #include <string>
+#include "Timer.h"
 
 class ResultCounter
 {
@@ -19,6 +20,7 @@ private:
 	int testsPassed;
 	int testsFailed;
 	int totalTests;
+	Timer* timer;
 public:
 	void setTotalTests(int count);
 	void incrementTestPassed();
@@ -27,5 +29,7 @@ public:
 	int getTestsFailed();
 	int getTestsTotal();
 	std::string testResultSummary();
+	void setTimer(Timer* t);
+	Timer* getTimer();
 };
 

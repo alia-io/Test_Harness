@@ -165,8 +165,6 @@ namespace Sockets
     class Socket
     {
     public:
-        //using byte = char;
-
         // disable copy construction and assignment
         Socket(const Socket& s) = delete;
         Socket& operator=(const Socket& s) = delete;

@@ -60,9 +60,6 @@ void Logger::start() {
                 SetConsoleTextAttribute(hConsole, 14);
                 *_pOut << "\n [EXCEPTION] ";
             }
-            // 3,9 = light blue
-            // 5, 13 = red-violet
-            // 6 = golden
             SetConsoleTextAttribute(hConsole, 15);
             *_pOut << msg.text << "\n";
         }

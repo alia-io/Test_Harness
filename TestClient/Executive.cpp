@@ -12,7 +12,7 @@ int main() {
 		"TestContainerConversionsException", "TestLengthErrorException", "TestOverflowErrorException"
 	};
 
-	Client::runTests(LOG_LEVEL::detail, testList);
+	Client{}.runTests(LOG_LEVEL::detail, testList);
 
 	return 0;
 }

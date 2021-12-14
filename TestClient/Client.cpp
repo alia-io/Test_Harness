@@ -39,6 +39,7 @@ private:
 public:
     void operator()(Socket& socket_);
     void setTotalTests(int count);
+    void sendTimer(Timer* t);
 };
 
 void ConnectionHandler::operator()(Socket& socket_) {
@@ -47,7 +48,6 @@ void ConnectionHandler::operator()(Socket& socket_) {
     while (true) {  // Incoming messages from server received here
         if (numberOfTests <= 0) break;
         std::string msg = Socket::removeTerminator(socket_.recvString());
-        //StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Recvd message: " + msg });
         Message resultMsg{ msg };
         if (resultMsg.getResultMessageBody().testResult == TEST_RESULT::pass) {
             StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::positive, resultMsg.getResultMessageBody().testMessage });
@@ -63,19 +63,21 @@ void ConnectionHandler::operator()(Socket& socket_) {
         }
         numberOfTests--;
     }
-
+    counter.getTimer()->endTimer();
     StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::summary, counter.testResultSummary() });
 }
 
 void ConnectionHandler::setTotalTests(int count) { counter.setTotalTests(count); }
+void ConnectionHandler::sendTimer(Timer* t) { counter.setTimer(t); }
 
 void Client::runTests(LOG_LEVEL logLevel, std::list<std::string> testList) {
     init();
     try {
         SocketSystem ss;
-        std::thread listenThread([=] { startListener(testList.size()); });
+        Timer timer{};
+        std::thread listenThread([=] { startListener(testList.size(), timer); });
         ::Sleep(1000);   // wait to make sure server listener is started
-        sendRequest(logLevel, testList);
+        sendRequest(logLevel, testList, timer);
         listenThread.join();
     }
     catch (std::exception& exc) {
@@ -89,16 +91,18 @@ void Client::init() {
     StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Client started" });
 }
 
-void Client::startListener(int numTests) {  // Communication from server to client
+void Client::startListener(int numTests, Timer timer) {  // Communication from server to client
     SocketListener sl(Client::portNumber, Client::ipVersion);
     ConnectionHandler cp;
     cp.setTotalTests(numTests);
+    cp.sendTimer(&timer);
     sl.start(cp);
     std::cout.flush();
     std::cin.get();
 }
 
-void Client::sendRequest(LOG_LEVEL logLevel, std::list<std::string> testList) { // Communication from client to server
+// Communication from client to server
+void Client::sendRequest(LOG_LEVEL logLevel, std::list<std::string> testList, Timer timer) {
 
     SocketConnecter si;
     while (!si.connect("localhost", 8080)) {    // connect to server
@@ -109,6 +113,8 @@ void Client::sendRequest(LOG_LEVEL logLevel, std::list<std::string> testList) { 
     Message request{ Client::ipVersion, Client::ipAddress, Client::portNumber,
         IP_VERSION::IPv6, "localhost", 8080, LOG_LEVEL::detail, testList };
     std::string jsonRequest = request.getJsonFormattedMessage();
+
+    timer.startTimer();
     si.sendString(jsonRequest);   // send request to server
 
     StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Client sent test request message" });
