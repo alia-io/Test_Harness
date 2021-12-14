@@ -94,8 +94,8 @@ namespace TestMessenger {
 		std::string sourceIpAddress();
 		size_t sourcePort();
 		IP_VERSION destinationIpVersion();
-		std::string destinationIpAddress();		
-		size_t destinationPort();				
+		std::string destinationIpAddress();
+		size_t destinationPort();
 		RequestItem getRequestMessageBody();	// get message body as a RequestItem object
 		TestItem getResultMessageBody();		// get message body as a TestItem object
 	};
