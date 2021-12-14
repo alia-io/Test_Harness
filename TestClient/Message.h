@@ -10,7 +10,13 @@
 using std::chrono::time_point;
 using std::chrono::system_clock;
 
-/*
+//////////////////////////////////////////////////////
+// Message.h										//
+// CSE 681: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/* This is the header class for the Message class.
 *	-------------------------------------
 *	CLIENT REQUEST MESSAGE -- JSON FORMAT
 *	-------------------------------------
@@ -88,8 +94,8 @@ namespace TestMessenger {
 		std::string sourceIpAddress();
 		size_t sourcePort();
 		IP_VERSION destinationIpVersion();
-		std::string destinationIpAddress();
-		size_t destinationPort();
+		std::string destinationIpAddress();		
+		size_t destinationPort();				
 		RequestItem getRequestMessageBody();	// get message body as a RequestItem object
 		TestItem getResultMessageBody();		// get message body as a TestItem object
 	};

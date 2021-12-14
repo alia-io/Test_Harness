@@ -3,32 +3,71 @@
 #include <stack>
 #include <vector>
 
+//////////////////////////////////////////////////////
+// Message.cpp										//
+// CSE 681: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/*
+* This class is the implementation of the Message.h header. This Class forms the message object on 
+* the client side that will be sent to the server via the socket class method.
+*	-------------------------------------
+*	CLIENT REQUEST MESSAGE -- JSON FORMAT
+*	-------------------------------------
+*
+*	{
+*		"source": { "version": "[IPv4/IPv6]", "ip": "[ip_address]", "port": "[port]" },
+*		"destination: { "version": "[IPv4/IPv6]", "ip": "[ip_address]", "port": "[port]" },
+*		"type": "client_request",
+*		"author": "TestClient",
+*		"timestamp": "[time&date]",
+*		"body": { "log": "[info/debug/detail]", "count": "[num_tests]", "tests": [ "[test_name]", "[test_name]", ... ] }
+*	}
+*
+*	--------------------------------------
+*	SERVER RESPONSE MESSAGE -- JSON FORMAT
+*	--------------------------------------
+*
+*	{
+*		"source": { "version": "[IPv4/IPv6]", "ip": "[ip_address]", "port": "[port]" },
+*		"destination: { "version": "[IPv4/IPv6]", "ip": "[ip_address]", "port": "[port]" },
+*		"type": "test_result",
+*		"author": "TestServer",
+*		"timestamp": "[time&date]",
+*		"body": { "name": "[test_name]", "result": "[pass/fail/exception]", "message": "[...]" }
+*	}
+*/
+
 using namespace TestMessenger;
 
+/* This method sets class variables for Version, address, and the port*/
 void Address::setValues(IP_VERSION ver, std::string addr, size_t pt) {
 	ipVer = ver;
 	ipAddr = addr;
 	port = pt;
 }
 
+/* This method returns a value of true if the Version, address, and port match*/
 bool Address::operator==(const Address& addr) const {
 	return (ipVer == addr.ipVer) && (ipAddr.compare(addr.ipAddr) == 0) && (port == addr.port);
 }
 
-/* constuctor from JSON message string */
+/* Constuctor from JSON message string. Parser loops through each character in the JSON string and when it finds
+ a matching string it will place the contents of the string at the end of a MESSAGE_STEP vector */
 Message::Message(std::string jsonMessageString) {
 
 	enum class MESSAGE_STEP {
 		ms_source, ms_destination, ms_version, ms_ip, ms_port, ms_type,
 		ms_author, ms_timestamp, ms_body
 	};
-	std::stack<char> stk{};
-	std::vector<MESSAGE_STEP> step{};
+	std::stack<char> stk{};					//Create a character stack
+	std::vector<MESSAGE_STEP> step{};	
 	std::string str = "";
 
-	for (char ch : jsonMessageString) {
+	for (char ch : jsonMessageString) {		//Parse the JSON string
 
-		if (step.size() == 1) {
+		if (step.size() == 1) {		
 			if (step.at(0) == MESSAGE_STEP::ms_body) {
 				if (stk.size() == 1 && ch == '{') {
 					stk.push(ch);
@@ -45,14 +84,13 @@ Message::Message(std::string jsonMessageString) {
 			}
 		}
 
-		if (ch == '{') stk.push(ch);
+		if (ch == '{') stk.push(ch);	//If the current ch is a { or }, push ch to stk.   
 		else if (ch == '}' && stk.size() > 0) {
 			if (stk.top() == '{') stk.pop();
 		}
-		else if (ch == '"') {
-			if (stk.size() > 0) {
-				if (stk.top() == '"') {
-					stk.pop();
+		else if (ch == '"') {	//If current ch is ", parse the string based on which type it is
+			if (stk.size() > 0) {	//If stack size is non-zero continue to parse. If not, push the ch into stack
+				if (stk.top() == '"') {	
 					if (step.size() == 0 && stk.size() == 1) {
 						if (str.compare("source") == 0) step.push_back(MESSAGE_STEP::ms_source);
 						else if (str.compare("destination") == 0) step.push_back(MESSAGE_STEP::ms_destination);
@@ -113,7 +151,7 @@ Message::Message(std::string jsonMessageString) {
 			else stk.push(ch);
 		}
 		else if (stk.size() > 0) {
-			if (stk.top() == '"') str += ch;
+			if (stk.top() == '"') str += ch;	//Add ch into string for string compare
 		}
 	}
 }
@@ -122,58 +160,58 @@ Message::Message(std::string jsonMessageString) {
 Message::Message(IP_VERSION sourceIpVer, std::string sourceIpAddr, size_t sourcePort,
 	IP_VERSION destIpVer, std::string destIpAddr, size_t destPort, LOG_LEVEL logLevel, std::list<std::string> testList)
 {
-	source.setValues(sourceIpVer, sourceIpAddr, sourcePort);
+	source.setValues(sourceIpVer, sourceIpAddr, sourcePort);	//Set the correct values for the message object
 	destination.setValues(destIpVer, destIpAddr, destPort);
 	messageType = MESSAGE_TYPE::client_request;
 	author = "TestClient";
 	timestamp = Timer::currentTime();
-	body = R"({ "log": ")";
+	body = R"({ "log": ")";										//Add log details to message body
 	if (logLevel == LOG_LEVEL::info) body += "info";
 	else if (logLevel == LOG_LEVEL::debug) body += "debug";
 	else if (logLevel == LOG_LEVEL::detail) body += "detail";
-	body += R"(", "count": ")" + std::to_string(testList.size()) + R"(", "tests": [ )";
+	body += R"(", "count": ")" + std::to_string(testList.size()) + R"(", "tests": [ )";	//Add count to message body
 	for (auto it = testList.begin(); it != testList.end(); ++it) {
 		if (it != testList.begin()) body += ", ";
-		body += R"(")" + *it + R"(")";
+		body += R"(")" + *it + R"(")";							//Iteratively add all the elements from testList to the body
 	}
 	body += R"( ] })";
 }
 
-/* constructor for test result message */
+/* Constructor for test result message. Result message is sent from server back to client */
 Message::Message(IP_VERSION sourceIpVer, std::string sourceIpAddr, size_t sourcePort,
 	IP_VERSION destIpVer, std::string destIpAddr, size_t destPort, std::string testName)
 {
-	source.setValues(sourceIpVer, sourceIpAddr, sourcePort);
+	source.setValues(sourceIpVer, sourceIpAddr, sourcePort);	//Set the correct values for the message object
 	destination.setValues(destIpVer, destIpAddr, destPort);
 	messageType = MESSAGE_TYPE::test_result;
 	author = "TestServer";
 	timestamp = Timer::currentTime();
-	body = R"({ "name": ")" + testName + R"(", "result": "", "message": "" })";
+	body = R"({ "name": ")" + testName + R"(", "result": "", "message": "" })";		//Create JSON of the results message
 }
 
 /* add the test result to the message */
 void Message::setTestResult(TEST_RESULT testResult, std::string resultMessage) {
 	int length = body.length();
-	std::string newBody = body.substr(0, length - 18);
+	std::string newBody = body.substr(0, length - 18);		//Create a sub string which starts its index after "result": "
 	if (testResult == TEST_RESULT::pass) newBody += "pass";
 	else if (testResult == TEST_RESULT::fail) newBody += "fail";
 	else if (testResult == TEST_RESULT::exception) newBody += "exception";
-	newBody += body.substr(length - 18, 15) + resultMessage + body.substr(length - 3, 3);
+	newBody += body.substr(length - 18, 15) + resultMessage + body.substr(length - 3, 3); //Add the result inside the JSON at the right index
 	body = newBody;
 }
 
 /* convert message to JSON formatted string */
 std::string Message::getJsonFormattedMessage() {
 	std::string message = R"({ "source": { "version": "IPv)";
-	if (source.ipVer == IP_VERSION::IPv4) message += "4";
+	if (source.ipVer == IP_VERSION::IPv4) message += "4";		//Set the right source/destination IP version for the JSON message
 	else if (source.ipVer == IP_VERSION::IPv6) message += "6";
-	message += R"(", "ip": ")" + source.ipAddr + R"(", "port": ")" + std::to_string(source.port) + R"(" }, "destination": { "version": "IPv)";
+	message += R"(", "ip": ")" + source.ipAddr + R"(", "port": ")" + std::to_string(source.port) + R"(" }, "destination": { "version": "IPv)";	//Set the source/destination port
 	if (destination.ipVer == IP_VERSION::IPv4) message += "4";
 	else if (destination.ipVer == IP_VERSION::IPv6) message += "6";
 	message += R"(", "ip": ")" + destination.ipAddr + R"(", "port": ")" + std::to_string(destination.port) + R"(" }, "type": ")";
-	if (messageType == MESSAGE_TYPE::client_request) message += "client_request";
+	if (messageType == MESSAGE_TYPE::client_request) message += "client_request";		//Determine message type
 	else if (messageType == MESSAGE_TYPE::test_result) message += "test_result";
-	message += R"(", "author": ")" + author + R"(", "timestamp": ")" + timestamp + R"(", "body": )" + body + " }";
+	message += R"(", "author": ")" + author + R"(", "timestamp": ")" + timestamp + R"(", "body": )" + body + " }";	//Set the author, timestamp, and message body
 	return message;
 }
 
@@ -188,17 +226,17 @@ size_t Message::sourcePort() { return source.port; }
 RequestItem Message::getRequestMessageBody() {
 
 	enum class REQUEST_STEP { rs_none, rs_log, rs_count, rs_tests };
-	REQUEST_STEP step = REQUEST_STEP::rs_none;
+	REQUEST_STEP step = REQUEST_STEP::rs_none; //Allow an index step to identify the parameters of the message body
 	std::string str = "";
 	bool readText = false;
 	RequestItem item{};
 
-	if (messageType == MESSAGE_TYPE::client_request) {
+	if (messageType == MESSAGE_TYPE::client_request) {//Parse through the string obtaining the log, count, and tests
 		for (char ch : body) {
 			if (readText) {
-				if (ch == '"') {
+				if (ch == '"') {  // Check to see that first ch of the string is a potential matching str
 					if (step == REQUEST_STEP::rs_none) {
-						if (str.compare("log") == 0) {
+						if (str.compare("log") == 0) {		
 							step = REQUEST_STEP::rs_log;
 						}
 						else if (str.compare("count") == 0) {
@@ -224,7 +262,7 @@ RequestItem Message::getRequestMessageBody() {
 					readText = false;
 					str = "";
 				}
-				else str += ch;
+				else str += ch; //Add additional ch to the str to compare for matching strings 
 			}
 			else if (ch == '"') readText = true;
 
@@ -237,16 +275,16 @@ RequestItem Message::getRequestMessageBody() {
 TestItem Message::getResultMessageBody() {
 
 	enum class RESULT_STEP { rs_none, rs_name, rs_result, rs_message };
-	RESULT_STEP step = RESULT_STEP::rs_none;
+	RESULT_STEP step = RESULT_STEP::rs_none;	//Allow an index step to identify the parameters of the message body
 	std::string str = "";
 	bool readText = false;
 	TestItem item{};
 
-	if (messageType == MESSAGE_TYPE::test_result) {
-		for (char ch : body) {
+	if (messageType == MESSAGE_TYPE::test_result) {	//Parse through the string obtaining the name, results, and message
+		for (char ch : body) {						
 			if (readText) {
-				if (ch == '"') {
-					if (step == RESULT_STEP::rs_none) {
+				if (ch == '"') {	//Check to see that first ch of the string is a potential matching str
+					if (step == RESULT_STEP::rs_none) {	
 						if (str.compare("name") == 0) step = RESULT_STEP::rs_name;
 						else if (str.compare("result") == 0) step = RESULT_STEP::rs_result;
 						else if (str.compare("message") == 0) step = RESULT_STEP::rs_message;
@@ -255,7 +293,7 @@ TestItem Message::getResultMessageBody() {
 						item.testName = str;
 						step = RESULT_STEP::rs_none;
 					}
-					else if (step == RESULT_STEP::rs_result) {
+					else if (step == RESULT_STEP::rs_result) {	
 						if (str.compare("pass") == 0) item.testResult = TEST_RESULT::pass;
 						else if (str.compare("fail") == 0) item.testResult = TEST_RESULT::fail;
 						else if (str.compare("exception") == 0) item.testResult = TEST_RESULT::exception;
@@ -268,7 +306,7 @@ TestItem Message::getResultMessageBody() {
 					readText = false;
 					str = "";
 				}
-				else str += ch;
+				else str += ch;	//Add additional chr to the str to compare for matching strings 
 			}
 			else if (ch == '"') readText = true;
 		}
