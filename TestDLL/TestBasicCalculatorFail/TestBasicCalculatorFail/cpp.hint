@@ -1,0 +1,2 @@
+#define TESTBASICCALCULATORFAIL_API __declspec(dllexport)
+#define TESTBASICCALCULATORFAIL_API __declspec(dllimport)

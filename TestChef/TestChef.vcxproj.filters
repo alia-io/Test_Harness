@@ -158,9 +158,6 @@
     <ClInclude Include="ResultFormatter.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="TestMessageParser.h">
-      <Filter>Header Files\TestMessenger</Filter>
-    </ClInclude>
     <ClInclude Include="TestDLLLoader.h">
       <Filter>Header Files\TestController</Filter>
     </ClInclude>
