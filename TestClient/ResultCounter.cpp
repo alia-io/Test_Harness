@@ -24,7 +24,7 @@ std::string ResultCounter::testResultSummary() {
 	std::string out = " Total Tests           " + std::to_string(totalTests);
 	out += "\n                        Tests Passed          " + std::to_string(testsPassed);
 	out += "\n                        Tests Failed          " + std::to_string(testsFailed);
-	out += "\n                        Total Time Taken      " + std::to_string(timer->timeTaken()) + " ns.";
+	out += "\n                        Total Time Taken      " + Timer::convertTimeToString(timer->timeTakenSeconds()) + " seconds";
 	return out;
 }
 
