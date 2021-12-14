@@ -1,0 +1,2 @@
+#define TESTADVCALCULATORPASS_API __declspec(dllexport)
+#define TESTADVCALCULATORPASS_API __declspec(dllimport)
