@@ -80,8 +80,8 @@ void TestHarness::childRunner() {
 	while (true) {
 		if (numberOfTests <= 0) break;
 		Message message = handler.dequeueTestRequest();
-		bool (*ptr)() = TestGetter::getTest(message.getResultMessageBody().testName).pointer;
-		TestRunner runner{ message.getResultMessageBody().testName, ptr };
+		//bool (*ptr)() = TestGetter::getTest(message.getResultMessageBody().testName).pointer;
+		TestRunner runner{ message.getResultMessageBody().testName, nullptr };
 		runner.runTest(&handler, message, StaticLogger<1>::getLogLevel());
 		mtx.lock();
 		numberOfTests--;

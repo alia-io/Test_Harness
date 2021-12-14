@@ -10,14 +10,19 @@ bool TestDLLLoader::dllLoader(std::string dllName) {
 	//loads dll
 	HINSTANCE hinstLib = LoadLibraryA(dllName.c_str());
 
+	std::cout << "dllName = " << dllName << std::endl;
+
 	if (hinstLib)
 	{
 		//assigning function pointer
+		//std::cout << "hinstLib" << std::endl;
 		importedFunctionPointer = (testFunc)(GetProcAddress(hinstLib, funcName.c_str()));
 
 		if (importedFunctionPointer)
 		{
+			//std::cout << "importedFunctionPointer" << std::endl;
 			outcome = importedFunctionPointer();
+			std::cout << "outcome = " << outcome << std::endl;
 		}
 		else
 			cout << "Could Not Load function " << std::endl;

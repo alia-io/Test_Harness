@@ -31,9 +31,10 @@ void TestRunner::runTest(MessageHandler* messageHandler, Message msg, LOG_LEVEL 
 	TestDLLLoader loader;
 	
 	try {
-		result = loader.dllLoader(testFunctionName);//function name is expected of format XXXXX.dll
+		result = loader.dllLoader(testFunctionName + ".dll"); //function name is expected of format XXXXX.dll
 	}
 	catch (std::exception& e) {
+		std::cout << "outcome = exception" << std::endl;
 		timer.endTimer();
 		messageHandler->enqueueTestResult(msg, TEST_RESULT::exception,
 			ResultFormatter::testExceptionMessage(testFunctionName, e, logLevel));
