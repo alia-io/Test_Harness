@@ -10,7 +10,7 @@
 //////////////////////////////////////////////////////
 
 /*
-* This class is the implementation of the Message.h header. This Class forms the message object on 
+* This class is the implementation of the Message.h class. This Class forms the message object on 
 * the client side that will be sent to the server via the socket class method.
 *	-------------------------------------
 *	CLIENT REQUEST MESSAGE -- JSON FORMAT

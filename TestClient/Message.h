@@ -16,7 +16,7 @@ using std::chrono::system_clock;
 // Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
 //////////////////////////////////////////////////////
 
-/* This is the header class for the Message class.
+/* This is the header file for the Message class.
 *	-------------------------------------
 *	CLIENT REQUEST MESSAGE -- JSON FORMAT
 *	-------------------------------------

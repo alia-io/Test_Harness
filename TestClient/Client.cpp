@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////
-// StringClient.cpp - Demonstrates simple one-way string messaging     //
+// Client.cpp - Demonstrates simple one-way string messaging           //
 //                                                                     //
 // Jim Fawcett, CSE687 - Object Oriented Design, Spring 2016           //
 // Application: OOD Project #4                                         //
@@ -27,7 +27,7 @@
 #include <iostream>
 #include <thread>
 
-const IP_VERSION Client::ipVersion = IP_VERSION::IPv6;
+const IP_VERSION Client::ipVersion = IP_VERSION::IPv6;      // create initial connection parameters
 const std::string Client::ipAddress = "localhost";
 const size_t Client::portNumber = 9090;
 
@@ -35,13 +35,14 @@ using namespace Sockets;
 
 class ConnectionHandler {
 private:
-    ResultCounter counter{};
+    ResultCounter counter{};    // Counts the number of tests of each category
 public:
     void operator()(Socket& socket_);
     void setTotalTests(int count);
     void sendTimer(Timer* t);
 };
 
+/* This method increments the counter for each result message that comes back as passed, failed, and exception */
 void ConnectionHandler::operator()(Socket& socket_) {
 
     int numberOfTests = counter.getTestsTotal();
@@ -70,25 +71,26 @@ void ConnectionHandler::operator()(Socket& socket_) {
 void ConnectionHandler::setTotalTests(int count) { counter.setTotalTests(count); }
 void ConnectionHandler::sendTimer(Timer* t) { counter.setTimer(t); }
 
+/* Run each test inside of testList for a specified log level */ 
 void Client::runTests(LOG_LEVEL logLevel, std::list<std::string> testList) {
     init();
     try {
         SocketSystem ss;
         Timer timer{};
-        std::thread listenThread([=] { startListener(testList.size(), timer); });
+        std::thread listenThread([=] { startListener(testList.size(), timer); });  // create threads to handle incoming results messages 
         ::Sleep(1000);   // wait to make sure server listener is started
-        sendRequest(logLevel, testList, timer);
+        sendRequest(logLevel, testList, timer); // calls method that sends the test list to be processed by TestHarness on the server side
         listenThread.join();
     }
     catch (std::exception& exc) {
-        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Exeception caught: " + std::string(exc.what()) });
+        StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Exeception caught: " + std::string(exc.what()) }); //Log a msg when excpt is caught
     }
 }
 
 void Client::init() {
     StaticLogger<1>::attach(&std::cout);
     StaticLogger<1>::start();
-    StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Client started" });
+    StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::system, "Client started" });    // Indicate to the console that Client has started
 }
 
 void Client::startListener(int numTests, Timer timer) {  // Communication from server to client
