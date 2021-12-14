@@ -28,8 +28,10 @@ void TestRunner::runTest(MessageHandler* messageHandler, Message msg, LOG_LEVEL 
 	Timer timer{};
 	bool result = false;
 	timer.startTimer();
+	TestDLLLoader loader;
+	
 	try {
-		result = testFunction();///TODO:replace it with DLL load in main2
+		result = loader.dllLoader(testFunctionName);//function name is expected of format XXXXX.dll
 	}
 	catch (std::exception& e) {
 		timer.endTimer();

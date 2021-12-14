@@ -3,10 +3,10 @@
 #include <windows.h>
 using std::cout;
 
-void TestDLLLoader::dllLoader(std::string dllName) {
+bool TestDLLLoader::dllLoader(std::string dllName) {
 	testFunc importedFunctionPointer;
 	std::string funcName = "TEST"; //default function expected in all dlls
-
+	bool outcome = false;
 	//loads dll
 	HINSTANCE hinstLib = LoadLibraryA(dllName.c_str());
 
@@ -17,11 +17,12 @@ void TestDLLLoader::dllLoader(std::string dllName) {
 
 		if (importedFunctionPointer)
 		{
-			cout << "Function Output -->" << importedFunctionPointer();
+			outcome = importedFunctionPointer();
 		}
 		else
 			cout << "Could Not Load function " << std::endl;
 	}
 	else
 		cout << "Could Not Load DLL " << std::endl;
+	return outcome;
 }
