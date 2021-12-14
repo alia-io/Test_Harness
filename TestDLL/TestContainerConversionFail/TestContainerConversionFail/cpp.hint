@@ -1,0 +1,2 @@
+#define TESTCONTAINERCONVERSIONFAIL_API __declspec(dllexport)
+#define TESTCONTAINERCONVERSIONFAIL_API __declspec(dllimport)

@@ -89,17 +89,19 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;..\TestDLL\TestBasicCalculatorFail\TestBasicCalculatorFail;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\TestDLL\TestContainerConversionFail\TestContainerConversionFail;..\TestDLL\TestLengthError\TestLengthError;..\TestDLL\TestBasicCalculatorFail\TestBasicCalculatorFail;..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;..\TestDLL\TestBasicCalculatorFail\x64\Debug\TestBasicCalculatorFail.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\TestDLL\TestBasicCalculatorPass\$(IntDir);..\TestDLL\TestBasicCalculatorFail\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;..\TestDLL\TestBasicCalculatorFail\x64\Debug\TestBasicCalculatorFail.lib;..\TestDLL\TestLengthError\x64\Debug\TestLengthError.lib;..\TestDLL\TestContainerConversionFail\x64\Debug\TestContainerConversionFail.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\TestDLL\TestLengthError\$(IntDir);..\TestDLL\TestContinerConversionFail\$(IntDir);..\TestDLL\TestBasicCalculatorPass\$(IntDir);..\TestDLL\TestBasicCalculatorFail\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "..\TestDLL\TestBasicCalculatorPass\$(IntDir)TestBasicCalculatorPass.dll" "$(OutDir)"
-xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail.dll" "$(OutDir)"</Command>
+xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail.dll" "$(OutDir)"
+xcopy /y /d "..\TestDLL\TestContainerConversionFail\$(IntDir)TestContainerConversionFail.dll" "$(OutDir)"
+xcopy /y /d "..\TestDLL\TestLengthError\$(IntDir)TestLengthError.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -110,19 +112,21 @@ xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;..\TestDLL\TestBasicCalculatorFail\TestBasicCalculatorFail;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\TestDLL\TestContainerConversionFail\TestContainerConversionFail;..\TestDLL\TestLengthError\TestLengthError;..\TestDLL\TestBasicCalculatorFail\TestBasicCalculatorFail;..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;..\TestDLL\TestBasicCalculatorFail\x64\Debug\TestBasicCalculatorFail.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\TestDLL\TestBasicCalculatorPass\$(IntDir);..\TestDLL\TestBasicCalculatorFail\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;..\TestDLL\TestBasicCalculatorFail\x64\Debug\TestBasicCalculatorFail.lib;..\TestDLL\TestLengthError\x64\Debug\TestLengthError.lib;..\TestDLL\TestContainerConversionFail\x64\Debug\TestContainerConversionFail.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\TestDLL\TestLengthError\$(IntDir);..\TestDLL\TestContinerConversionFail\$(IntDir);..\TestDLL\TestBasicCalculatorPass\$(IntDir);..\TestDLL\TestBasicCalculatorFail\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "..\TestDLL\TestBasicCalculatorPass\$(IntDir)TestBasicCalculatorPass.dll" "$(OutDir)"
-xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail.dll" "$(OutDir)"</Command>
+xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail.dll" "$(OutDir)"
+xcopy /y /d "..\TestDLL\TestContainerConversionFail\$(IntDir)TestContainerConversionFail.dll" "$(OutDir)"
+xcopy /y /d "..\TestDLL\TestLengthError\$(IntDir)TestLengthError.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -131,17 +135,19 @@ xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;..\TestDLL\TestBasicCalculatorFail\TestBasicCalculatorFail;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\TestDLL\TestContainerConversionFail\TestContainerConversionFail;..\TestDLL\TestLengthError\TestLengthError;..\TestDLL\TestBasicCalculatorFail\TestBasicCalculatorFail;..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;..\TestDLL\TestBasicCalculatorFail\x64\Debug\TestBasicCalculatorFail.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\TestDLL\TestBasicCalculatorPass\$(IntDir);..\TestDLL\TestBasicCalculatorFail\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;..\TestDLL\TestBasicCalculatorFail\x64\Debug\TestBasicCalculatorFail.lib;..\TestDLL\TestLengthError\x64\Debug\TestLengthError.lib;..\TestDLL\TestContainerConversionFail\x64\Debug\TestContainerConversionFail.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\TestDLL\TestLengthError\$(IntDir);..\TestDLL\TestContinerConversionFail\$(IntDir);..\TestDLL\TestBasicCalculatorPass\$(IntDir);..\TestDLL\TestBasicCalculatorFail\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "..\TestDLL\TestBasicCalculatorPass\$(IntDir)TestBasicCalculatorPass.dll" "$(OutDir)"
-xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail.dll" "$(OutDir)"</Command>
+xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail.dll" "$(OutDir)"
+xcopy /y /d "..\TestDLL\TestContainerConversionFail\$(IntDir)TestContainerConversionFail.dll" "$(OutDir)"
+xcopy /y /d "..\TestDLL\TestLengthError\$(IntDir)TestLengthError.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -152,19 +158,21 @@ xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;..\TestDLL\TestBasicCalculatorFail\TestBasicCalculatorFail;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\TestDLL\TestContainerConversionFail\TestContainerConversionFail;..\TestDLL\TestLengthError\TestLengthError;..\TestDLL\TestBasicCalculatorFail\TestBasicCalculatorFail;..\TestDLL\TestBasicCalculatorPass\TestBasicCalculatorPass;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;..\TestDLL\TestBasicCalculatorFail\x64\Debug\TestBasicCalculatorFail.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\TestDLL\TestBasicCalculatorPass\$(IntDir);..\TestDLL\TestBasicCalculatorFail\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>..\TestDLL\TestBasicCalculatorPass\x64\Debug\TestBasicCalculatorPass.lib;..\TestDLL\TestBasicCalculatorFail\x64\Debug\TestBasicCalculatorFail.lib;..\TestDLL\TestLengthError\x64\Debug\TestLengthError.lib;..\TestDLL\TestContainerConversionFail\x64\Debug\TestContainerConversionFail.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\TestDLL\TestLengthError\$(IntDir);..\TestDLL\TestContinerConversionFail\$(IntDir);..\TestDLL\TestBasicCalculatorPass\$(IntDir);..\TestDLL\TestBasicCalculatorFail\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "..\TestDLL\TestBasicCalculatorPass\$(IntDir)TestBasicCalculatorPass.dll" "$(OutDir)"
-xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail.dll" "$(OutDir)"</Command>
+xcopy /y /d "..\TestDLL\TestBasicCalculatorFail\$(IntDir)TestBasicCalculatorFail.dll" "$(OutDir)"
+xcopy /y /d "..\TestDLL\TestContainerConversionFail\$(IntDir)TestContainerConversionFail.dll" "$(OutDir)"
+xcopy /y /d "..\TestDLL\TestLengthError\$(IntDir)TestLengthError.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
