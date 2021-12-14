@@ -49,12 +49,7 @@ void ConnectionHandler::operator()(Socket& socket_) {
     while (true) {  // Incoming messages from server received here
         if (numberOfTests <= 0) break;
         std::string msg = Socket::removeTerminator(socket_.recvString());
-        //std::cout << msg << std::endl;
         Message resultMsg{ msg };
-        //std::string convertedMsg = resultMsg.getJsonFormattedMessage();
-        //std::cout << convertedMsg << std::endl;
-        //bool eq = msg.compare(convertedMsg);
-        //std::cout << "equal ? = " << eq << std::endl;
         if (resultMsg.getResultMessageBody().testResult == TEST_RESULT::pass) {
             StaticLogger<1>::write(LogMsg{ OUTPUT_TYPE::positive, resultMsg.getResultMessageBody().testMessage });
             counter.incrementTestPassed();
