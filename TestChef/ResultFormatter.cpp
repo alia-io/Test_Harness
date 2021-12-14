@@ -1,11 +1,11 @@
 #include "ResultFormatter.h"
 
 std::string ResultFormatter::testPassedMessage(std::string testName, Timer timer) {
-	return testName + "\n        Time elapsed: " + std::to_string(timer.timeTaken()) + " ns.";
+	return testName + "\n        Time elapsed: " + Timer::convertTimeToString(timer.timeTakenNanos()) + "ns.";
 }
 
 std::string ResultFormatter::testFailedMessage(std::string testName, Timer timer) {
-	return testName + "\n        Time elapsed: " + std::to_string(timer.timeTaken()) + " ns.";
+	return testName + "\n        Time elapsed: " + Timer::convertTimeToString(timer.timeTakenNanos()) + "ns.";
 }
 
 std::string ResultFormatter::testExceptionMessage(std::string testName, std::exception& e, LOG_LEVEL logLevel) {

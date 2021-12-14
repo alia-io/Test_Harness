@@ -15,9 +15,11 @@
 *
 */
 
-using  std::chrono::system_clock;
-using  std::chrono::duration_cast;
-using  std::chrono::nanoseconds;
+using std::chrono::system_clock;
+using std::chrono::duration_cast;
+using std::chrono::nanoseconds;
+using std::chrono::milliseconds;
+using std::chrono::seconds;
 
 void Timer::startTimer() {
 	startTime = system_clock::now();	// Sets a start time when called.  
@@ -27,8 +29,26 @@ void Timer::endTimer() {
 	endTime = system_clock::now(); // Sets an end time when called.
 }
 
-double Timer::timeTaken() {
-	return duration_cast<nanoseconds>(endTime - startTime).count(); // Used to determine amount of time between start and end time which is two points within code.
+double Timer::timeTakenNanos() {
+	return duration_cast<nanoseconds>(endTime - startTime).count();
+}
+
+double Timer::timeTakenMillis() {
+	return duration_cast<milliseconds>(endTime - startTime).count();
+}
+
+double Timer::timeTakenSeconds() {
+	return duration_cast<seconds>(endTime - startTime).count();
+}
+
+std::string Timer::convertTimeToString(double t) {
+	std::string rawTime = std::to_string(t);
+	std::string outTime = "";
+	for (char ch : rawTime) {
+		if (ch == '.') break;
+		outTime += ch;
+	}
+	return outTime;
 }
 
 std::string Timer::currentTime() {		// Function that returns formatted current time
