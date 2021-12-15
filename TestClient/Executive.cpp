@@ -8,8 +8,8 @@ int main() {
 
 	std::list<std::string> testList{	// create a test list for all dll tests to be passed on to the server
 		"TestBasicCalculatorPass", "TestBasicCalculatorFail", "TestBasicCalculatorException", "TestAdvCalculatorPass",
-		/*"TestMemoryAllocatorException1", "TestMemoryAllocatorException2",*/ "TestContainerConversionFail",
-		"TestContainerConversionException", "TestLengthError", /*"TestOverflowErrorException"*/
+		"TestMemoryAllocaterException01", "TestMemoryAllocaterException02", "TestContainerConversionFail",
+		"TestContainerConversionException", "TestLengthError", "TestOverflowException"
 	};
 
 	Client{}.runTests(LOG_LEVEL::detail, testList);	// ask the client to send those dlls to be run
