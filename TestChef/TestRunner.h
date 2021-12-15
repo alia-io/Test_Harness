@@ -27,9 +27,9 @@
 
 class TestRunner {
 private:
-	std::string testFunctionName;
-	bool (*testFunction)();
+	std::string testName;
+	Message message;
 public:
-	TestRunner(std::string name, bool (*funcPtr)());
-	void runTest(MessageHandler* messageHandler, Message msg, LOG_LEVEL logLevel);
+	TestRunner(Message msg);
+	void runTest(MessageHandler* messageHandler, LOG_LEVEL logLevel);
 };
