@@ -204,7 +204,7 @@ xcopy /y /d "..\TestDLL\TestOverFlowException\$(IntDir)TestOverFlowException.dll
     <ClCompile Include="Sockets.cpp" />
     <ClCompile Include="StaticLogger.cpp" />
     <ClCompile Include="BlockingQueue.cpp" />
-    <ClCompile Include="TestDLLLoader.cpp" />
+    <ClCompile Include="DllLoader.cpp" />
     <ClCompile Include="TestHarness.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="MessageHandler.cpp" />
@@ -214,7 +214,7 @@ xcopy /y /d "..\TestDLL\TestOverFlowException\$(IntDir)TestOverFlowException.dll
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Server.h" />
-    <ClInclude Include="TestDLLLoader.h" />
+    <ClInclude Include="DllLoader.h" />
     <ClInclude Include="Sockets.h" />
     <ClInclude Include="StaticLogger.h" />
     <ClInclude Include="BlockingQueue.h" />

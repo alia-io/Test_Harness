@@ -1,4 +1,4 @@
-#include "TestResultCounter.h"
+#include "ResultCounter.h"
 
 //////////////////////////////////////////////////////
 // TestResultCounter.cpp							//
@@ -12,15 +12,15 @@
 *
 */
 
-void TestResultCounter::setTotalTests(int count) { totalTests = count; };	// set the total test amount
-void TestResultCounter::incrementTestPassed() { testsPassed++; };		// increment tests passed
-void TestResultCounter::incrementTestFailed() { testsFailed++; };		// increment tests failed 
+void ResultCounter::setTotalTests(int count) { totalTests = count; };	// set the total test amount
+void ResultCounter::incrementTestPassed() { testsPassed++; };		// increment tests passed
+void ResultCounter::incrementTestFailed() { testsFailed++; };		// increment tests failed 
 
-int TestResultCounter::getTestsPassed() { return testsPassed; };	// return counter variables
-int TestResultCounter::getTestsFailed() { return testsFailed; };
-int TestResultCounter::getTestsTotal() { return totalTests; }
+int ResultCounter::getTestsPassed() { return testsPassed; };	// return counter variables
+int ResultCounter::getTestsFailed() { return testsFailed; };
+int ResultCounter::getTestsTotal() { return totalTests; }
 
-std::string TestResultCounter::testResultSummary() {
+std::string ResultCounter::testResultSummary() {
 	std::string out = " Total Tests           " + std::to_string(totalTests);
 	out += "\n                        Tests Passed          " + std::to_string(testsPassed);
 	out += "\n                        Tests Failed          " + std::to_string(testsFailed);
@@ -28,5 +28,5 @@ std::string TestResultCounter::testResultSummary() {
 	return out;
 }
 
-void TestResultCounter::setTimer(Timer* t) { timer = t; }
-Timer* TestResultCounter::getTimer() { return timer; }
+void ResultCounter::setTimer(Timer* t) { timer = t; }
+Timer* ResultCounter::getTimer() { return timer; }

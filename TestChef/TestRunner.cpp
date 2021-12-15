@@ -1,5 +1,5 @@
 #include "TestRunner.h"
-#include "TestDLLLoader.h"
+#include "DllLoader.h"
 
 //////////////////////////////////////////////////////
 // TestRunner.cpp									//
@@ -30,7 +30,7 @@ void TestRunner::runTest(MessageHandler* messageHandler, LOG_LEVEL logLevel) {
 	
 	Timer timer{};
 	bool result = false;
-	TestDLLLoader loader;
+	DllLoader loader;
 	
 	timer.startTimer();
 

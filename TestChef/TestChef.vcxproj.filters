@@ -63,7 +63,7 @@
     <ClCompile Include="ResultFormatter.cpp">
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
-    <ClCompile Include="TestDLLLoader.cpp">
+    <ClCompile Include="DllLoader.cpp">
       <Filter>Source Files\TestController</Filter>
     </ClCompile>
     <ClCompile Include="StaticLogger.cpp">
@@ -95,7 +95,7 @@
     <ClInclude Include="ResultFormatter.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="TestDLLLoader.h">
+    <ClInclude Include="DllLoader.h">
       <Filter>Header Files\TestController</Filter>
     </ClInclude>
     <ClInclude Include="StaticLogger.h">

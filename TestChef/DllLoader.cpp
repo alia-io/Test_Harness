@@ -1,4 +1,4 @@
-#include "TestDLLLoader.h"
+#include "DllLoader.h"
 #include <iostream>
 #include <windows.h>
 using std::cout;
@@ -16,7 +16,7 @@ using std::cout;
 *
 */
 
-bool TestDLLLoader::dllLoader(std::string dllName) {
+bool DllLoader::dllLoader(std::string dllName) {
 	testFunc importedFunctionPointer;
 	std::string funcName = "TEST"; //default function expected in all dlls
 	bool outcome = false;

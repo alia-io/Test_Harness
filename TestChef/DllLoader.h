@@ -15,7 +15,7 @@ using std::string;
 *
 */
 
-class TestDLLLoader {
+class DllLoader {
 public:
 	bool dllLoader(string dllName);
 private:
