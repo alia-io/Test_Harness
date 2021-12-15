@@ -10,6 +10,19 @@
 #include "LengthErrorTestDriverException.h"
 #include "OverflowErrorTestDriverException.h"
 
+//////////////////////////////////////////////////////
+// Executive.h									//
+// CSE 687: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/*
+* file representing Item and TestGetter classes
+*
+* Purpose of this file is to represent a testItem and testgetter returns the Test as an Item class based on name
+*
+*/
+
 bool testBasicCalculatorPassScenario() {	// expect PASS
 	BasicCalculatorTestDriverPass calc{};
 	return calc.TEST();
