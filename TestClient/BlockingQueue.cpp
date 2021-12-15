@@ -24,7 +24,7 @@ void test(TestBlockingQueue<std::string>* pQ)
     std::string msg;
     do
     {
-        msg = pQ->deQ();
+        msg = pQ->deQ(); 
         {
             std::lock_guard<std::mutex> l(ioLock);
             std::cout << "\n  thread deQed " << msg.c_str();

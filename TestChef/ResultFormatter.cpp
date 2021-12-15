@@ -1,13 +1,29 @@
 #include "ResultFormatter.h"
 
+//////////////////////////////////////////////////////
+// Result.cpp										//
+// CSE 681: Object Oriented Design					//
+// Santhosh Srinivasan, Jiawen Zhen, Alifa Stith	//
+//////////////////////////////////////////////////////
+
+/*
+* Implementation of the ResultFormatter class
+* This class is used to return the results of each test that is run.
+* Each test is run at a specific log level and that level determines the level of detail that is passed into the test result
+*
+*/
+
+/* For a passed test record the elapsed time */
 std::string ResultFormatter::testPassedMessage(std::string testName, Timer timer) {
 	return testName + "\n        Time elapsed: " + Timer::convertTimeToString(timer.timeTakenNanos()) + " ns.";
 }
 
+/* For a failed test record the elapsed time */
 std::string ResultFormatter::testFailedMessage(std::string testName, Timer timer) {
 	return testName + "\n        Time elapsed: " + Timer::convertTimeToString(timer.timeTakenNanos()) + " ns.";
 }
 
+/* Based on the log level determine the amount of detail to pass into the test results */
 std::string ResultFormatter::testExceptionMessage(std::string testName, std::exception& e, LOG_LEVEL logLevel) {
 	switch (logLevel) {
 	case LOG_LEVEL::info:	// level 1 logging
@@ -21,6 +37,7 @@ std::string ResultFormatter::testExceptionMessage(std::string testName, std::exc
 	return "";
 }
 
+/* This method returns the string associated with the exception type */
 std::string ResultFormatter::exceptionDetails(std::exception& e) {
 	if (typeid(e) == typeid(std::bad_alloc)) {
 		return "Failure to allocate storage.";

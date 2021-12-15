@@ -28,7 +28,7 @@
 
 using namespace Sockets;
 
-const IP_VERSION Server::ipVersion = IP_VERSION::IPv6;
+const IP_VERSION Server::ipVersion = IP_VERSION::IPv6;      // create initial connection parameters
 const std::string Server::ipAddress = "localhost";
 const size_t Server::portNumber = 8080;
 
@@ -88,7 +88,7 @@ void Server::runTestHarness(Message requestMsg) {
     MessageHandler* handler = testHarness.getHandler();
     std::thread harnessThr([&] { testHarness.execute(); });
 
-    while (true) {
+    while (true) {      // iterate through all the tests, send the JSON results on that client channel
         if (numberOfTests <= 0) break;
         Message resultMsg = handler->dequeueTestResult();
         si.sendString(resultMsg.getJsonFormattedMessage());
