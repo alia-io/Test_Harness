@@ -1,0 +1,2 @@
+#define TESTMEMORYALLOCATEREXCEPTION01_API __declspec(dllexport)
+#define TESTMEMORYALLOCATEREXCEPTION01_API __declspec(dllimport)
