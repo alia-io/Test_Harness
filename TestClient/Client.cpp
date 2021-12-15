@@ -79,7 +79,7 @@ void Client::runTests(LOG_LEVEL logLevel, std::list<std::string> testList) {
         Timer timer{};
         std::thread listenThread([=] { startListener(testList.size(), timer); });  // create threads to handle incoming results messages 
         ::Sleep(1000);   // wait to make sure server listener is started
-        sendRequest(logLevel, testList, timer); // calls method that sends the test list to be processed by TestHarness on the server side
+        sendRequest(logLevel, testList, timer);
         listenThread.join();
     }
     catch (std::exception& exc) {
@@ -113,7 +113,7 @@ void Client::sendRequest(LOG_LEVEL logLevel, std::list<std::string> testList, Ti
     }
 
     Message request{ Client::ipVersion, Client::ipAddress, Client::portNumber,
-        IP_VERSION::IPv6, "localhost", 8080, LOG_LEVEL::detail, testList };
+        IP_VERSION::IPv6, "localhost", 8080, logLevel, testList };
     std::string jsonRequest = request.getJsonFormattedMessage();
 
     timer.startTimer();
