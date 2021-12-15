@@ -28,12 +28,15 @@
     <Filter Include="Source Files\TestUtilities">
       <UniqueIdentifier>{1b7a3e7b-a9ed-4e84-90af-3e63bdb670d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TestMessenger">
+      <UniqueIdentifier>{48dc5c41-be86-4ef6-974f-da7fcac5afbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TestMessenger">
+      <UniqueIdentifier>{e42f540b-3032-4eb3-8f08-edb871c55e62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
-      <Filter>Header Files\TestCommunicationInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="Message.h">
       <Filter>Header Files\TestCommunicationInterface</Filter>
     </ClInclude>
     <ClInclude Include="Sockets.h">
@@ -51,12 +54,12 @@
     <ClInclude Include="Timer.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>Header Files\TestMessenger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
-      <Filter>Source Files\TestCommunicationInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="Message.cpp">
       <Filter>Source Files\TestCommunicationInterface</Filter>
     </ClCompile>
     <ClCompile Include="Sockets.cpp">
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files\TestUtilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
+      <Filter>Source Files\TestMessenger</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
