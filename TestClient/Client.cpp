@@ -22,7 +22,7 @@
 #include "Client.h"
 #include "Sockets.h"
 #include "StaticLogger.h"
-#include "ResultCounter.h"
+#include "TestResultCounter.h"
 #include <string>
 #include <iostream>
 #include <thread>
@@ -35,7 +35,7 @@ using namespace Sockets;
 
 class ConnectionHandler {
 private:
-    ResultCounter counter{};    // Counts the number of tests of each category
+    TestResultCounter counter{};    // Counts the number of tests of each category
 public:
     void operator()(Socket& socket_);
     void setTotalTests(int count);

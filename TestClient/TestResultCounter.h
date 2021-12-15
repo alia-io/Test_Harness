@@ -14,7 +14,7 @@
 #include <string>
 #include "Timer.h"
 
-class ResultCounter
+class TestResultCounter
 {
 private:
 	int testsPassed;

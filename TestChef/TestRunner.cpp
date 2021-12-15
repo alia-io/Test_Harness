@@ -27,11 +27,13 @@ TestRunner::TestRunner(Message msg) : message{ msg } {
 }
 
 void TestRunner::runTest(MessageHandler* messageHandler, LOG_LEVEL logLevel) {
+	
 	Timer timer{};
 	bool result = false;
-	timer.startTimer();
 	TestDLLLoader loader;
 	
+	timer.startTimer();
+
 	try {
 		result = loader.dllLoader(testName + ".dll"); //function name is expected of format XXXXX.dll
 	}
