@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\TestDriver">
-      <UniqueIdentifier>{99a856df-a1c7-4a01-ad96-510298931d83}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\TestController">
       <UniqueIdentifier>{2cf50793-0e74-4547-b685-2b6cc053bc96}</UniqueIdentifier>
     </Filter>
@@ -34,9 +31,6 @@
     <Filter Include="Source Files\TestMessenger">
       <UniqueIdentifier>{64277d33-b7e3-411d-a454-53b57aabb57d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\TestDriver">
-      <UniqueIdentifier>{c1e5e67e-5259-4139-843c-ece2399b8dc7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\TestCommunicationInterface">
       <UniqueIdentifier>{b50eb37c-03bd-41f7-af75-a70ea064f02e}</UniqueIdentifier>
     </Filter>
@@ -45,18 +39,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BasicCalculator.cpp">
-      <Filter>Source Files\TestDriver</Filter>
-    </ClCompile>
-    <ClCompile Include="ContainerConversions.cpp">
-      <Filter>Source Files\TestDriver</Filter>
-    </ClCompile>
-    <ClCompile Include="MemoryAllocator.cpp">
-      <Filter>Source Files\TestDriver</Filter>
-    </ClCompile>
-    <ClCompile Include="AdvCalculator.cpp">
-      <Filter>Source Files\TestDriver</Filter>
-    </ClCompile>
     <ClCompile Include="TestHarness.cpp">
       <Filter>Source Files\TestController</Filter>
     </ClCompile>
@@ -104,56 +86,11 @@
     <ClInclude Include="MessageHandler.h">
       <Filter>Header Files\TestMessenger</Filter>
     </ClInclude>
-    <ClInclude Include="AdvCalculator.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="AdvCalculatorTestDriverPass.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicCalculator.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicCalculatorTestDriverException.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicCalculatorTestDriverFail.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicCalculatorTestDriverPass.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="ContainerConversions.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="ContainerConversionsTestDriverException.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="ContainerConversionsTestDriverFail.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="LengthErrorTestDriverException.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="MemoryAllocator.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="MemoryAllocatorTestDriverException1.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="MemoryAllocatorTestDriverException2.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="OverflowErrorTestDriverException.h">
-      <Filter>Header Files\TestDriver</Filter>
-    </ClInclude>
     <ClInclude Include="Sockets.h">
       <Filter>Header Files\TestCommunicationInterface</Filter>
     </ClInclude>
     <ClInclude Include="TestRunner.h">
       <Filter>Header Files\TestController</Filter>
-    </ClInclude>
-    <ClInclude Include="ITest.h">
-      <Filter>Header Files\TestDriver</Filter>
     </ClInclude>
     <ClInclude Include="ResultFormatter.h">
       <Filter>Header Files\TestUtilities</Filter>
@@ -169,9 +106,6 @@
     </ClInclude>
     <ClInclude Include="BlockingQueue.h">
       <Filter>Header Files\TestUtilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Executive.h">
-      <Filter>Header Files\TestDriver</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

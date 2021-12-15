@@ -200,11 +200,7 @@ xcopy /y /d "..\TestDLL\TestOverFlowException\$(IntDir)TestOverFlowException.dll
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AdvCalculator.cpp" />
-    <ClCompile Include="BasicCalculator.cpp" />
-    <ClCompile Include="ContainerConversions.cpp" />
     <ClCompile Include="Server.cpp" />
-    <ClCompile Include="MemoryAllocator.cpp" />
     <ClCompile Include="Sockets.cpp" />
     <ClCompile Include="StaticLogger.cpp" />
     <ClCompile Include="BlockingQueue.cpp" />
@@ -217,24 +213,8 @@ xcopy /y /d "..\TestDLL\TestOverFlowException\$(IntDir)TestOverFlowException.dll
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AdvCalculator.h" />
-    <ClInclude Include="AdvCalculatorTestDriverPass.h" />
-    <ClInclude Include="BasicCalculator.h" />
-    <ClInclude Include="BasicCalculatorTestDriverException.h" />
-    <ClInclude Include="BasicCalculatorTestDriverFail.h" />
-    <ClInclude Include="BasicCalculatorTestDriverPass.h" />
-    <ClInclude Include="ContainerConversions.h" />
-    <ClInclude Include="ContainerConversionsTestDriverException.h" />
-    <ClInclude Include="ContainerConversionsTestDriverFail.h" />
-    <ClInclude Include="Executive.h" />
-    <ClInclude Include="ITest.h" />
-    <ClInclude Include="LengthErrorTestDriverException.h" />
-    <ClInclude Include="MemoryAllocator.h" />
-    <ClInclude Include="MemoryAllocatorTestDriverException1.h" />
-    <ClInclude Include="MemoryAllocatorTestDriverException2.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="TestDLLLoader.h" />
-    <ClInclude Include="OverflowErrorTestDriverException.h" />
     <ClInclude Include="Sockets.h" />
     <ClInclude Include="StaticLogger.h" />
     <ClInclude Include="BlockingQueue.h" />
