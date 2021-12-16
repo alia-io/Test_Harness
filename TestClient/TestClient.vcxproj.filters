@@ -45,7 +45,7 @@
     <ClInclude Include="BlockingQueue.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="ResultCounter.h">
+    <ClInclude Include="TestResultCounter.h">
       <Filter>Header Files\TestUtilities</Filter>
     </ClInclude>
     <ClInclude Include="StaticLogger.h">
@@ -71,7 +71,7 @@
     <ClCompile Include="BlockingQueue.cpp">
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
-    <ClCompile Include="ResultCounter.cpp">
+    <ClCompile Include="TestResultCounter.cpp">
       <Filter>Source Files\TestUtilities</Filter>
     </ClCompile>
     <ClCompile Include="StaticLogger.cpp">

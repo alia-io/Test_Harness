@@ -142,7 +142,7 @@
     <ClInclude Include="BlockingQueue.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Message.h" />
-    <ClInclude Include="ResultCounter.h" />
+    <ClInclude Include="TestResultCounter.h" />
     <ClInclude Include="Sockets.h" />
     <ClInclude Include="StaticLogger.h" />
     <ClInclude Include="Timer.h" />
@@ -152,7 +152,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Executive.cpp" />
     <ClCompile Include="Message.cpp" />
-    <ClCompile Include="ResultCounter.cpp" />
+    <ClCompile Include="TestResultCounter.cpp" />
     <ClCompile Include="Sockets.cpp" />
     <ClCompile Include="StaticLogger.cpp" />
     <ClCompile Include="Timer.cpp" />

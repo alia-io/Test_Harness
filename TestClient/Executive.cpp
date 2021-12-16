@@ -12,7 +12,7 @@ int main() {
 		"TestContainerConversionException", "TestLengthError", "TestOverflowException"
 	};
 
-	Client{}.runTests(LOG_LEVEL::detail, testList);	// ask the client to send those dlls to be run
+	Client{}.runTests(LOG_LEVEL::debug, testList);	// ask the client to send those dlls to be run
 
 	return 0;
 }

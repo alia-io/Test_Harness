@@ -113,7 +113,7 @@ void Client::sendRequest(LOG_LEVEL logLevel, std::list<std::string> testList, Ti
     }
 
     Message request{ Client::ipVersion, Client::ipAddress, Client::portNumber,
-        IP_VERSION::IPv6, "localhost", 8080, LOG_LEVEL::detail, testList };
+        IP_VERSION::IPv6, "localhost", 8080, logLevel, testList };
     std::string jsonRequest = request.getJsonFormattedMessage();
 
     timer.startTimer();
